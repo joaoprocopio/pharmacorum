@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pharmacorum"
+version = "0.1.0"
+description = ""
+authors = ["joaoprocopio <joaovitorcprocopio@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.1.6"
+django-cors-headers = "^3.13.0"
+python-decouple = "^3.7"
+gunicorn = "^20.1.0"
+psycopg2 = "^2.9.5"
+django-extensions = "^3.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
