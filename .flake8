@@ -1,0 +1,11 @@
+[flake8]
+exclude =
+  .git/,
+  .pytest_cache/,
+  .venv/,
+  venv/,
+  data/,
+  __pycache__/,
+  frontend/
+max-line-length = 120
+max-complexity = 10
