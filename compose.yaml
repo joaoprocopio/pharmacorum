@@ -47,6 +47,8 @@ services:
   #       condition: service_started
   #   volumes:
   #     - ./frontend:/frontend
+  # restart: on-failure
+
 
   nginx:
     image: nginx:stable
@@ -58,3 +60,5 @@ services:
         condition: service_started
       # vite:
       #   condition: service_started
+      # restart: on-failure
+
