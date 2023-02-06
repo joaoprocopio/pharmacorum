@@ -60,5 +60,4 @@ services:
         condition: service_started
       # vite:
       #   condition: service_started
-      # restart: on-failure
-
+    restart: on-failure
