@@ -12,7 +12,7 @@
   import { useRoute } from "vue-router"
 
   const $globalTheme = useGlobalTheme()
+  const $route = useRoute()
 
-  const route = useRoute()
-  const layout = computed(() => route?.meta?.layout || "DefaultLayout")
+  const layout = computed(() => $route?.meta?.layout || "DefaultLayout")
 </script>
