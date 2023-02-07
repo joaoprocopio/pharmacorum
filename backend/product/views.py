@@ -6,8 +6,8 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
-from product.serializer import product_to_dict_json
-from product.service import get_product, get_products
+from backend.product.serializer import product_to_dict_json
+from backend.product.service import get_product, get_products
 
 # TODO: create, edit, delete
 

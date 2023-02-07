@@ -10,7 +10,7 @@ __pycache__/
 dockerfile
 .dockerignore
 .gitignore
-data/
+compose.yaml
 docker/
 .coverage
 README.md

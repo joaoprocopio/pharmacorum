@@ -1,4 +1,4 @@
-from product.models import Product
+from backend.product.models import Product
 
 
 def get_product(id):

@@ -126,4 +126,4 @@ dmypy.json
 .pyre/
 
 # local
-data/
+docker/postgres/

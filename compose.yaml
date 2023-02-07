@@ -13,7 +13,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./docker/postgres:/var/lib/postgresql/data
     restart: on-failure
 
   django:

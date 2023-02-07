@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from product.models import Brand, Product, Stock
+from backend.product.models import Brand, Product, Stock
 
 # Register your models here.
 
