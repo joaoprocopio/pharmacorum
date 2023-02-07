@@ -11,7 +11,7 @@ dockerfile
 .dockerignore
 .gitignore
 data/
-nginx/
+docker/
 .coverage
 README.md
 **/tests/
