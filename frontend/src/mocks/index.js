@@ -21,6 +21,8 @@ const config = (environment) => {
   return config
 }
 
-export function makeServer({ environment = "development" } = {}) {
+const mockServer = ({ environment = "development" } = {}) => {
   return new Server(config(environment))
 }
+
+export { mockServer }
