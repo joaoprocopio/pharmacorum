@@ -14,5 +14,5 @@
   const $globalTheme = useGlobalTheme()
 
   const route = useRoute()
-  const layout = computed(() => route?.meta?.layout?.name || "DefaultLayout")
+  const layout = computed(() => route?.meta?.layout || "DefaultLayout")
 </script>
