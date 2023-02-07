@@ -35,20 +35,20 @@ services:
     volumes:
       - .:/backend
     restart: on-failure
-  # vite:
-  #   build:
-  #     context: frontend/
-  #     dockerfile: dockerfile
-  #   command: npm run dev
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     django:
-  #       condition: service_started
-  #   volumes:
-  #     - ./frontend:/frontend
-  # restart: on-failure
 
+  vite:
+    build:
+      context: frontend/
+      dockerfile: dockerfile
+    command: npm run dev
+    ports:
+      - 3000:3000
+    depends_on:
+      django:
+        condition: service_started
+    volumes:
+      - ./frontend:/frontend
+    restart: on-failure
 
   nginx:
     image: nginx:stable
