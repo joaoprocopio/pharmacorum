@@ -1,11 +1,9 @@
 import { createApp } from "vue"
-import { createPinia } from "pinia"
-
-import App from "./App.vue"
-
-import router from "~/router"
 
 import { env } from "@/configs"
+import { installPlugins } from "~/plugins"
+
+import App from "./App.vue"
 
 if (env.isDev && env.isMock) {
   // turn up mock server
@@ -13,8 +11,7 @@ if (env.isDev && env.isMock) {
 
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
+installPlugins(app)
 
 app.mount("#__vue")
 
