@@ -2,10 +2,8 @@ import axios from "axios"
 
 import { env } from "@/configs"
 
-const url = env.isDev && env.isMock ? undefined : env.apiUrl
-
 const $axios = axios.create({
-  baseURL: `${url}/api/`,
+  baseURL: env.isDev && env.isMock ? undefined : env.apiUrl,
   withCredentials: true,
   xsrfHeaderName: "X-CSRFToken",
   xsrfCookieName: "csrftoken",
