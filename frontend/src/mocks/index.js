@@ -1,17 +1,17 @@
 import { Server } from "miragejs"
-import factories from "./factories"
-import fixtures from "./fixtures"
+import { fixtures } from "./fixtures"
+// import factories from "./factories"
+// import seeds from "./seeds"
 import routes from "./routes"
 import models from "./models"
-import seeds from "./seeds"
 
 const config = (environment) => {
   const config = {
     environment,
-    factories,
+    // factories,
+    // seeds,
     models,
     routes,
-    seeds,
   }
 
   if (Object.keys(fixtures).length) {

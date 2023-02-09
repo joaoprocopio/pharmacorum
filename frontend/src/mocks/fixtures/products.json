@@ -1,20 +1,11 @@
 [
   {
-    "id": "1",
-    "name": "Javascript coffee mug",
-    "description": "We are nothing without coffee",
-    "price": 3.5
-  },
-  {
-    "id": "2",
-    "name": "Javascript t-shirt",
-    "description": "We are proud of our skills",
-    "price": 13.5
-  },
-  {
-    "id": "3",
-    "name": "Javascript tissues",
-    "description": "We sometimes wanna cry because of THIS",
-    "price": 3.5
+    "id": 1,
+    "type": 1,
+    "title": 1,
+    "description": 1,
+    "created_at": 1,
+    "updated_at": 1,
+    "brand_id": 1
   }
 ]

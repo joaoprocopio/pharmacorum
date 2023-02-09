@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "password": 1,
+    "last_login": 1,
+    "is_superuser": 1,
+    "username": 1,
+    "first_name": 1,
+    "last_name": 1,
+    "email": 1,
+    "is_staff": 1,
+    "is_active": 1,
+    "date_joined": 1
+  }
+]
