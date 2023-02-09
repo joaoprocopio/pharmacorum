@@ -58,6 +58,6 @@ services:
     depends_on:
       django:
         condition: service_started
-      # vite:
-      #   condition: service_started
+      vite:
+        condition: service_started
     restart: on-failure
