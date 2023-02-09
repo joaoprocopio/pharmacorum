@@ -7,12 +7,9 @@ import { routes } from "./routes"
 const config = (environment) => {
   const config = {
     environment,
+    fixtures,
     models,
     routes,
-  }
-
-  if (Object.keys(fixtures).length) {
-    config.fixtures = fixtures
   }
 
   return config
