@@ -1,10 +1,3 @@
-import { RestSerializer } from "miragejs"
-
-const serializers = {
-  product: RestSerializer.extend({
-    include: ["brandId"],
-    embed: true,
-  }),
-}
+const serializers = {}
 
 export { serializers }

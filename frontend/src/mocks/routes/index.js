@@ -3,7 +3,6 @@ function routes() {
 
   this.resource("users")
   this.resource("products")
-  this.resource("brands")
 }
 
 export { routes }
