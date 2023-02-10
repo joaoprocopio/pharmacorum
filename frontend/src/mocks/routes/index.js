@@ -1,8 +1,10 @@
 function routes() {
-  this.namespace = "api"
-
-  this.resource("users")
-  this.resource("products")
+  this.get("api/users/", (schema) => {
+    return schema.users.all()
+  })
+  this.get("api/products/", (schema) => {
+    return schema.products.all()
+  })
 }
 
 export { routes }

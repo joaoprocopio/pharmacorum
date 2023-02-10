@@ -18,7 +18,7 @@ const config = (environment) => {
 }
 
 const mockServer = ({ environment = "development" } = {}) => {
-  createServer(config(environment))
+  return createServer(config(environment))
 }
 
 export { mockServer }
