@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "type": 1,
-    "title": 1,
+    "type": "BABY_AND_KIDS",
+    "title": "Sabonete Líquido",
     "description": 1,
     "created_at": 1,
     "updated_at": 1,

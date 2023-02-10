@@ -7,6 +7,6 @@
   import { $axios } from "~/api"
 
   onMounted(() => {
-    $axios.get("/api/users/")
+    $axios.get("/api/products/").then((r) => console.log(r.data.products[0]))
   })
 </script>
