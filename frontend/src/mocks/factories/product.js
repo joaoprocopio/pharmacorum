@@ -7,18 +7,13 @@ const product = Factory.extend({
     return faker.commerce.product()
   },
   typeIds() {
-    let i = 0
+    let number = randomNumber(1, 5)
     const types = new Array(randomNumber(1, 3))
 
-    while (types.length > i) {
-      let number = randomNumber(1, 5)
-
-      if (types.includes(number)) {
-        number = randomNumber(1, 5)
-      }
+    for (let i = 0; i < types.length; i++) {
+      types.includes(number) ? (number = randomNumber(1, 5)) : null
 
       types[i] = number
-      i++
     }
 
     return types
