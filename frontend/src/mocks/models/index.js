@@ -5,8 +5,8 @@ const models = {
   brand: Model,
   type: Model,
   product: Model.extend({
-    brand: hasMany("brand"),
-    type: hasMany("type"),
+    brand: hasMany(),
+    type: hasMany(),
   }),
 }
 

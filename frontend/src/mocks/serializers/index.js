@@ -1,15 +1,11 @@
-import { RestSerializer } from "miragejs"
-import { snakeCase } from "lodash"
+import { ActiveModelSerializer } from "miragejs"
 
 const serializers = {
-  product: RestSerializer.extend({
-    keyForAttribute(attr) {
-      return snakeCase(attr)
-    },
-    include: ["type"],
+  product: ActiveModelSerializer.extend({
     embed: true,
+    include: ["brand", "type"],
   }),
-  brand: RestSerializer,
+  brand: ActiveModelSerializer,
 }
 
 export { serializers }
