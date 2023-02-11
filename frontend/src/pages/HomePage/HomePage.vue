@@ -7,9 +7,7 @@
   import { $axios } from "~/api"
 
   onMounted(() => {
-    // $axios.get("/api/users/")
-    $axios.get("/api/products/").then((r) => console.log(r.data))
-    $axios.get("/api/brands/").then((r) => console.log(r.data))
-    // $axios.get("/api/types/")
+    $axios.get("/api/users/")
+    $axios.get("/api/products/", { data: { per_page: 30, page: 2 } })
   })
 </script>
