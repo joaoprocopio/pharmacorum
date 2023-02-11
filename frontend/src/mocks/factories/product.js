@@ -19,7 +19,7 @@ const product = Factory.extend({
     return types
   },
   brandId() {
-    return randomNumber(1, 10)
+    return randomNumber(1, 25)
   },
   price() {
     return faker.commerce.price()

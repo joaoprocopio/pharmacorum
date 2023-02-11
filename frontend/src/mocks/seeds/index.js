@@ -1,7 +1,7 @@
 function seeds(server) {
   server.loadFixtures()
-  server.createList("brand", 10)
-  server.createList("product", 50)
+  server.createList("brand", 25)
+  server.createList("product", 100)
 }
 
 export { seeds }
