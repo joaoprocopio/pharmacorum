@@ -7,14 +7,24 @@ const product = Factory.extend({
     return faker.commerce.product()
   },
   typeIds() {
+    let i = 0
     const types = new Array(randomNumber(1, 3))
-    for (let i = 0; i < types.length; i++) {
-      types[i] = randomNumber(1, 5)
+
+    while (types.length > i) {
+      let number = randomNumber(1, 5)
+
+      if (types.includes(number)) {
+        number = randomNumber(1, 5)
+      }
+
+      types[i] = number
+      i++
     }
+
     return types
   },
-  brandIds() {
-    return [randomNumber(1, 5)]
+  brandId() {
+    return randomNumber(1, 10)
   },
   price() {
     return faker.commerce.price()

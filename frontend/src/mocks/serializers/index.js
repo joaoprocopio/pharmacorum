@@ -5,7 +5,7 @@ const serializers = {
     embed: true,
     include: ["brand", "type"],
   }),
-  brand: ActiveModelSerializer,
+  user: ActiveModelSerializer,
 }
 
 export { serializers }
