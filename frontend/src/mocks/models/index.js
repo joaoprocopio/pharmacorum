@@ -1,13 +1,13 @@
-import { belongsTo, hasMany, Model } from "miragejs"
+import { hasMany, Model } from "miragejs"
 
 const models = {
   user: Model,
-  product: Model.extend({
-    type: hasMany("type"),
-    brand: belongsTo("brand"),
-  }),
   brand: Model,
   type: Model,
+  product: Model.extend({
+    brand: hasMany("brand"),
+    type: hasMany("type"),
+  }),
 }
 
 export { models }
