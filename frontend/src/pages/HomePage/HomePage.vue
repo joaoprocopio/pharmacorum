@@ -1,18 +1,15 @@
 <template>
-  <div
-    v-for="product in products"
-    :key="product.id">
-    {{ product }}
-  </div>
+  <div></div>
 </template>
 
 <script setup>
-  import { onMounted, ref } from "vue"
+  import { onMounted } from "vue"
   import { $axios } from "~/api"
 
-  const products = ref({})
-
   onMounted(() => {
-    $axios.get("/api/products/").then((r) => (products.value = r.data.products))
+    // $axios.get("/api/users/")
+    $axios.get("/api/products/").then((r) => console.log(r.data))
+    $axios.get("/api/brands/").then((r) => console.log(r.data))
+    // $axios.get("/api/types/")
   })
 </script>
