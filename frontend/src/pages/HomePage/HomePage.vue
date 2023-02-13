@@ -23,6 +23,8 @@
   import { onMounted, computed, ref, watch } from "vue"
   import { $axios } from "~/api"
 
+  // TODO: todo esse código tá uma merda, refatorar e separar em stores e componentes"
+
   const page = ref(1)
   const perPage = ref(5)
 
