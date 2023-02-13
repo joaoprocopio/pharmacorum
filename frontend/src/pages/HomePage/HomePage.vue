@@ -24,13 +24,12 @@
 </template>
 
 <script setup>
-  import { onMounted, computed, ref, watch } from "vue"
-  import { $axios } from "~/api"
-
   // TODO: todo esse código tá uma merda, refatorar e separar em stores e componentes"
+  import { onMounted, computed, ref, watch } from "vue"
+  import { ProductServices } from "~/services"
 
   const page = ref(1)
-  const perPage = ref(5)
+  const perPage = ref(30)
 
   const pages = computed(() => Math.ceil(responseLength.value / perPage.value))
   const responseLength = ref(0)
@@ -41,14 +40,13 @@
   })
 
   async function callApi() {
-    return $axios
-      .get("/api/products", {
-        params: { per_page: perPage.value, page: page.value },
-      })
-      .then((response) => {
-        responseLength.value = response.data.response_length
-        products.value = response.data.products
-      })
+    const response = await ProductServices.getProducts({
+      per_page: perPage.value,
+      page: page.value,
+    })
+
+    responseLength.value = response.response_length
+    products.value = response.products
   }
 
   onMounted(() => {
