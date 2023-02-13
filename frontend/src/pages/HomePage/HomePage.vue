@@ -1,9 +1,13 @@
 <template>
+  <div>{{ ProductTypes }}</div>
   <template
     v-for="product in products"
     :key="product.id">
     <div class="d-flex mb-4 align-center">
       <div class="mr-8">
+        <div>
+          {{ product.brand.name }}
+        </div>
         <div>
           {{ product.title }}
         </div>
@@ -11,22 +15,29 @@
           {{ product.description }}
         </div>
         <div>
+          {{ product.price }}
+        </div>
+        <div>
           {{ product.updated_at }}
         </div>
+        <div>
+          {{ product.type }}
+        </div>
       </div>
-      <VIcon icon="delete"></VIcon>
-      <VIcon icon="edit"></VIcon>
+      <VIcon icon="delete" />
+      <VIcon icon="edit" />
     </div>
   </template>
   <VPagination
     v-model="page"
-    :length="pages"></VPagination>
+    :length="pages" />
 </template>
 
 <script setup>
   // TODO: todo esse código tá uma merda, refatorar e separar em stores e componentes"
   import { onMounted, computed, ref, watch } from "vue"
   import { ProductServices } from "~/services"
+  import { ProductTypes } from "~/assets"
 
   const page = ref(1)
   const perPage = ref(30)

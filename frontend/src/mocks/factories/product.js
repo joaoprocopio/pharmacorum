@@ -11,7 +11,7 @@ const product = Factory.extend({
     const types = new Array(randomNumber(1, 3))
 
     for (let i = 0; i < types.length; i++) {
-      types.includes(number) ? (number = randomNumber(1, 5)) : null
+      number in types ? (number = randomNumber(1, 5)) : null
 
       types[i] = number
     }

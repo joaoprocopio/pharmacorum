@@ -1,0 +1,7 @@
+export const ProductTypes = {
+  DRUG: "DRUG",
+  SUPPLEMENT: "SUPPLEMENT",
+  COSMETIC: "COSMETIC",
+  HYGIENE: "HYGIENE",
+  BABY_AND_KIDS: "BABY_AND_KIDS",
+}
