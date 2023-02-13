@@ -1,14 +1,30 @@
 <template>
-  <div></div>
+  <template
+    v-for="product in products"
+    :key="product.id">
+    <div class="mb-6">
+      <div>
+        {{ product.title }}
+      </div>
+      <div>
+        {{ product.description }}
+      </div>
+      <div>
+        {{ product.updated_at }}
+      </div>
+    </div>
+  </template>
 </template>
 
 <script setup>
-  import { onMounted } from "vue"
+  import { onMounted, ref } from "vue"
   import { $axios } from "~/api"
 
+  const products = ref({})
+
   onMounted(() => {
-    $axios.get("/api/users/")
-    // TODO: agr isso aqui vai entrar na query string, tem que pegar no backend com request.GET.get('per_page')
-    $axios.get("/api/products/", { params: { per_page: 30, page: 2 } })
+    $axios
+      .get("/api/products", { params: { per_page: 100 } })
+      .then((response) => (products.value = response.data.products))
   })
 </script>
