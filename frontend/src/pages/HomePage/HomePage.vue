@@ -14,22 +14,28 @@
       </div>
     </div>
   </template>
-  <VPagination :length="pages"></VPagination>
+  <VPagination
+    v-model="page"
+    :length="pages"></VPagination>
 </template>
 
 <script setup>
-  import { onMounted, computed, ref } from "vue"
+  import { onMounted, computed, ref, watch } from "vue"
   import { $axios } from "~/api"
 
   const page = ref(1)
-  const perPage = ref(30)
+  const perPage = ref(5)
 
-  const pages = computed(() => responseLength.value / perPage.value)
+  const pages = computed(() => Math.ceil(responseLength.value / perPage.value))
   const responseLength = ref(0)
   const products = ref({})
 
-  onMounted(() => {
-    $axios
+  watch(page, async () => {
+    callApi()
+  })
+
+  async function callApi() {
+    return $axios
       .get("/api/products", {
         params: { per_page: perPage.value, page: page.value },
       })
@@ -37,5 +43,9 @@
         responseLength.value = response.data.response_length
         products.value = response.data.products
       })
+  }
+
+  onMounted(() => {
+    callApi()
   })
 </script>
