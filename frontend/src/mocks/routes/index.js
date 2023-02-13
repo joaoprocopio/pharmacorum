@@ -1,9 +1,6 @@
 import { Response } from "miragejs"
 
 function routes() {
-  this.get("api/users/", function (schema) {
-    return schema.users.all()
-  })
   this.get("api/products/", function (schema, request) {
     const params = {
       page: parseInt(request?.queryParams?.page) || 1,
@@ -21,10 +18,6 @@ function routes() {
           return new Date(b.updatedAt) - new Date(a.updatedAt)
         })
     )
-
-    if (products.length <= 0) {
-      return new Response(400, {}, {})
-    }
 
     return new Response(
       200,

@@ -7,7 +7,7 @@ import { routes } from "./routes"
 import { seeds } from "./seeds"
 import { serializers } from "./serializers"
 
-const config = (environment) => {
+const config = function (environment) {
   const config = {
     factories,
     environment,
@@ -21,7 +21,7 @@ const config = (environment) => {
   return config
 }
 
-const mockServer = ({ environment = "development" } = {}) => {
+const mockServer = function ({ environment = "development" } = {}) {
   return createServer(config(environment))
 }
 
