@@ -2,16 +2,20 @@
   <template
     v-for="product in products"
     :key="product.id">
-    <div class="mb-6">
-      <div>
-        {{ product.title }}
+    <div class="d-flex mb-4 align-center">
+      <div class="mr-8">
+        <div>
+          {{ product.title }}
+        </div>
+        <div>
+          {{ product.description }}
+        </div>
+        <div>
+          {{ product.updated_at }}
+        </div>
       </div>
-      <div>
-        {{ product.description }}
-      </div>
-      <div>
-        {{ product.updated_at }}
-      </div>
+      <VIcon icon="delete"></VIcon>
+      <VIcon icon="edit"></VIcon>
     </div>
   </template>
   <VPagination
