@@ -40,10 +40,7 @@
   })
 
   async function callApi() {
-    const response = await ProductServices.getProducts({
-      per_page: perPage.value,
-      page: page.value,
-    })
+    const response = await ProductServices.getProducts()
 
     responseLength.value = response.response_length
     products.value = response.products
