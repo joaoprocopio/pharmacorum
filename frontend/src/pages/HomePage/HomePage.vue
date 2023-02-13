@@ -8,6 +8,7 @@
 
   onMounted(() => {
     $axios.get("/api/users/")
-    $axios.get("/api/products/", { data: { per_page: 30, page: 2 } })
+    // TODO: agr isso aqui vai entrar na query string, tem que pegar no backend com request.GET.get('per_page')
+    $axios.get("/api/products/", { params: { per_page: 30, page: 2 } })
   })
 </script>
