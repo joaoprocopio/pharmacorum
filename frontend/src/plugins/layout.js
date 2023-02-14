@@ -1,7 +1,8 @@
 import { DefaultLayout } from "~/layouts"
+import { DefaultLayoutName } from "~/assets"
 
 export const layoutPlugin = {
   install(Vue) {
-    Vue.component("DefaultLayout", DefaultLayout)
+    Vue.component(DefaultLayoutName, DefaultLayout)
   },
 }
