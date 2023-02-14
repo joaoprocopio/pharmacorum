@@ -18,6 +18,9 @@ export const product = Factory.extend({
   price() {
     return faker.commerce.price()
   },
+  quantity() {
+    return random(1, 200)
+  },
   description() {
     return faker.commerce.productDescription()
   },

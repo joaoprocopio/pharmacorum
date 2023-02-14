@@ -2,30 +2,32 @@
   <template
     v-for="product in products"
     :key="product.id">
-    <div class="d-flex mb-4 align-center">
-      <div class="mr-8">
-        <div>
-          {{ product.brand.name }}
-        </div>
+    <VResponsive
+      class="mx-auto pt-8 pb-8"
+      content-class="d-flex flex-row align-center justify-space-between"
+      max-width="500">
+      <div class="pr-16">
         <div>
           {{ product.title }}
         </div>
         <div>
-          {{ product.description }}
+          {{ product.brand.name }}
+        </div>
+        <div>
+          {{ product.quantity }}
         </div>
         <div>
           {{ product.price }}
         </div>
         <div>
-          {{ product.updated_at }}
-        </div>
-        <div>
-          {{ product.type }}
+          {{ product.type.join(" - ") }}
         </div>
       </div>
-      <VIcon icon="delete" />
-      <VIcon icon="edit" />
-    </div>
+      <div>
+        <VIcon icon="delete" />
+        <VIcon icon="edit" />
+      </div>
+    </VResponsive>
   </template>
   <VPagination
     v-model="page"
