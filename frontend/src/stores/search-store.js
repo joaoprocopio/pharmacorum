@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { computed, reactive } from "vue"
+import { computed, reactive, ref } from "vue"
 
 export const useSearchStore = defineStore("search", () => {
   const params = reactive({
@@ -7,7 +7,10 @@ export const useSearchStore = defineStore("search", () => {
     perPage: 30,
   })
 
-  const pagesAvailable = computed(() => null)
+  const count = ref(1)
+  const products = ref({})
 
-  return { params, pagesAvailable }
+  const pagesAvailable = computed(() => Math.ceil(count.value / params.perPage))
+
+  return { params, pagesAvailable, count, products }
 })
