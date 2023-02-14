@@ -1,4 +1,7 @@
 <template>
+  <!-- TODO: refatorar search pra uma store -->
+  <!-- TODO: separar isso tudo em pequenos componentes -->
+  <!-- TODO: ter uma app bar com theme toggle -->
   <template
     v-for="product in products"
     :key="product.id">
@@ -32,7 +35,6 @@
 </template>
 
 <script setup>
-  // TODO: todo esse código tá uma merda, refatorar e separar em stores e componentes"
   import { onMounted, computed, ref, watch } from "vue"
   import { ProductServices } from "~/services"
 
