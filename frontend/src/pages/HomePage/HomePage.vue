@@ -19,9 +19,6 @@
         <div>
           {{ product.price }}
         </div>
-        <div>
-          {{ product.type.join(" - ") }}
-        </div>
       </div>
       <div>
         <VIcon icon="delete" />
