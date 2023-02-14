@@ -22,7 +22,7 @@ export function routes() {
     return new Response(
       200,
       {},
-      { response_length: schema.products.all().length, products: products }
+      { count: schema.products.all().length, products: products }
     )
   })
 }

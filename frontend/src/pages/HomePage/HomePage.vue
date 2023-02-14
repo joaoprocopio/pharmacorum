@@ -58,11 +58,11 @@
 
   async function callApi() {
     const response = await ProductServices.getProducts(
-      perPage.value,
-      page.value
+      page.value,
+      perPage.value
     )
 
-    responseLength.value = response.response_length
+    responseLength.value = response.count
     products.value = response.products
   }
 

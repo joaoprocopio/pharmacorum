@@ -1,7 +1,7 @@
 import { ProductApi } from "~/api"
 
-const getProducts = async (perPage, page) =>
-  ProductApi.getProducts({ per_page: perPage, page: page })
+const getProducts = async (page, perPage) =>
+  ProductApi.getProducts({ page: page, per_page: perPage })
     .then(({ data }) => data)
     .catch((error) => Promise.reject(error))
 
