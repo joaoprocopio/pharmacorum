@@ -1,7 +1,7 @@
 import { ref, computed } from "vue"
 import { defineStore } from "pinia"
 
-const useGlobalTheme = defineStore("useGlobalTheme", () => {
+export const useGlobalTheme = defineStore("useGlobalTheme", () => {
   const theme = ref("dark")
 
   const current = computed(() => theme.value)
@@ -11,5 +11,3 @@ const useGlobalTheme = defineStore("useGlobalTheme", () => {
 
   return { theme, current, toggleTheme }
 })
-
-export { useGlobalTheme }

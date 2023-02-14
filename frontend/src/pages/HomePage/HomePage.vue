@@ -1,5 +1,4 @@
 <template>
-  <div>{{ ProductTypes }}</div>
   <template
     v-for="product in products"
     :key="product.id">
@@ -37,7 +36,6 @@
   // TODO: todo esse código tá uma merda, refatorar e separar em stores e componentes"
   import { onMounted, computed, ref, watch } from "vue"
   import { ProductServices } from "~/services"
-  import { ProductTypes } from "~/assets"
 
   const page = ref(1)
   const perPage = ref(30)

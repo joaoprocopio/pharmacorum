@@ -1,6 +1,6 @@
 import { Response } from "miragejs"
 
-function routes() {
+export function routes() {
   this.get("/api/products/", function (schema, request) {
     const params = {
       page: parseInt(request?.queryParams?.page) || 1,
@@ -26,5 +26,3 @@ function routes() {
     )
   })
 }
-
-export { routes }

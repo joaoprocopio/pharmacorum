@@ -1,12 +1,10 @@
 import { ActiveModelSerializer } from "miragejs"
 
-const serializers = {
+export const serializers = {
   product: ActiveModelSerializer.extend({
     embed: true,
     root: false,
-    include: ["brand", "type"],
+    include: ["brand"],
   }),
   user: ActiveModelSerializer,
 }
-
-export { serializers }

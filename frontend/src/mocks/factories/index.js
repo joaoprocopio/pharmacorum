@@ -1,9 +1,7 @@
 import { brand } from "./brand"
 import { product } from "./product"
 
-const factories = {
+export const factories = {
   brand,
   product,
 }
-
-export { factories }

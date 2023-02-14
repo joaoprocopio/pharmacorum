@@ -1,9 +1,5 @@
-import types from "./types.json"
 import users from "./users.json"
 
-const fixtures = {
-  types,
+export const fixtures = {
   users,
 }
-
-export { fixtures }

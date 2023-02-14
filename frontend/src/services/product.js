@@ -5,8 +5,6 @@ const getProducts = async (perPage, page) =>
     .then(({ data }) => data)
     .catch((error) => Promise.reject(error))
 
-const ProductServices = {
+export const ProductServices = {
   getProducts,
 }
-
-export { ProductServices }

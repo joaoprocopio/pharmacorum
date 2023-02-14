@@ -10,10 +10,8 @@ if (env.isDev && env.isMock) {
   mockServer()
 }
 
-const app = createApp(App)
+export const app = createApp(App)
 
 installPlugins(app)
 
 app.mount("#__vue")
-
-export { app }
