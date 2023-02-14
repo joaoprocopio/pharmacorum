@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 
+import { sessionGuard } from "./session-guard"
 import { routes } from "./routes"
 
 export const routerPlugin = createRouter({
@@ -7,4 +8,7 @@ export const routerPlugin = createRouter({
   routes,
 })
 
-routerPlugin.beforeEach(() => {})
+routerPlugin.beforeEach((to, from, next) => {
+  // TODO: refatorar pra um multi guard function
+  sessionGuard(to, from, next)
+})
