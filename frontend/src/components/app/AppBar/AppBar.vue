@@ -8,7 +8,7 @@
       <VBtn
         icon="spa"
         variant="plain"
-        :to="{ name: HomePageName }" />
+        :to="{ name: ProductsPageName }" />
     </template>
     <template #append>
       <VBtn
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-  import { HomePageName } from "~/assets"
+  import { ProductsPageName } from "~/assets"
   import { useGlobalThemeStore } from "~/stores"
 
   const $globalTheme = useGlobalThemeStore()

@@ -1,3 +1,3 @@
-export const HomePageName = "HomePage"
+export const ProductsPageName = "ProductsPage"
 
 export const ErrorPageName = "ErrorPage"
