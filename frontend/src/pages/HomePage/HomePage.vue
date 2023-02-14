@@ -2,6 +2,11 @@
   <!-- TODO: refatorar search pra uma store -->
   <!-- TODO: separar isso tudo em pequenos componentes -->
   <!-- TODO: ter uma app bar com theme toggle -->
+
+  <!-- TODO: tela de login -->
+  <!-- TODO: tela de registro -->
+  <!-- TODO: criar um middleware, para usuário não autenticado não poder acessar -->
+  <!-- TODO: isso implica em ter uma store pra usuários -->
   <template
     v-for="product in products"
     :key="product.id">
