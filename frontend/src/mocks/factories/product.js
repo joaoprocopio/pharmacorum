@@ -1,19 +1,19 @@
 import { Factory } from "miragejs"
+
 import { faker } from "@faker-js/faker"
-import { randomNumber } from "./utils"
 import { ProductTypes } from "~/assets"
+
+import { shuffle, random } from "lodash"
 
 export const product = Factory.extend({
   title() {
     return faker.commerce.product()
   },
   type() {
-    // TODO: shuffle lodash
-    return Object.values(ProductTypes)
+    return shuffle(Object.values(ProductTypes)).slice(0, random(1, 3))
   },
   brandId() {
-    // TODO: random number lodash
-    return randomNumber(1, 25)
+    return random(1, 25)
   },
   price() {
     return faker.commerce.price()
