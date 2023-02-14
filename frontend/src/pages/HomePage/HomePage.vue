@@ -7,7 +7,7 @@
   <!-- TODO: criar um middleware, para usuário não autenticado não poder acessar -->
   <!-- TODO: isso implica em ter uma store pra usuários -->
   <template
-    v-for="product in $store.products"
+    v-for="product in $productSearch.products"
     :key="product.id">
     <VResponsive
       class="mx-auto pt-8 pb-8"
@@ -34,32 +34,32 @@
     </VResponsive>
   </template>
   <VPagination
-    v-model="$store.params.page"
-    :length="$store.pagesAvailable" />
+    v-model="$productSearch.params.page"
+    :length="$productSearch.pagesAvailable" />
 </template>
 
 <script setup>
   import { onBeforeMount, watch } from "vue"
   import { ProductServices } from "~/services"
-  import { useSearchStore } from "~/stores"
+  import { useProductSearchStore } from "~/stores"
 
-  const $store = useSearchStore()
+  const $productSearch = useProductSearchStore()
 
   async function callApi() {
     const response = await ProductServices.getProducts(
-      $store.params.page,
-      $store.params.perPage
+      $productSearch.params.page,
+      $productSearch.params.perPage
     )
 
-    $store.count = response.count
-    $store.products = response.products
+    $productSearch.count = response.count
+    $productSearch.products = response.products
   }
 
   onBeforeMount(() => {
     callApi()
   })
 
-  watch($store.params, async () => {
+  watch($productSearch.params, () => {
     callApi()
   })
 </script>

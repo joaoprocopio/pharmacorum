@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { computed, reactive, ref } from "vue"
 
-export const useSearchStore = defineStore("search", () => {
+export const useProductSearchStore = defineStore("productSearch", () => {
   const params = reactive({
     page: 1,
     perPage: 30,
