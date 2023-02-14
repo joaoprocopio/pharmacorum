@@ -7,11 +7,11 @@
 </template>
 
 <script setup>
-  import { useGlobalTheme } from "~/stores"
+  import { useGlobalThemeStore } from "~/stores"
   import { computed } from "vue"
   import { useRoute } from "vue-router"
 
-  const $globalTheme = useGlobalTheme()
+  const $globalTheme = useGlobalThemeStore()
   const $route = useRoute()
 
   const layout = computed(() => $route?.meta?.layout || "DefaultLayout")
