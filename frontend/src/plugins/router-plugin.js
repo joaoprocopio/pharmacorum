@@ -1,11 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router"
 
-import { ProductsPageName, ErrorPageName } from "~/assets"
-import { ProductsPage, ErrorPage } from "~/pages"
+import { ProductsPageName, LoginPageName, ErrorPageName } from "~/assets"
+import { ProductsPage, LoginPage, ErrorPage } from "~/pages"
 
 export const routerPlugin = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/sessions",
+      name: LoginPageName,
+      component: LoginPage,
+      meta: {
+        layout: {},
+      },
+    },
     {
       path: "/products",
       name: ProductsPageName,
