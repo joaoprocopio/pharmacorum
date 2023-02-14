@@ -1,1 +1,2 @@
-export * from "./global-theme"
+export * from "./global-theme-store"
+export * from "./search-store"
