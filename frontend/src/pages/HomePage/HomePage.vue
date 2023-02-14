@@ -7,6 +7,8 @@
   <!-- TODO: tela de registro -->
   <!-- TODO: criar um middleware, para usuário não autenticado não poder acessar -->
   <!-- TODO: isso implica em ter uma store pra usuários -->
+
+  <!-- TODO: se os endpoints estão nomeados no plural, meu toc fala pra tmb deixar as pastas do projeto no plural tmb (TODAS) -->
   <template
     v-for="product in products"
     :key="product.id">
