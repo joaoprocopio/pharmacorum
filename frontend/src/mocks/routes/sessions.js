@@ -7,7 +7,7 @@
   |_  /register
 */
 
-export const sessionsRoutes = function (server) {
+export const sessions = function (server) {
   server.config({
     routes() {
       this.namespace = "/api/sessions/"

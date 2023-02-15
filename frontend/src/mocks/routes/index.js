@@ -1,7 +1,9 @@
-import { productsRoutes } from "./products-routes"
-import { searchRoutes } from "./search-routes"
+import { products } from "./products"
+import { search } from "./search"
+import { sessions } from "./sessions"
 
 export function routes() {
-  productsRoutes(this)
-  searchRoutes(this)
+  products(this)
+  search(this)
+  sessions(this)
 }
