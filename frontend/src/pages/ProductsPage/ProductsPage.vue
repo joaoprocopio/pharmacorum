@@ -1,28 +1,9 @@
 <template>
   <!-- TODO: separar isso tudo em pequenos componentes -->
-
   <!-- TODO: tela de login -->
   <!-- TODO: tela de registro -->
-
   <!-- TODO: criar um middleware, para usuário não autenticado não poder acessar -->
   <!-- TODO: isso implica em ter uma store pra usuários -->
-
-  <!--
-    TODO: reestruturar endpoints semanticamente
-    /api/sessions/
-    |-  /current_user
-    |-  /find_user
-    |-  /login
-    |-  /logout
-    |_  /register
-    /api/products/
-    |-  /:id
-    |-  /create
-    |-  /update
-    |_  /delete
-    /api/search/
-    |_ /products
-  -->
   <template
     v-for="product in $productSearch.products"
     :key="product.id">
