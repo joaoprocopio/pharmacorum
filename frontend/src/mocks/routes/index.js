@@ -1,7 +1,9 @@
 import { Response } from "miragejs"
 
 export function routes() {
-  this.get("/api/products/", function (schema, request) {
+  this.namespace = "api"
+
+  this.get("/search/products/", function (schema, request) {
     const params = {
       page: parseInt(request?.queryParams?.page) || 1,
       per_page: parseInt(request?.queryParams?.per_page) || 30,

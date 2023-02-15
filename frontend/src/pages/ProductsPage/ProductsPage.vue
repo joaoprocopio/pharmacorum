@@ -63,7 +63,7 @@
   const $productSearch = useProductSearchStore()
 
   async function callApi() {
-    const response = await ProductServices.getProducts(
+    const response = await ProductServices.searchProducts(
       $productSearch.params.page,
       $productSearch.params.perPage
     )
