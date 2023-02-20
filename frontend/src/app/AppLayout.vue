@@ -1,5 +1,5 @@
 <template>
-  <v-app :theme="$globalTheme.theme">
+  <v-app :theme="$theme.theme">
     <component :is="layout">
       <slot />
     </component>
@@ -10,11 +10,11 @@
   import { computed } from "vue"
 
   import { useRoute } from "vue-router"
-  import { useGlobalThemeStore } from "~/stores"
+  import { useThemeStore } from "~/stores"
 
   import { DefaultLayoutName } from "~/assets"
 
-  const $globalTheme = useGlobalThemeStore()
+  const $theme = useThemeStore()
   const $route = useRoute()
 
   const layout = computed(() => $route?.meta?.layout?.name || DefaultLayoutName)

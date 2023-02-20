@@ -12,16 +12,16 @@
     </template>
     <template #append>
       <VBtn
-        :icon="$globalTheme.theme === 'light' ? 'light_mode' : 'dark_mode'"
+        :icon="$theme.theme === 'light' ? 'light_mode' : 'dark_mode'"
         variant="plain"
-        @click="$globalTheme.toggleTheme" />
+        @click="$theme.toggleTheme" />
     </template>
   </VAppBar>
 </template>
 
 <script setup>
   import { ProductsPageName } from "~/assets"
-  import { useGlobalThemeStore } from "~/stores"
+  import { useThemeStore } from "~/stores"
 
-  const $globalTheme = useGlobalThemeStore()
+  const $theme = useThemeStore()
 </script>
