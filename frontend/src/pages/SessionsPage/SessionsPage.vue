@@ -16,5 +16,10 @@
   } from "~/components"
   import { SessionsSteps } from "~/assets"
 
-  const step = "authentication"
+  const s = {
+    1: "identification",
+    2: "authentication",
+    3: "registration",
+  }
+  const step = s[3]
 </script>

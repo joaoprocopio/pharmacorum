@@ -8,12 +8,6 @@
       src="https://loremflickr.com/100/100/cat"
       width="144" />
     <h1 class="text-center font-weight-bold">Username</h1>
-    <VBtn
-      size="small"
-      color="primary"
-      variant="text">
-      Enter with another account
-    </VBtn>
   </VResponsive>
   <VForm @submit.prevent="() => {}">
     <VTextField
@@ -28,6 +22,12 @@
       variant="flat"
       block>
       Login
+    </VBtn>
+    <VBtn
+      color="primary"
+      variant="text"
+      block>
+      Enter with another account
     </VBtn>
   </VForm>
 </template>
