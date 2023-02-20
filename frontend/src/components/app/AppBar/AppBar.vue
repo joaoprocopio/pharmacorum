@@ -1,7 +1,6 @@
 <template>
   <VAppBar
     :border="true"
-    density="comfortable"
     class="px-4"
     elevation="0">
     <template #prepend>
