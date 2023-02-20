@@ -1,5 +1,5 @@
-import { ProductsPageName, LoginPageName, ErrorPageName } from "~/assets"
-import { ProductsPage, LoginPage, ErrorPage } from "~/pages"
+import { ProductsPageName, SessionsPageName, ErrorPageName } from "~/assets"
+import { ProductsPage, SessionsPage, ErrorPage } from "~/pages"
 
 export const routes = [
   {
@@ -8,8 +8,8 @@ export const routes = [
   },
   {
     path: "/sessions",
-    name: LoginPageName,
-    component: LoginPage,
+    name: SessionsPageName,
+    component: SessionsPage,
     meta: {
       layout: {},
     },

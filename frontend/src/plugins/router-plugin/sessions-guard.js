@@ -1,6 +1,6 @@
 import { SessionsServices } from "~/services"
 import { useSessionsStore } from "~/stores"
-import { LoginPageName, ErrorPageName, ProductsPageName } from "~/assets"
+import { SessionsPageName, ErrorPageName, ProductsPageName } from "~/assets"
 
 export const sessionsGuard = async (to, from, next) => {
   const $sessions = useSessionsStore()
@@ -8,10 +8,10 @@ export const sessionsGuard = async (to, from, next) => {
 
   if (to.name === ErrorPageName) return next()
 
-  if (to.name !== LoginPageName && !$sessions.isAuthenticated)
-    return next({ name: LoginPageName })
+  if (to.name !== SessionsPageName && !$sessions.isAuthenticated)
+    return next({ name: SessionsPageName })
 
-  if (to.name === LoginPageName && $sessions.isAuthenticated)
+  if (to.name === SessionsPageName && $sessions.isAuthenticated)
     return next({ name: ProductsPageName })
 
   next()
