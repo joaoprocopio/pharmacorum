@@ -2,11 +2,19 @@
   <VResponsive
     class="mx-auto py-12 px-8"
     max-width="600">
-    <SessionsIdentification />
-    <SessionsAuthentication />
+    <SessionsIdentification v-if="step === SessionsSteps.IDENTIFICATION" />
+    <SessionsAuthentication v-if="step === SessionsSteps.AUTHENTICATION" />
+    <SessionsRegistration v-if="step === SessionsSteps.REGISTRATION" />
   </VResponsive>
 </template>
 
 <script setup>
-  import { SessionsIdentification, SessionsAuthentication } from "~/components"
+  import {
+    SessionsIdentification,
+    SessionsAuthentication,
+    SessionsRegistration,
+  } from "~/components"
+  import { SessionsSteps } from "~/assets"
+
+  const step = "authentication"
 </script>
