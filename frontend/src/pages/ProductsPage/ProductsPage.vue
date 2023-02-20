@@ -8,9 +8,9 @@
     v-for="product in $products.products"
     :key="product.id">
     <VResponsive
-      class="mx-auto pt-8 pb-8"
+      class="mx-auto py-12 px-8"
       content-class="d-flex flex-row align-center justify-space-between"
-      max-width="500">
+      max-width="600">
       <div class="pr-16">
         <div>
           {{ product.title }}
