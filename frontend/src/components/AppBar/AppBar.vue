@@ -7,21 +7,23 @@
     <template #prepend>
       <VBtn
         icon="spa"
-        variant="plain"
+        color="primary"
+        :disabled="$route.name === SessionsPageName"
         :to="{ name: ProductsPageName }" />
     </template>
     <template #append>
       <VBtn
         :icon="$theme.theme === 'light' ? 'light_mode' : 'dark_mode'"
-        variant="plain"
         @click="$theme.toggleTheme" />
     </template>
   </VAppBar>
 </template>
 
 <script setup>
-  import { ProductsPageName } from "~/assets"
+  import { useRoute } from "vue-router"
+  import { ProductsPageName, SessionsPageName } from "~/assets"
   import { useThemeStore } from "~/stores"
 
   const $theme = useThemeStore()
+  const $route = useRoute()
 </script>
