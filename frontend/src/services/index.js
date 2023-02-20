@@ -1,2 +1,2 @@
-export * from "./product-services"
-export * from "./session-services"
+export * from "./products-services"
+export * from "./sessions-services"

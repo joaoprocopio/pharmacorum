@@ -38,13 +38,13 @@
 
 <script setup>
   import { onBeforeMount, watch } from "vue"
-  import { ProductServices } from "~/services"
+  import { ProductsServices } from "~/services"
   import { useProductSearchStore } from "~/stores"
 
   const $productSearch = useProductSearchStore()
 
   async function callApi() {
-    const response = await ProductServices.searchProducts(
+    const response = await ProductsServices.getProducts(
       $productSearch.params.page,
       $productSearch.params.perPage
     )

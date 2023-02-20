@@ -1,3 +1,3 @@
 export * from "./axios"
-export * from "./product-api"
-export * from "./session-api"
+export * from "./products-api"
+export * from "./sessions-api"
