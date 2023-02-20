@@ -15,9 +15,6 @@ export const sessions = function (server) {
       this.namespace = "/api/sessions/"
 
       this.get("/current_user/", function (schema, request) {
-        request.user = {}
-        console.log(request)
-
         return new Response(200, {}, { is_authenticated: false })
       })
     },

@@ -1,2 +1,2 @@
-export * from "./SessionsPassword"
-export * from "./SessionsUser"
+export * from "./SessionsAuthentication"
+export * from "./SessionsIdentification"
