@@ -19,10 +19,8 @@
 </template>
 
 <script setup>
-  import { useRoute } from "vue-router"
   import { ProductsPageName, SessionsPageName } from "~/assets"
   import { useThemeStore } from "~/stores"
 
   const $theme = useThemeStore()
-  const $route = useRoute()
 </script>
