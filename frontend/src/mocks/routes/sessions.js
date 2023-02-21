@@ -29,7 +29,14 @@ export const sessions = function (server) {
       this.namespace = "/api/sessions/"
 
       this.get("/current_user/", function (schema, request) {
-        return new Response(200, {}, { is_authenticated: false })
+        return new Response(
+          200,
+          {},
+          {
+            schema: this.serialize(schema.users.all()),
+            is_authenticated: false,
+          }
+        )
       })
     },
   })

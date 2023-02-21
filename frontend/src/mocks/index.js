@@ -1,7 +1,6 @@
 import { createServer } from "miragejs"
 
 import { factories } from "./factories"
-import { fixtures } from "./fixtures"
 import { models } from "./models"
 import { routes } from "./routes"
 import { seeds } from "./seeds"
@@ -11,7 +10,6 @@ const config = function (environment) {
   const config = {
     factories,
     environment,
-    fixtures,
     models,
     routes,
     seeds,
