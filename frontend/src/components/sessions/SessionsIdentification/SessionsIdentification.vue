@@ -1,10 +1,12 @@
 <template>
   <h1 class="font-weight-bold mb-8">Welcome to Pharmacorum!</h1>
   <VForm
+    v-bind="$attrs"
     v-model="form"
     @submit.prevent="submit">
     <VTextField
       v-model="query"
+      :readonly="$props.loading"
       :rules="[rules.required()]"
       class="mb-4"
       color="primary"
@@ -14,6 +16,8 @@
     <VBtn
       class="mb-2"
       block
+      :disabled="$props.loading"
+      :loading="$props.loading"
       variant="flat"
       color="primary"
       type="submit">
@@ -29,17 +33,24 @@
 </template>
 
 <script setup>
-  import { ref } from "vue"
+  import { ref, defineProps } from "vue"
   import { rules } from "~/utils"
+  import { debounce } from "lodash"
 
-  // Form
-  const submit = () => {
+  const $emit = defineEmits(["identify"])
+  const $props = defineProps({
+    loading: {
+      type: Boolean,
+      required: true,
+    },
+  })
+
+  const form = ref(false)
+  const submit = debounce(() => {
     if (!form.value) return
 
-    console.log(query.value)
-  }
-  const form = ref(false)
+    $emit("identify", query.value)
+  }, 500)
 
-  // Query input
   const query = ref("")
 </script>

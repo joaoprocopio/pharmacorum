@@ -9,6 +9,5 @@ export const routerPlugin = createRouter({
 })
 
 routerPlugin.beforeEach((to, from, next) => {
-  // TODO: refatorar pra um multi guard function
   sessionsGuard(to, from, next)
 })
