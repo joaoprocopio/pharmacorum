@@ -9,5 +9,6 @@ export const serializers = {
   user: ActiveModelSerializer.extend({
     embed: true,
     root: false,
+    attrs: ["id", "fullName", "username", "firstName", "lastName", "email"],
   }),
 }

@@ -13,6 +13,9 @@ export const user = Factory.extend({
   isSuperuser() {
     return false
   },
+  fullName() {
+    return `${this.firstName} ${this.lastName}`
+  },
   username(id) {
     return users[id]?.username
   },

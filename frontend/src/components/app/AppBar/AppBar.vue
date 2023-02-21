@@ -5,7 +5,7 @@
     elevation="0">
     <template #prepend>
       <VBtn
-        icon="spa"
+        icon="local_hospital"
         color="primary"
         :disabled="$route.name === SessionsPageName"
         :to="{ name: ProductsPageName }" />
