@@ -13,7 +13,7 @@
     <VTextField
       color="primary"
       type="password"
-      variant="outlined"
+      variant="underlined"
       label="Password" />
     <VBtn
       class="mb-2"

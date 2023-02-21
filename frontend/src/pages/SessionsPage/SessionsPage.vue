@@ -1,6 +1,6 @@
 <template>
   <VResponsive
-    class="mx-auto py-12 px-8"
+    class="mx-auto py-8 px-8"
     max-width="600">
     <SessionsIdentification
       :loading="loading"
@@ -26,7 +26,7 @@
   const $props = defineProps({
     step: {
       type: String,
-      required: true,
+      default: () => SessionsSteps.IDENTIFICATION,
       validator: (step) => Object.values(SessionsSteps).includes(step),
     },
   })

@@ -4,24 +4,29 @@
     <VTextField
       class="mb-2"
       color="primary"
-      label="First name"
-      variant="outlined" />
-    <VTextField
-      class="mb-2"
-      color="primary"
-      label="Last name"
-      variant="outlined" />
+      label="Username"
+      variant="underlined" />
     <VTextField
       class="mb-2"
       color="primary"
       label="Email"
-      variant="outlined" />
+      variant="underlined" />
+    <VTextField
+      class="mb-2"
+      color="primary"
+      label="First name"
+      variant="underlined" />
+    <VTextField
+      class="mb-2"
+      color="primary"
+      label="Last name"
+      variant="underlined" />
     <VTextField
       class="mb-2"
       color="primary"
       label="Password"
       type="password"
-      variant="outlined" />
+      variant="underlined" />
     <VBtn
       class="mb-2"
       block
