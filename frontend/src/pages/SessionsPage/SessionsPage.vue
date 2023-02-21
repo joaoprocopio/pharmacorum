@@ -21,5 +21,5 @@
     2: "authentication",
     3: "registration",
   }
-  const step = s[3]
+  const step = s[1]
 </script>

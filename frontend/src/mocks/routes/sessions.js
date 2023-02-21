@@ -1,7 +1,7 @@
 /*
   /api/sessions/
   |-  /current_user
-  |-  /find_user
+  |-  /identify
   |-  /login
   |-  /logout
   |_  /register
