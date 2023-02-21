@@ -16,7 +16,8 @@ export const sessions = function (server) {
 
       this.get("/current_user/", function (schema) {
         let user = { id: null, username: "", is_authenticated: false }
-        let cookies = document.cookie
+
+        const cookies = document.cookie
           ? document.cookie
               .split(";")
               .map((cookie) => cookie.trim(" "))
