@@ -26,7 +26,8 @@
     <VBtn
       block
       color="primary"
-      variant="text">
+      variant="text"
+      @click="registration">
       Create account
     </VBtn>
   </VForm>
@@ -37,7 +38,8 @@
   import { rules } from "~/utils"
   import { debounce } from "lodash"
 
-  const $emit = defineEmits(["identify"])
+  const timeout = ref(500)
+  const $emit = defineEmits(["identify", "registration"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -50,7 +52,10 @@
     if (!form.value) return
 
     $emit("identify", query.value)
-  }, 500)
+  }, timeout.value)
+  const registration = debounce(() => {
+    $emit("registration")
+  }, timeout.value)
 
   const query = ref("")
 </script>
