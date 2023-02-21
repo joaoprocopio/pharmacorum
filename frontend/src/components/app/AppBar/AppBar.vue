@@ -12,7 +12,7 @@
     </template>
     <template #append>
       <VBtn
-        :icon="$theme.theme === 'light' ? 'light_mode' : 'dark_mode'"
+        :icon="$theme.current === 'light' ? 'light_mode' : 'dark_mode'"
         @click="$theme.toggleTheme" />
     </template>
   </VAppBar>

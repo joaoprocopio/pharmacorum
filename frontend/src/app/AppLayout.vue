@@ -1,5 +1,5 @@
 <template>
-  <VApp :theme="$theme.theme">
+  <VApp :theme="$theme.current">
     <component :is="$route?.meta?.layout?.name ?? DefaultLayoutName">
       <slot />
     </component>
