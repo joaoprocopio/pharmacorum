@@ -7,9 +7,10 @@ export const routes = [
     redirect: "/products",
   },
   {
-    path: "/sessions",
+    path: "/sessions/:step",
     name: SessionsPageName,
     component: SessionsPage,
+    props: true,
     meta: {
       layout: {},
     },
