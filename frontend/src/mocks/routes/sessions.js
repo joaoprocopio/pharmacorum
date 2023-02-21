@@ -29,18 +29,43 @@ export const sessions = function (server) {
         const cookie = cookies.find((cookie) => cookie?.mockuserid)
 
         if (!cookie) {
-          return new Response(200, {}, {})
+          return new Response(
+            200,
+            {},
+            {
+              id: null,
+              username: "",
+              is_authenticated: false,
+            }
+          )
         }
 
         try {
-          const user = this.serialize(
-            schema.users.findBy({ id: cookie.mockuserid })
-          )
-          user["is_authenticated"] = true
+          const user = schema.users.findBy({ id: cookie.mockuserid })
 
-          return new Response(200, {}, user)
+          return new Response(
+            200,
+            {},
+            {
+              id: user.id,
+              full_name: user.fullName,
+              username: user.username,
+              first_name: user.firstName,
+              last_name: user.lastName,
+              email: user.email,
+              is_authenticated: true,
+            }
+          )
         } catch {
-          return new Response(200, {}, {})
+          return new Response(
+            200,
+            {},
+            {
+              id: null,
+              username: "",
+              is_authenticated: false,
+            }
+          )
         }
       })
     },
