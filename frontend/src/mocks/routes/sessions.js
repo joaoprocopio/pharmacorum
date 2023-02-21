@@ -14,7 +14,7 @@ export const sessions = function (server) {
     routes() {
       this.namespace = "/api/sessions/"
 
-      this.get("/current_user/", function (schema, request) {
+      this.get("/current_user/", function (schema) {
         let user = { id: null, username: "", is_authenticated: false }
         let cookies = document.cookie
           ? document.cookie
