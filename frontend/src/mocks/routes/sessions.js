@@ -15,8 +15,6 @@ export const sessions = function (server) {
       this.namespace = "/api/sessions/"
 
       this.get("/current_user/", function (schema) {
-        let user = { id: null, username: "", is_authenticated: false }
-
         const cookies = document.cookie
           ? document.cookie
               .split(";")
@@ -31,13 +29,19 @@ export const sessions = function (server) {
         const cookie = cookies.find((cookie) => cookie?.mockuserid)
 
         if (!cookie) {
-          return new Response(200, {}, user)
+          return new Response(200, {}, {})
         }
 
-        user = this.serialize(schema.users.findBy({ id: cookie.mockuserid }))
-        user["is_authenticated"] = true
+        try {
+          const user = this.serialize(
+            schema.users.findBy({ id: cookie.mockuserid })
+          )
+          user["is_authenticated"] = true
 
-        return new Response(200, {}, user)
+          return new Response(200, {}, user)
+        } catch {
+          return new Response(200, {}, {})
+        }
       })
     },
   })
