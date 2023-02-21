@@ -1,9 +1,4 @@
 <template>
-  <!-- TODO: separar isso tudo em pequenos componentes -->
-  <!-- TODO: tela de login -->
-  <!-- TODO: tela de registro -->
-  <!-- TODO: criar um middleware, para usuário não autenticado não poder acessar -->
-  <!-- TODO: isso implica em ter uma store pra usuários -->
   <template
     v-for="product in $products.products"
     :key="product.id">
