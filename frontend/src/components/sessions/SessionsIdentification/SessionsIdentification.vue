@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-  import { ref, defineProps } from "vue"
+  import { ref } from "vue"
   import { rules } from "~/utils"
   import { debounce } from "lodash"
 
