@@ -2,12 +2,13 @@
   <VResponsive
     class="mb-8"
     content-class="d-flex flex-column align-center justify-space-between ">
-    <VImg
-      cover
-      class="rounded-circle mb-4"
-      src="https://loremflickr.com/100/100/cat"
-      width="144" />
-    <h1 class="text-center font-weight-bold">Username</h1>
+    <VIcon
+      size="128"
+      color="primary"
+      icon="person" />
+    <h1
+      class="text-center font-weight-bold text-capitalize"
+      v-text="findUser.first_name" />
   </VResponsive>
   <VForm
     v-bind="$attrs"
@@ -46,7 +47,7 @@
 
 <script setup>
   import { ref } from "vue"
-  import { debounce } from "lodash"
+  import { debounce, has } from "lodash"
 
   import { validators } from "~/utils"
 
@@ -54,6 +55,19 @@
   const $props = defineProps({
     loading: {
       type: Boolean,
+      required: true,
+    },
+    hasFindUser: {
+      type: Boolean,
+      required: true,
+    },
+    findUser: {
+      type: Object,
+      validator: (user) =>
+        has(user, "id") &&
+        has(user, "email") &&
+        has(user, "username") &&
+        has(user, "first_name"),
       required: true,
     },
   })
