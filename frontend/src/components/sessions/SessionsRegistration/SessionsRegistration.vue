@@ -38,8 +38,21 @@
     <VBtn
       block
       color="primary"
-      variant="text">
+      variant="text"
+      @click="identification">
       I already have a account
     </VBtn>
   </VForm>
 </template>
+
+<script setup>
+  import { debounce } from "lodash"
+  import { ref } from "vue"
+
+  const timeout = ref(500)
+  const $emit = defineEmits(["identification"])
+
+  const identification = debounce(() => {
+    $emit("identification")
+  }, timeout.value)
+</script>

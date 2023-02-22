@@ -3,13 +3,15 @@
     class="mx-auto py-8 px-8"
     max-width="600">
     <SessionsIdentification
+      v-if="$props.step === SessionsSteps.IDENTIFICATION"
       :loading="loading"
       @identify="identify"
-      @registration="$redirects.registration"
-      v-if="$props.step === SessionsSteps.IDENTIFICATION" />
+      @registration="$redirects.registration" />
     <SessionsAuthentication
       v-if="$props.step === SessionsSteps.AUTHENTICATION" />
-    <SessionsRegistration v-if="$props.step === SessionsSteps.REGISTRATION" />
+    <SessionsRegistration
+      v-if="$props.step === SessionsSteps.REGISTRATION"
+      @identification="$redirects.identification" />
   </VResponsive>
 </template>
 
@@ -38,13 +40,30 @@
     },
   })
   const $redirects = {
-    registration: () =>
+    identification: () => {
+      $router.push({
+        name: SessionsPageName,
+        params: {
+          step: SessionsSteps.IDENTIFICATION,
+        },
+      })
+    },
+    authentication: () => {
+      $router.push({
+        name: SessionsPageName,
+        params: {
+          step: SessionsSteps.AUTHENTICATION,
+        },
+      })
+    },
+    registration: () => {
       $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.REGISTRATION,
         },
-      }),
+      })
+    },
   }
 
   const identify = async (query) => {
