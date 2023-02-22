@@ -58,8 +58,7 @@ export const sessions = function (server) {
         if (!user)
           return new Response(404, {}, UserSerializers.notAuthenticated())
 
-        if (!document.cookie.includes("mockuserid"))
-          document.cookie = `mockuserid=${body.id}`
+        if (!Cookies.get("mockuserid")) Cookies.set("mockuserid", body.id)
 
         return new Response(200, {}, UserSerializers.authenticated(user))
       })
