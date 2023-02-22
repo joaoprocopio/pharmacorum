@@ -1,5 +1,5 @@
 export const SessionsSteps = {
-  IDENTIFICATION: "identification",
-  AUTHENTICATION: "authentication",
-  REGISTRATION: "registration",
+  IDENTIFICATION: "identification", // TODO: refatorar para identify
+  AUTHENTICATION: "authentication", // TODO: refatorar para login
+  REGISTRATION: "registration", // TODO: refatorar para register
 }

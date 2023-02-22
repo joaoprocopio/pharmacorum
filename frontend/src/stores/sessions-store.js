@@ -6,7 +6,7 @@ export const useSessionsStore = defineStore("sessionsStore", () => {
   const currentUser = ref({})
 
   const isAuthenticated = computed(
-    () => currentUser.value.is_authenticated ?? false
+    () => currentUser.value?.is_authenticated ?? false
   )
 
   return { findUser, currentUser, isAuthenticated }

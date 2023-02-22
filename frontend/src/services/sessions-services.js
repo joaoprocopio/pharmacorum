@@ -10,7 +10,14 @@ const identify = async (query) =>
     .then(({ data }) => data)
     .catch((error) => Handlers.reject(error))
 
+const login = async (id, password) => {
+  SessionsApi.login({ id, password })
+    .then(({ data }) => data)
+    .catch((error) => Handlers.reject(error))
+}
+
 export const SessionsServices = {
   currentUser,
   identify,
+  login,
 }

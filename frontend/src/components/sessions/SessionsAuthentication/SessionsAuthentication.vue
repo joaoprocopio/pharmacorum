@@ -5,12 +5,12 @@
     <VIcon size="128" color="primary" icon="person" />
     <h1
       class="text-center font-weight-bold text-capitalize"
-      v-text="findUser.first_name" />
+      v-text="findUser?.first_name" />
   </VResponsive>
   <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
     <VTextField
       v-model="password"
-      :rules="[validators.required(), validators.minimumLength(8)]"
+      :rules="[validators.required(), validators.minimumLength(5)]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
       :readonly="$props.loading"
       :type="show ? 'text' : 'password'"

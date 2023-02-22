@@ -27,9 +27,8 @@ export const sessions = function (server) {
           })
           .find((cookie) => cookie.mockuserid)
 
-        if (!cookie?.mockuserid) {
+        if (!cookie?.mockuserid)
           return new Response(200, {}, UserSerializers.notAuthenticated())
-        }
 
         try {
           const user = schema.users.findBy({ id: cookie.mockuserid })
@@ -42,19 +41,31 @@ export const sessions = function (server) {
       this.post("/identify/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 
-        if (!body.query) {
-          return new Response(400, {}, {})
-        }
+        if (!body.query) return new Response(400, {}, {})
 
         const user = body.query.includes("@")
           ? schema.users.findBy({ email: body.query })
           : schema.users.findBy({ username: body.query })
 
-        if (!user) {
-          return new Response(404, {}, {})
-        }
+        if (!user) return new Response(404, {}, {})
 
         return new Response(200, {}, UserSerializers.findUser(user))
+      })
+      this.post("/login/", function (schema, request) {
+        const body = JSON.parse(request.requestBody)
+
+        if (!body.id && !body.password) return new Response(400, {}, {})
+
+        const user = schema.users.findBy({
+          id: body.id,
+          password: body.password,
+        })
+
+        if (!user) return new Response(404, {}, {})
+
+        document.cookie = `mockuserid=${body.id}`
+
+        return new Response(200, {}, UserSerializers.authenticated(user))
       })
     },
   })

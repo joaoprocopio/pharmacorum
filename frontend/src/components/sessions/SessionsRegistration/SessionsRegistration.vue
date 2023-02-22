@@ -35,7 +35,7 @@
       variant="underlined" />
     <VTextField
       v-model="user.password"
-      :rules="[validators.required(), validators.minimumLength(8)]"
+      :rules="[validators.required(), validators.minimumLength(5)]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
       :readonly="$props.loading"
       :type="show ? 'text' : 'password'"

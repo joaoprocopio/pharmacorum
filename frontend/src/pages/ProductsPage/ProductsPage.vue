@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO: refazer esse carregamento usando suspense components -->
+  <!-- https://learnvue.co/tutorials/vue-skeleton-loading -->
   <template v-for="product in $products.products" :key="product.id">
     <VResponsive
       class="mx-auto py-8 px-8"
