@@ -47,7 +47,7 @@ export const sessions = function (server) {
       this.post("/login/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 
-        if (!body.id && !body.password)
+        if (!body.id || !body.password)
           return new Response(400, {}, UserSerializers.notAuthenticated())
 
         const user = schema.users.findBy({
@@ -61,6 +61,9 @@ export const sessions = function (server) {
         if (!Cookies.get("mockuserid")) Cookies.set("mockuserid", body.id)
 
         return new Response(200, {}, UserSerializers.authenticated(user))
+      })
+      this.post("/register/", function () {
+        return new Response(200, {}, {})
       })
     },
   })

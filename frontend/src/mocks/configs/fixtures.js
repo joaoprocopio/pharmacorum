@@ -5,6 +5,7 @@ const usernames = [
   "tony.lampada",
   "elon.musk",
   "joao.procopio",
+  "erick.rost",
 ]
 
 const passwords = ["admin"]
