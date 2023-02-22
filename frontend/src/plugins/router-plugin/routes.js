@@ -11,9 +11,9 @@ export const routes = [
     name: SessionsPageName,
     component: SessionsPage,
     props: (route) => {
-      if (!route?.params?.step) return
+      if (!route.params.step) return
 
-      return route?.params
+      return route.params
     },
   },
   {

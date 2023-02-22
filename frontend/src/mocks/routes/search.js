@@ -12,8 +12,8 @@ export const search = function (server) {
 
       this.get("/products/", function (schema, request) {
         const params = {
-          page: parseInt(request?.queryParams?.page) || 1,
-          per_page: parseInt(request?.queryParams?.per_page) || 30,
+          page: parseInt(request.queryParams.page) || 1,
+          per_page: parseInt(request.queryParams.per_page) || 30,
         }
 
         const products = this.serialize(

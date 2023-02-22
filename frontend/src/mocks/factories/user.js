@@ -5,7 +5,7 @@ import { users } from "~/mocks/configs"
 
 export const user = Factory.extend({
   password(id) {
-    return users[id]?.password
+    return users[id].password
   },
   lastLogin() {
     return faker.date.recent()
@@ -17,16 +17,16 @@ export const user = Factory.extend({
     return `${this.firstName} ${this.lastName}`
   },
   username(id) {
-    return users[id]?.username
+    return users[id].username
   },
   firstName(id) {
-    return users[id]?.username.split(".")[0]
+    return users[id].username.split(".")[0]
   },
   lastName(id) {
-    return users[id]?.username.split(".")[1]
+    return users[id].username.split(".")[1]
   },
   email(id) {
-    return `${users[id]?.username}@gmail.com`
+    return `${users[id].username}@gmail.com`
   },
   isStaff() {
     return false
