@@ -7,7 +7,9 @@
   |_  /register
 */
 
+import Cookies from "js-cookie"
 import { Response } from "miragejs"
+
 import { UserSerializers } from "~/mocks/serializers"
 
 export const sessions = function (server) {
@@ -16,22 +18,13 @@ export const sessions = function (server) {
       this.namespace = "/api/sessions/"
 
       this.get("/current_user/", function (schema) {
-        const cookie = document.cookie
-          .split(";")
-          .map((cookie) => cookie.trim(" "))
-          .map((cookie) => cookie.split("="))
-          .map((cookie) => {
-            return {
-              [cookie[0]]: cookie[1],
-            }
-          })
-          .find((cookie) => cookie.mockuserid)
+        const cookie = Cookies.get("mockuserid")
 
-        if (!cookie?.mockuserid)
+        if (!cookie)
           return new Response(200, {}, UserSerializers.notAuthenticated())
 
         try {
-          const user = schema.users.findBy({ id: cookie.mockuserid })
+          const user = schema.users.findBy({ id: cookie })
 
           return new Response(200, {}, UserSerializers.authenticated(user))
         } catch {
