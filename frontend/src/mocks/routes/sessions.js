@@ -8,6 +8,7 @@
 */
 
 import { Response } from "miragejs"
+import { UserSerializers } from "~/mocks/serializers"
 
 export const sessions = function (server) {
   server.config({
@@ -15,7 +16,7 @@ export const sessions = function (server) {
       this.namespace = "/api/sessions/"
 
       this.get("/current_user/", function (schema) {
-        const cookies = document.cookie
+        const cookie = document.cookie
           ? document.cookie
               .split(";")
               .map((cookie) => cookie.trim(" "))
@@ -25,47 +26,19 @@ export const sessions = function (server) {
                   [cookie[0]]: cookie[1],
                 }
               })
-          : []
-        const cookie = cookies.find((cookie) => cookie.mockuserid)
+              .find((cookie) => cookie.mockuserid)
+          : {}
 
-        if (!cookie) {
-          return new Response(
-            200,
-            {},
-            {
-              id: null,
-              username: "",
-              is_authenticated: false,
-            }
-          )
+        if (!cookie?.mockuserid) {
+          return new Response(200, {}, UserSerializers.notAuthenticated())
         }
 
         try {
           const user = schema.users.findBy({ id: cookie.mockuserid })
 
-          return new Response(
-            200,
-            {},
-            {
-              id: user.id,
-              full_name: user.fullName,
-              username: user.username,
-              first_name: user.firstName,
-              last_name: user.lastName,
-              email: user.email,
-              is_authenticated: true,
-            }
-          )
+          return new Response(200, {}, UserSerializers.authenticated(user))
         } catch {
-          return new Response(
-            200,
-            {},
-            {
-              id: null,
-              username: "",
-              is_authenticated: false,
-            }
-          )
+          return new Response(200, {}, UserSerializers.notAuthenticated())
         }
       })
       this.post("/identify/", function (schema, request) {
