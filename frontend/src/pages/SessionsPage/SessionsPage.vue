@@ -1,18 +1,18 @@
 <template>
   <!-- TODO: exibir os erros para alertar o usuário -->
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
-    <SessionsIdentification
+    <SessionsIdentify
       v-if="$props.step === SessionsSteps.IDENTIFY"
       :loading="loading"
       @identify="identify"
       @to-registration="$redirects.registration" />
-    <SessionsAuthentication
+    <SessionsLogin
       v-if="$props.step === SessionsSteps.LOGIN"
       :loading="loading"
       :find-user="$sessions.findUser"
       @authenticate="authenticate"
       @to-identification="$redirects.identification" />
-    <SessionsRegistration
+    <SessionsRegister
       v-if="$props.step === SessionsSteps.REGISTER"
       :loading="loading"
       @register="register"
@@ -25,9 +25,9 @@
   import { useRouter } from "vue-router"
 
   import {
-    SessionsIdentification,
-    SessionsAuthentication,
-    SessionsRegistration,
+    SessionsIdentify,
+    SessionsLogin,
+    SessionsRegister,
   } from "~/components"
   import { SessionsSteps, SessionsPageName, ProductsPageName } from "~/assets"
   import { SessionsServices } from "~/services"

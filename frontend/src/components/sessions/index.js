@@ -1,3 +1,3 @@
-export * from "./SessionsAuthentication"
-export * from "./SessionsIdentification"
-export * from "./SessionsRegistration"
+export * from "./SessionsLogin"
+export * from "./SessionsIdentify"
+export * from "./SessionsRegister"
