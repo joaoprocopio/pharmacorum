@@ -2,18 +2,18 @@
   <!-- TODO: exibir os erros para alertar o usuário -->
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentification
-      v-if="$props.step === SessionsSteps.IDENTIFICATION"
+      v-if="$props.step === SessionsSteps.IDENTIFY"
       :loading="loading"
       @identify="identify"
       @to-registration="$redirects.registration" />
     <SessionsAuthentication
-      v-if="$props.step === SessionsSteps.AUTHENTICATION"
+      v-if="$props.step === SessionsSteps.LOGIN"
       :loading="loading"
       :find-user="$sessions.findUser"
       @authenticate="authenticate"
       @to-identification="$redirects.identification" />
     <SessionsRegistration
-      v-if="$props.step === SessionsSteps.REGISTRATION"
+      v-if="$props.step === SessionsSteps.REGISTER"
       :loading="loading"
       @register="register"
       @to-identification="$redirects.identification" />
@@ -38,7 +38,7 @@
   const $props = defineProps({
     step: {
       type: String,
-      default: () => SessionsSteps.IDENTIFICATION,
+      default: () => SessionsSteps.IDENTIFY,
       validator: (step) => Object.values(SessionsSteps).includes(step),
     },
   })
@@ -47,21 +47,21 @@
       $router.push({
         name: SessionsPageName,
         params: {
-          step: SessionsSteps.IDENTIFICATION,
+          step: SessionsSteps.IDENTIFY,
         },
       }),
     authentication: () =>
       $router.push({
         name: SessionsPageName,
         params: {
-          step: SessionsSteps.AUTHENTICATION,
+          step: SessionsSteps.LOGIN,
         },
       }),
     registration: () =>
       $router.push({
         name: SessionsPageName,
         params: {
-          step: SessionsSteps.REGISTRATION,
+          step: SessionsSteps.REGISTER,
         },
       }),
     products: () =>

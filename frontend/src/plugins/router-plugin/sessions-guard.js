@@ -21,7 +21,7 @@ export const sessionsGuard = async (to, from, next) => {
 
   if (
     to.name === SessionsPageName &&
-    to.params.step === SessionsSteps.AUTHENTICATION &&
+    to.params.step === SessionsSteps.LOGIN &&
     !$sessions.findUser?.id
   )
     return next({ name: SessionsPageName })
