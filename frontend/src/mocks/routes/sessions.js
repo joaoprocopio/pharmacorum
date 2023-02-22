@@ -18,7 +18,7 @@ export const sessions = function (server) {
       this.namespace = "/api/sessions/"
 
       this.get("/current_user/", function (schema) {
-        const cookie = Cookies.get("sessionid")
+        const cookie = Cookies.get("mockuserid")
 
         if (!cookie)
           return new Response(200, {}, UserSerializers.notAuthenticated())
@@ -58,7 +58,7 @@ export const sessions = function (server) {
         if (!user)
           return new Response(404, {}, UserSerializers.notAuthenticated())
 
-        if (!Cookies.get("sessionid")) Cookies.set("sessionid", body.id)
+        if (!Cookies.get("mockuserid")) Cookies.set("mockuserid", body.id)
 
         return new Response(200, {}, UserSerializers.authenticated(user))
       })
