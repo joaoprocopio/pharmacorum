@@ -26,7 +26,7 @@ export const sessions = function (server) {
                 }
               })
           : []
-        const cookie = cookies.find((cookie) => cookie?.mockuserid)
+        const cookie = cookies.find((cookie) => cookie.mockuserid)
 
         if (!cookie) {
           return new Response(
@@ -71,7 +71,15 @@ export const sessions = function (server) {
       this.post("/identify/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 
-        if (!body?.query) {
+        if (!body.query) {
+          return new Response(400, {}, {})
+        }
+
+        const user = body.query.includes("@")
+          ? schema.users.findBy({ email: body.query })
+          : schema.users.findBy({ username: body.query })
+
+        if (!user) {
           return new Response(404, {}, {})
         }
 
@@ -79,10 +87,10 @@ export const sessions = function (server) {
           200,
           {},
           {
-            id: "user.id",
-            username: "user.username",
-            email: "user.email",
-            first_name: "user.first_name",
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            first_name: user.firstName,
           }
         )
       })
