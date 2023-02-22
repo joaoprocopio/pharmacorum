@@ -4,6 +4,7 @@
     max-width="600">
     <SessionsIdentification
       :loading="loading"
+      @identify="identify"
       @registration="$redirects.registration"
       v-if="$props.step === SessionsSteps.IDENTIFICATION" />
     <SessionsAuthentication
@@ -15,13 +16,19 @@
 <script setup>
   import { ref } from "vue"
   import { useRouter } from "vue-router"
+
   import {
     SessionsIdentification,
     SessionsAuthentication,
     SessionsRegistration,
   } from "~/components"
   import { SessionsSteps, SessionsPageName } from "~/assets"
+  import { SessionsServices } from "~/services"
+  import { useSessionsStore } from "~/stores"
 
+  const loading = ref(false)
+
+  const $sessions = useSessionsStore()
   const $router = useRouter()
   const $props = defineProps({
     step: {
@@ -40,5 +47,11 @@
       }),
   }
 
-  const loading = ref(false)
+  const identify = async (query) => {
+    loading.value = true
+
+    $sessions.findUser = await SessionsServices.identify(query).finally(() => {
+      loading.value = false
+    })
+  }
 </script>

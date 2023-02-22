@@ -68,6 +68,24 @@ export const sessions = function (server) {
           )
         }
       })
+      this.post("/identify/", function (schema, request) {
+        const body = JSON.parse(request.requestBody)
+
+        if (!body?.query) {
+          return new Response(404, {}, {})
+        }
+
+        return new Response(
+          200,
+          {},
+          {
+            id: "user.id",
+            username: "user.username",
+            email: "user.email",
+            first_name: "user.first_name",
+          }
+        )
+      })
     },
   })
 }

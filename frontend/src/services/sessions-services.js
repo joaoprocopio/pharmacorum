@@ -3,12 +3,16 @@ import { SessionsApi } from "~/api"
 const currentUser = async () =>
   SessionsApi.currentUser()
     .then(({ data }) => data)
-    .catch((error) => Promise.reject(error))
+    .catch((error) => {
+      Promise.reject(error)
+    })
 
-const identify = async () =>
-  SessionsApi.identify()
+const identify = async (query) =>
+  SessionsApi.identify({ query })
     .then(({ data }) => data)
-    .catch((error) => Promise.reject(error))
+    .catch((error) => {
+      Promise.reject(error)
+    })
 
 export const SessionsServices = {
   currentUser,
