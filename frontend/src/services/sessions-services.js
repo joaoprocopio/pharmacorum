@@ -1,18 +1,14 @@
-import { SessionsApi } from "~/api"
+import { SessionsApi, Handlers } from "~/api"
 
 const currentUser = async () =>
   SessionsApi.currentUser()
     .then(({ data }) => data)
-    .catch((error) => {
-      Promise.reject(error)
-    })
+    .catch((error) => Handlers.reject(error))
 
 const identify = async (query) =>
   SessionsApi.identify({ query })
     .then(({ data }) => data)
-    .catch((error) => {
-      Promise.reject(error)
-    })
+    .catch((error) => Handlers.reject(error))
 
 export const SessionsServices = {
   currentUser,

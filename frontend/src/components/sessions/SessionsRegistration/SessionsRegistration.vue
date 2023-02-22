@@ -6,7 +6,7 @@
     @submit.prevent="submit">
     <VTextField
       v-model="user.username"
-      :rules="[rules.required()]"
+      :rules="[validators.required()]"
       :readonly="$props.loading"
       class="mb-2"
       color="primary"
@@ -14,7 +14,7 @@
       variant="underlined" />
     <VTextField
       v-model="user.email"
-      :rules="[rules.required(), rules.email(user.email)]"
+      :rules="[validators.required(), validators.email(user.email)]"
       :readonly="$props.loading"
       class="mb-2"
       color="primary"
@@ -22,7 +22,7 @@
       variant="underlined" />
     <VTextField
       v-model="user.first_name"
-      :rules="[rules.required()]"
+      :rules="[validators.required()]"
       :readonly="$props.loading"
       class="mb-2"
       color="primary"
@@ -30,7 +30,7 @@
       variant="underlined" />
     <VTextField
       v-model="user.last_name"
-      :rules="[rules.required()]"
+      :rules="[validators.required()]"
       :readonly="$props.loading"
       class="mb-2"
       color="primary"
@@ -38,7 +38,7 @@
       variant="underlined" />
     <VTextField
       v-model="user.password"
-      :rules="[rules.required(), rules.minimumLength(8)]"
+      :rules="[validators.required(), validators.minimumLength(8)]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
       :readonly="$props.loading"
       :type="show ? 'text' : 'password'"
@@ -71,7 +71,7 @@
   import { ref, reactive } from "vue"
   import { debounce } from "lodash"
 
-  import { rules } from "~/utils"
+  import { validators } from "~/utils"
 
   const $emit = defineEmits(["register", "to-identification"])
   const $props = defineProps({

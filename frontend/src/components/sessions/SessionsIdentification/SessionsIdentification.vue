@@ -7,7 +7,7 @@
     <VTextField
       v-model="query"
       :readonly="$props.loading"
-      :rules="[rules.required()]"
+      :rules="[validators.required()]"
       class="mb-4"
       color="primary"
       label="Username or Email"
@@ -37,7 +37,7 @@
   import { ref } from "vue"
   import { debounce } from "lodash"
 
-  import { rules } from "~/utils"
+  import { validators } from "~/utils"
 
   const $emit = defineEmits(["identify", "to-registration"])
   const $props = defineProps({

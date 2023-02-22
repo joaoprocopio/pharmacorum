@@ -1,4 +1,4 @@
-export const rules = {
+export const validators = {
   required: () => {
     return (value) => !!value || "Required field."
   },
