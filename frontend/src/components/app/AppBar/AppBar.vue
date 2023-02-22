@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: logout -->
   <VAppBar :border="true" class="px-4" elevation="0">
     <template #prepend>
       <VBtn
@@ -12,6 +13,7 @@
         :icon="$theme.current === 'light' ? 'light_mode' : 'dark_mode'"
         color="primary"
         @click="$theme.toggleTheme" />
+      <VBtn icon="logout" color="primary" @click="() => {}" />
     </template>
   </VAppBar>
 </template>
