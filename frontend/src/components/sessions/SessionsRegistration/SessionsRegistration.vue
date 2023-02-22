@@ -68,7 +68,7 @@
 </template>
 
 <script setup>
-  import { ref, reactive } from "vue"
+  import { ref } from "vue"
   import { debounce } from "lodash"
 
   import { validators } from "~/utils"
@@ -84,12 +84,12 @@
   const timeout = ref(500)
   const show = ref(false)
   const form = ref(false)
-  const user = reactive({})
+  const user = ref({})
 
   const submit = debounce(() => {
     if (!form.value) return
 
-    $emit("register", user)
+    $emit("register", user.value)
   }, timeout.value)
 
   const toIdentification = debounce(() => {

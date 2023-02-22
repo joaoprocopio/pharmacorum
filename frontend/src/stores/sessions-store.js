@@ -8,6 +8,7 @@ export const useSessionsStore = defineStore("sessionsStore", () => {
   const isAuthenticated = computed(
     () => currentUser.value.is_authenticated ?? false
   )
+  const hasFindUser = computed(() => Object.entries(findUser.value).length > 0)
 
-  return { findUser, currentUser, isAuthenticated }
+  return { findUser, currentUser, isAuthenticated, hasFindUser }
 })

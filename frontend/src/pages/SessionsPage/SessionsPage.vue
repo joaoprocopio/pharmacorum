@@ -8,7 +8,10 @@
       @identify="identify"
       @to-registration="$redirects.registration" />
     <SessionsAuthentication
-      v-if="$props.step === SessionsSteps.AUTHENTICATION" />
+      v-if="$props.step === SessionsSteps.AUTHENTICATION"
+      :loading="loading"
+      @authenticate="authenticate"
+      @to-identification="$redirects.identification" />
     <SessionsRegistration
       v-if="$props.step === SessionsSteps.REGISTRATION"
       :loading="loading"
@@ -75,5 +78,6 @@
       loading.value = false
     })
   }
-  const register = async (user) => {}
+  const register = async (user) => user
+  const authenticate = async (password) => password
 </script>
