@@ -1,13 +1,11 @@
-import { computed, ref } from "vue"
+import { computed, reactive } from "vue"
 import { defineStore } from "pinia"
 
 export const useSessionsStore = defineStore("sessionsStore", () => {
-  const findUser = ref({})
-  const currentUser = ref({})
+  const findUser = reactive({})
+  const currentUser = reactive({})
 
-  const isAuthenticated = computed(
-    () => currentUser.value?.is_authenticated ?? false
-  )
+  const isAuthenticated = computed(() => currentUser?.is_authenticated ?? false)
 
   return { findUser, currentUser, isAuthenticated }
 })

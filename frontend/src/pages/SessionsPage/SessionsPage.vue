@@ -1,6 +1,5 @@
 <template>
   <!-- TODO: exibir os erros para alertar o usuário -->
-  <!-- TODO: entender pq n funciona a prop loading em authentication -->
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentification
       v-if="$props.step === SessionsSteps.IDENTIFICATION"
@@ -44,35 +43,31 @@
     },
   })
   const $redirects = {
-    identification: () => {
+    identification: () =>
       $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.IDENTIFICATION,
         },
-      })
-    },
-    authentication: () => {
+      }),
+    authentication: () =>
       $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.AUTHENTICATION,
         },
-      })
-    },
-    registration: () => {
+      }),
+    registration: () =>
       $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.REGISTRATION,
         },
-      })
-    },
-    products: () => {
+      }),
+    products: () =>
       $router.push({
         name: ProductsPageName,
-      })
-    },
+      }),
   }
 
   const loading = ref(false)
@@ -84,7 +79,7 @@
       loading.value = false
     })
 
-    if ($sessions.findUser?.id) $redirects.authentication()
+    if ($sessions.findUser?.id) return $redirects.authentication()
   }
   const authenticate = async (password) => {
     loading.value = true
@@ -96,7 +91,7 @@
       loading.value = false
     })
 
-    if ($sessions.currentUser?.id) $redirects.products()
+    if ($sessions.currentUser?.id) return $redirects.products()
   }
-  const register = async (user) => user
+  const register = async () => {}
 </script>
