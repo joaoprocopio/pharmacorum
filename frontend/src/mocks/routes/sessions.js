@@ -54,16 +54,7 @@ export const sessions = function (server) {
           return new Response(404, {}, {})
         }
 
-        return new Response(
-          200,
-          {},
-          {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            first_name: user.firstName,
-          }
-        )
+        return new Response(200, {}, UserSerializers.findUser(user))
       })
     },
   })
