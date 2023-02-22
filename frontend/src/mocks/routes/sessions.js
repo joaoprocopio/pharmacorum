@@ -17,17 +17,15 @@ export const sessions = function (server) {
 
       this.get("/current_user/", function (schema) {
         const cookie = document.cookie
-          ? document.cookie
-              .split(";")
-              .map((cookie) => cookie.trim(" "))
-              .map((cookie) => cookie.split("="))
-              .map((cookie) => {
-                return {
-                  [cookie[0]]: cookie[1],
-                }
-              })
-              .find((cookie) => cookie.mockuserid)
-          : {}
+          .split(";")
+          .map((cookie) => cookie.trim(" "))
+          .map((cookie) => cookie.split("="))
+          .map((cookie) => {
+            return {
+              [cookie[0]]: cookie[1],
+            }
+          })
+          .find((cookie) => cookie.mockuserid)
 
         if (!cookie?.mockuserid) {
           return new Response(200, {}, UserSerializers.notAuthenticated())
