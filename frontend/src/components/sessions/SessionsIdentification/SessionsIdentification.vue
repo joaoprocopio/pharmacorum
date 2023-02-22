@@ -27,7 +27,7 @@
       block
       color="primary"
       variant="text"
-      @click="registration">
+      @click="toRegistration">
       Create account
     </VBtn>
   </VForm>
@@ -35,11 +35,11 @@
 
 <script setup>
   import { ref } from "vue"
-  import { rules } from "~/utils"
   import { debounce } from "lodash"
 
-  const timeout = ref(500)
-  const $emit = defineEmits(["identify", "registration"])
+  import { rules } from "~/utils"
+
+  const $emit = defineEmits(["identify", "to-registration"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -47,15 +47,17 @@
     },
   })
 
+  const timeout = ref(500)
+  const query = ref("")
   const form = ref(false)
+
   const submit = debounce(() => {
     if (!form.value) return
 
     $emit("identify", query.value)
   }, timeout.value)
-  const registration = debounce(() => {
-    $emit("registration")
-  }, timeout.value)
 
-  const query = ref("")
+  const toRegistration = debounce(() => {
+    $emit("to-registration")
+  }, timeout.value)
 </script>

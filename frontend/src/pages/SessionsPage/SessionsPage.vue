@@ -6,12 +6,14 @@
       v-if="$props.step === SessionsSteps.IDENTIFICATION"
       :loading="loading"
       @identify="identify"
-      @registration="$redirects.registration" />
+      @to-registration="$redirects.registration" />
     <SessionsAuthentication
       v-if="$props.step === SessionsSteps.AUTHENTICATION" />
     <SessionsRegistration
       v-if="$props.step === SessionsSteps.REGISTRATION"
-      @identification="$redirects.identification" />
+      :loading="loading"
+      @register="register"
+      @to-identification="$redirects.identification" />
   </VResponsive>
 </template>
 
@@ -27,8 +29,6 @@
   import { SessionsSteps, SessionsPageName } from "~/assets"
   import { SessionsServices } from "~/services"
   import { useSessionsStore } from "~/stores"
-
-  const loading = ref(false)
 
   const $sessions = useSessionsStore()
   const $router = useRouter()
@@ -66,6 +66,8 @@
     },
   }
 
+  const loading = ref(false)
+
   const identify = async (query) => {
     loading.value = true
 
@@ -73,4 +75,5 @@
       loading.value = false
     })
   }
+  const register = async (user) => {}
 </script>
