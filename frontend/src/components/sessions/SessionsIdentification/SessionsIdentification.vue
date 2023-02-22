@@ -1,9 +1,6 @@
 <template>
   <h1 class="font-weight-bold mb-8">Welcome to Pharmacorum!</h1>
-  <VForm
-    v-bind="$attrs"
-    v-model="form"
-    @submit.prevent="submit">
+  <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
     <VTextField
       v-model="query"
       :readonly="$props.loading"
@@ -23,11 +20,7 @@
       type="submit">
       Continue
     </VBtn>
-    <VBtn
-      block
-      color="primary"
-      variant="text"
-      @click="toRegistration">
+    <VBtn block color="primary" variant="text" @click="toRegistration">
       Create account
     </VBtn>
   </VForm>

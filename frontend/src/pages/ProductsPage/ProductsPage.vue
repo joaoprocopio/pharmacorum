@@ -1,7 +1,5 @@
 <template>
-  <template
-    v-for="product in $products.products"
-    :key="product.id">
+  <template v-for="product in $products.products" :key="product.id">
     <VResponsive
       class="mx-auto py-8 px-8"
       content-class="d-flex flex-row align-center justify-space-between"

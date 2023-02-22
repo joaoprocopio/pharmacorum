@@ -1,9 +1,6 @@
 <template>
   <h1 class="font-weight-bold mb-8">Create your account</h1>
-  <VForm
-    v-bind="$attrs"
-    v-model="form"
-    @submit.prevent="submit">
+  <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
     <VTextField
       v-model="user.username"
       :rules="[validators.required()]"
@@ -57,11 +54,7 @@
       block>
       Register
     </VBtn>
-    <VBtn
-      block
-      color="primary"
-      variant="text"
-      @click="toIdentification">
+    <VBtn block color="primary" variant="text" @click="toIdentification">
       I already have a account
     </VBtn>
   </VForm>

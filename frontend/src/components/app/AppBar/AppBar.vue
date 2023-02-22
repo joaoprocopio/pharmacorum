@@ -1,8 +1,5 @@
 <template>
-  <VAppBar
-    :border="true"
-    class="px-4"
-    elevation="0">
+  <VAppBar :border="true" class="px-4" elevation="0">
     <template #prepend>
       <VBtn
         icon="local_hospital"
