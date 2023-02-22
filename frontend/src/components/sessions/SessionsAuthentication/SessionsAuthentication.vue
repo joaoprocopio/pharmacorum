@@ -47,17 +47,9 @@
       type: Boolean,
       required: true,
     },
-    hasFindUser: {
-      type: Boolean,
-      required: true,
-    },
     findUser: {
       type: Object,
-      validator: (user) =>
-        has(user, "id") &&
-        has(user, "email") &&
-        has(user, "username") &&
-        has(user, "first_name"),
+      validator: (user) => has(user, "id") && has(user, "first_name"),
       required: true,
     },
   })

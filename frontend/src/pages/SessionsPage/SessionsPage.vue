@@ -9,7 +9,6 @@
       v-if="$props.step === SessionsSteps.AUTHENTICATION"
       :loading="loading"
       :find-user="$sessions.findUser"
-      :has-find-user="$sessions.hasFindUser"
       @authenticate="authenticate"
       @to-identification="$redirects.identification" />
     <SessionsRegistration
@@ -78,7 +77,7 @@
       loading.value = false
     })
 
-    if ($sessions.hasFindUser) $redirects.authentication()
+    if ($sessions.findUser.id) $redirects.authentication()
   }
   const authenticate = async (password) => password
   const register = async (user) => user
