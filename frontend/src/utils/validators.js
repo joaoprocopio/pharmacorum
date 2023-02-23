@@ -3,7 +3,7 @@ export const validators = {
     return (value) => !!value || "Required field."
   },
   email: (email) => {
-    const regex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}/
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return regex.test(email) || `${email} isn't a valid email.`
   },
   minimumLength: (length) => {
