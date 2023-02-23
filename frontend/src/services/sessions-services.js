@@ -20,9 +20,15 @@ const logout = async () =>
     .then(({ data }) => data)
     .catch((error) => Handlers.reject(error))
 
+const register = async (user) =>
+  SessionsApi.register(user)
+    .then(({ data }) => data)
+    .catch((error) => Handlers.reject(error))
+
 export const SessionsServices = {
   currentUser,
   identify,
   login,
   logout,
+  register,
 }
