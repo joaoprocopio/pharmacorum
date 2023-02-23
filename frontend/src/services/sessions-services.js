@@ -15,8 +15,14 @@ const login = async (id, password) =>
     .then(({ data }) => data)
     .catch((error) => Handlers.reject(error))
 
+const logout = async () =>
+  SessionsApi.logout()
+    .then(({ data }) => data)
+    .catch((error) => Handlers.reject(error))
+
 export const SessionsServices = {
   currentUser,
   identify,
   login,
+  logout,
 }

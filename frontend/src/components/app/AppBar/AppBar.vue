@@ -8,19 +8,51 @@
         :disabled="$route.name === SessionsPageName"
         :to="{ name: ProductsPageName }" />
     </template>
-    <template #append>
-      <VBtn
-        :icon="$theme.current === 'light' ? 'light_mode' : 'dark_mode'"
-        color="primary"
-        @click="$theme.toggleTheme" />
-      <VBtn icon="logout" color="primary" @click="() => {}" />
+    <template v-if="!$props.hide" #append>
+      <VMenu>
+        <template #activator="{ props }">
+          <VBtn color="primary" icon="menu" v-bind="props"></VBtn>
+        </template>
+        <VList class="pa-2">
+          <VListItemAction>
+            <VBtn
+              :icon="$theme.current === 'light' ? 'light_mode' : 'dark_mode'"
+              color="primary"
+              @click="$theme.toggleTheme" />
+          </VListItemAction>
+          <VListItemAction>
+            <VBtn icon="logout" color="primary" @click="logout" />
+          </VListItemAction>
+        </VList>
+      </VMenu>
     </template>
   </VAppBar>
 </template>
 
 <script setup>
-  import { ProductsPageName, SessionsPageName } from "~/assets"
-  import { useThemeStore } from "~/stores"
+  import { useRouter } from "vue-router"
 
+  import { ProductsPageName, SessionsPageName } from "~/assets"
+  import { useSessionsStore, useThemeStore } from "~/stores"
+  import { SessionsServices } from "~/services"
+
+  const $router = useRouter()
   const $theme = useThemeStore()
+  const $sessions = useSessionsStore()
+  const $props = defineProps({
+    hide: {
+      type: Boolean,
+      default: false,
+    },
+  })
+  const $redirects = {
+    login: () => $router.push({ name: SessionsPageName }),
+  }
+
+  // TODO: tenho um sentimento de que isso aqui vai causar algum bug bizarro quando conectado ao backend
+  const logout = async () => {
+    $sessions.currentUser = await SessionsServices.logout()
+
+    if (!$sessions.currentUser?.id) return $redirects.login()
+  }
 </script>

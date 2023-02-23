@@ -1,6 +1,9 @@
 <template>
   <!-- TODO: exibir os erros para alertar o usuário -->
   <!-- TODO: terminar a página de registro -->
+  <!-- TODO: identification -> identify -->
+  <!-- TODO: authentication -> login -->
+  <!-- TODO: registration -> register -->
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentify
       v-if="$props.step === SessionsSteps.IDENTIFY"

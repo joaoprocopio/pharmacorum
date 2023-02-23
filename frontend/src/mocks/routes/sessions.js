@@ -62,6 +62,13 @@ export const sessions = function (server) {
 
         return new Response(200, {}, UserSerializers.authenticated(user))
       })
+      this.get("/logout/", function () {
+        if (!Cookies.get("mockuserid")) return new Response(400, {}, {})
+
+        Cookies.remove("mockuserid")
+
+        return new Response(200, {}, {})
+      })
       this.post("/register/", function () {
         return new Response(200, {}, {})
       })
