@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: logout -->
   <VAppBar :border="true" class="px-4" elevation="0">
     <template #prepend>
       <VBtn
@@ -8,7 +7,7 @@
         :disabled="$route.name === SessionsPageName"
         :to="{ name: ProductsPageName }" />
     </template>
-    <template v-if="!$props.hide" #append>
+    <template v-if="!$route?.meta?.layout?.simple" #append>
       <VMenu>
         <template #activator="{ props }">
           <VBtn color="primary" icon="menu" v-bind="props"></VBtn>
@@ -39,12 +38,6 @@
   const $router = useRouter()
   const $theme = useThemeStore()
   const $sessions = useSessionsStore()
-  const $props = defineProps({
-    hide: {
-      type: Boolean,
-      default: false,
-    },
-  })
   const $redirects = {
     login: () => $router.push({ name: SessionsPageName }),
   }

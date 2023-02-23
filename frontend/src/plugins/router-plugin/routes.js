@@ -15,6 +15,11 @@ export const routes = [
 
       return route.params
     },
+    meta: {
+      layout: {
+        simple: true,
+      },
+    },
   },
   {
     path: "/products",
