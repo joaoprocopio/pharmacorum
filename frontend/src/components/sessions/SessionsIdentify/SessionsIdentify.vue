@@ -20,7 +20,7 @@
       type="submit">
       Continue
     </VBtn>
-    <VBtn block color="primary" variant="text" @click="toRegistration">
+    <VBtn block color="primary" variant="text" @click="toRegister">
       Create account
     </VBtn>
   </VForm>
@@ -32,7 +32,7 @@
 
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["identify", "to-registration"])
+  const $emit = defineEmits(["identify", "to-register"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -50,7 +50,7 @@
     $emit("identify", query.value)
   }, timeout.value)
 
-  const toRegistration = debounce(() => {
-    $emit("to-registration")
+  const toRegister = debounce(() => {
+    $emit("to-register")
   }, timeout.value)
 </script>

@@ -29,7 +29,7 @@
       block>
       Login
     </VBtn>
-    <VBtn color="primary" variant="text" block @click="toIdentification">
+    <VBtn color="primary" variant="text" block @click="toIdentify">
       Enter with another account
     </VBtn>
   </VForm>
@@ -41,7 +41,7 @@
 
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["authenticate", "to-identification"])
+  const $emit = defineEmits(["authenticate", "to-identify"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -59,8 +59,8 @@
   const timeout = ref(500)
   const password = ref("")
 
-  const toIdentification = debounce(() => {
-    $emit("to-identification")
+  const toIdentify = debounce(() => {
+    $emit("to-identify")
   }, timeout.value)
   const submit = debounce(() => {
     if (!form.value) return

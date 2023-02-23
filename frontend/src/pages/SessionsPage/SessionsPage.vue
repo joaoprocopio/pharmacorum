@@ -1,26 +1,23 @@
 <template>
   <!-- TODO: exibir os erros para alertar o usuário -->
   <!-- TODO: terminar a página de registro -->
-  <!-- TODO: identification -> identify -->
-  <!-- TODO: authentication -> login -->
-  <!-- TODO: registration -> register -->
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentify
       v-if="$props.step === SessionsSteps.IDENTIFY"
       :loading="loading"
       @identify="identify"
-      @to-registration="$redirects.registration" />
+      @to-register="$redirects.register" />
     <SessionsLogin
       v-if="$props.step === SessionsSteps.LOGIN"
       :loading="loading"
       :find-user="$sessions.findUser"
       @authenticate="authenticate"
-      @to-identification="$redirects.identification" />
+      @to-identify="$redirects.identify" />
     <SessionsRegister
       v-if="$props.step === SessionsSteps.REGISTER"
       :loading="loading"
       @register="register"
-      @to-identification="$redirects.identification" />
+      @to-identify="$redirects.identify" />
   </VResponsive>
 </template>
 
@@ -47,21 +44,21 @@
     },
   })
   const $redirects = {
-    identification: () =>
+    identify: () =>
       $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.IDENTIFY,
         },
       }),
-    authentication: () =>
+    login: () =>
       $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.LOGIN,
         },
       }),
-    registration: () =>
+    register: () =>
       $router.push({
         name: SessionsPageName,
         params: {
@@ -83,7 +80,7 @@
       loading.value = false
     })
 
-    if ($sessions.findUser?.id) return $redirects.authentication()
+    if ($sessions.findUser?.id) return $redirects.login()
   }
   const authenticate = async (password) => {
     loading.value = true

@@ -54,7 +54,7 @@
       block>
       Register
     </VBtn>
-    <VBtn block color="primary" variant="text" @click="toIdentification">
+    <VBtn block color="primary" variant="text" @click="toIdentify">
       I already have a account
     </VBtn>
   </VForm>
@@ -66,7 +66,7 @@
 
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["register", "to-identification"])
+  const $emit = defineEmits(["register", "to-identify"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -85,7 +85,7 @@
     $emit("register", user.value)
   }, timeout.value)
 
-  const toIdentification = debounce(() => {
-    $emit("to-identification")
+  const toIdentify = debounce(() => {
+    $emit("to-identify")
   }, timeout.value)
 </script>
