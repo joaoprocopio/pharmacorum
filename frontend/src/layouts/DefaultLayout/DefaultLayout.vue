@@ -1,5 +1,5 @@
 <template>
-  <AppBar :is-simple="$route?.meta?.layout?.simple" />
+  <AppBar :simple="$route?.meta?.layout?.simple" />
   <VMain>
     <slot />
   </VMain>

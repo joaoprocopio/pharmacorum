@@ -4,10 +4,10 @@
       <VBtn
         icon="local_hospital"
         color="primary"
-        :disabled="$props.isSimple"
+        :disabled="$props.simple"
         :to="{ name: ProductsPageName }" />
     </template>
-    <template v-if="!$props.isSimple" #append>
+    <template v-if="!$props.simple" #append>
       <VMenu>
         <template #activator="{ props }">
           <VBtn color="primary" icon="menu" v-bind="props"></VBtn>
@@ -38,7 +38,7 @@
 
   const $router = useRouter()
   const $props = defineProps({
-    isSimple: {
+    simple: {
       type: Boolean,
       default: false,
     },
