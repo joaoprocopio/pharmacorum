@@ -30,6 +30,7 @@ export const sessions = function (server) {
           return new Response(200, {}, {})
         }
       })
+
       this.post("/identify/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 
@@ -43,6 +44,7 @@ export const sessions = function (server) {
 
         return new Response(200, {}, UserSerializers.findUser(user))
       })
+
       this.post("/login/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 
@@ -59,6 +61,7 @@ export const sessions = function (server) {
 
         return new Response(200, {}, UserSerializers.authenticated(user))
       })
+
       this.get("/logout/", function () {
         if (!Cookies.get("mockuserid")) return new Response(400, {}, {})
 
@@ -66,6 +69,7 @@ export const sessions = function (server) {
 
         return new Response(200, {}, {})
       })
+
       this.post("/register/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 

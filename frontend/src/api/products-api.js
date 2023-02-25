@@ -1,8 +1,7 @@
 import { $axios } from "./axios"
 
-const getProducts = (params = {}) =>
-  $axios.get("/search/products", { params: params })
+const searchProducts = (params) => $axios.get("/search/products", { params })
 
 export const ProductsApi = {
-  getProducts,
+  searchProducts,
 }

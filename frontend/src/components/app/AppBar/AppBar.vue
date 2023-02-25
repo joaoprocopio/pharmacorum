@@ -42,7 +42,6 @@
     login: () => $router.push({ name: SessionsPageName }),
   }
 
-  // TODO: tenho um sentimento de que isso aqui vai causar algum bug bizarro quando conectado ao backend
   const logout = async () => {
     $sessions.currentUser = await SessionsServices.logout()
 
