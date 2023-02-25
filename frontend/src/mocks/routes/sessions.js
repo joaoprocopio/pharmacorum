@@ -47,16 +47,14 @@ export const sessions = function (server) {
       this.post("/login/", function (schema, request) {
         const body = JSON.parse(request.requestBody)
 
-        if (!body.id || !body.password)
-          return new Response(400, {}, UserSerializers.notAuthenticated())
+        if (!body.id || !body.password) return new Response(400, {}, {})
 
         const user = schema.users.findBy({
           id: body.id,
           password: body.password,
         })
 
-        if (!user)
-          return new Response(404, {}, UserSerializers.notAuthenticated())
+        if (!user) return new Response(404, {}, {})
 
         if (!Cookies.get("mockuserid")) Cookies.set("mockuserid", body.id)
 
@@ -69,8 +67,21 @@ export const sessions = function (server) {
 
         return new Response(200, {}, {})
       })
-      this.post("/register/", function () {
-        return new Response(200, {}, {})
+      this.post("/register/", function (schema, request) {
+        const body = JSON.parse(request.requestBody)
+
+        if (
+          !body.username ||
+          !body.password ||
+          !body.first_name ||
+          !body.last_name ||
+          !body.password
+        )
+          return new Response(400, {}, {})
+
+        const user = schema.users.create(body)
+
+        return new Response(200, {}, UserSerializers.authenticated(user))
       })
     },
   })

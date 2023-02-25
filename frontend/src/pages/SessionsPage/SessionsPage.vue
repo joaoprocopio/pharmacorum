@@ -94,5 +94,13 @@
 
     if ($sessions.currentUser?.id) return $redirects.products()
   }
-  const register = async () => {}
+  const register = async (user) => {
+    loading.value = true
+
+    await SessionsServices.register(user).finally(() => {
+      loading.value = false
+    })
+
+    if ($sessions.currentUser?.id) return $redirects.login()
+  }
 </script>

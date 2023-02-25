@@ -8,7 +8,7 @@ const usernames = [
   "erick.rost",
 ]
 
-const passwords = ["admin"]
+const passwords = ["password"]
 
 export const users = usernames.map((username) => {
   return {

@@ -1,14 +1,24 @@
 export const validators = {
   required: () => {
-    return (value) => !!value || "Required field."
+    return (field) => !!field || "This field is required."
   },
-  email: (email) => {
+  username: () => {
+    const regex = /^[\w.@+-]+$/
+    return (username) =>
+      regex.test(username) || `${username} isn't a valid username`
+  },
+  email: () => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    return regex.test(email) || `${email} isn't a valid email.`
+    return (email) => regex.test(email) || `${email} isn't a valid email.`
+  },
+  notEntirelyNumeric: () => {
+    const regex = /^\d+$/
+    return (field) =>
+      !regex.test(field) || "This field shouldn't be completely numeric."
   },
   minimumLength: (length) => {
-    return (value) =>
-      (value && value.length >= length) ||
-      `Must be at least ${length} characters long.`
+    return (field) =>
+      (field && field.length >= length) ||
+      `This field should be at least ${length} characters long.`
   },
 }
