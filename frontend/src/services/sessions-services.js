@@ -7,7 +7,7 @@ const currentUser = async () =>
 
 const identify = async (query) =>
   SessionsApi.identify({ query })
-    .then(({ data }) => data)
+    .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const login = async (id, password) =>

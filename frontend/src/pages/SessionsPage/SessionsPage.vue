@@ -74,10 +74,13 @@
   const identify = async (query) => {
     loading.value = true
 
-    $sessions.findUser = await SessionsServices.identify(query).finally(() => {
-      loading.value = false
-    })
+    const { data, status } = await SessionsServices.identify(query).finally(
+      () => {
+        loading.value = false
+      }
+    )
 
+    if (status === 200) $sessions.findUser = data
     if ($sessions.findUser?.id) return $redirects.login()
   }
   const authenticate = async (password) => {

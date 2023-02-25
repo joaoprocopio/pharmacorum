@@ -1,5 +1,12 @@
 <template>
   <h1 class="font-weight-bold mb-8">Welcome to Pharmacorum!</h1>
+  <VAlert
+    prominent
+    class="mb-4"
+    variant="tonal"
+    icon="error"
+    color="error"
+    text="We couldn't find a user with the given data. Please check if you entered the correct information or create a new account." />
   <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
     <VTextField
       v-model="query"

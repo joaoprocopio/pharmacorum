@@ -1,7 +1,7 @@
 const reject = (error) => {
   Promise.reject(error)
 
-  return error.response.data
+  return error.response
 }
 
 export const Handlers = {
