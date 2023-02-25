@@ -4,20 +4,17 @@
       <VBtn
         icon="local_hospital"
         color="primary"
-        :disabled="$route.name === SessionsPageName"
+        :disabled="$props.isSimple"
         :to="{ name: ProductsPageName }" />
     </template>
-    <template v-if="!$route?.meta?.layout?.simple" #append>
+    <template v-if="!$props.isSimple" #append>
       <VMenu>
         <template #activator="{ props }">
           <VBtn color="primary" icon="menu" v-bind="props"></VBtn>
         </template>
         <VList class="pa-2">
           <VListItemAction>
-            <VBtn
-              :icon="$theme.current === 'light' ? 'light_mode' : 'dark_mode'"
-              color="primary"
-              @click="$theme.toggleTheme" />
+            <VBtn :icon="icon" color="primary" @click="$theme.toggleTheme" />
           </VListItemAction>
           <VListItemAction>
             <VBtn icon="logout" color="primary" @click="logout" />
@@ -29,6 +26,7 @@
 </template>
 
 <script setup>
+  import { computed } from "vue"
   import { useRouter } from "vue-router"
 
   import { ProductsPageName, SessionsPageName } from "~/assets"
@@ -38,10 +36,19 @@
   const $router = useRouter()
   const $theme = useThemeStore()
   const $sessions = useSessionsStore()
+  const $props = defineProps({
+    isSimple: {
+      type: Boolean,
+      default: false,
+    },
+  })
   const $redirects = {
     login: () => $router.push({ name: SessionsPageName }),
   }
 
+  const icon = computed(() =>
+    $theme.current === "light" ? "light_mode" : "dark_mode"
+  )
   const logout = async () => {
     $sessions.currentUser = await SessionsServices.logout()
 

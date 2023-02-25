@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: exibir os erros para alertar o usuário -->
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentify
       v-if="$props.step === SessionsSteps.IDENTIFY"
