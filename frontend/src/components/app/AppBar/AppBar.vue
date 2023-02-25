@@ -33,15 +33,17 @@
   import { useSessionsStore, useThemeStore } from "~/stores"
   import { SessionsServices } from "~/services"
 
-  const $router = useRouter()
   const $theme = useThemeStore()
   const $sessions = useSessionsStore()
+
+  const $router = useRouter()
   const $props = defineProps({
     isSimple: {
       type: Boolean,
       default: false,
     },
   })
+
   const $redirects = {
     login: () => $router.push({ name: SessionsPageName }),
   }
@@ -49,6 +51,7 @@
   const icon = computed(() =>
     $theme.current === "light" ? "light_mode" : "dark_mode"
   )
+
   const logout = async () => {
     $sessions.currentUser = await SessionsServices.logout()
 
