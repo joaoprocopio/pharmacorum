@@ -97,10 +97,12 @@
   const register = async (user) => {
     loading.value = true
 
-    await SessionsServices.register(user).finally(() => {
-      loading.value = false
-    })
+    $sessions.currentUser = await SessionsServices.register(user).finally(
+      () => {
+        loading.value = false
+      }
+    )
 
-    if ($sessions.currentUser?.id) return $redirects.login()
+    if ($sessions.currentUser?.id) return $redirects.products()
   }
 </script>

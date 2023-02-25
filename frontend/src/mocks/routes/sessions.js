@@ -20,15 +20,14 @@ export const sessions = function (server) {
       this.get("/current_user/", function (schema) {
         const cookie = Cookies.get("mockuserid")
 
-        if (!cookie)
-          return new Response(200, {}, UserSerializers.notAuthenticated())
+        if (!cookie) return new Response(200, {}, {})
 
         try {
           const user = schema.users.findBy({ id: cookie })
 
           return new Response(200, {}, UserSerializers.authenticated(user))
         } catch {
-          return new Response(200, {}, UserSerializers.notAuthenticated())
+          return new Response(200, {}, {})
         }
       })
       this.post("/identify/", function (schema, request) {
@@ -72,14 +71,27 @@ export const sessions = function (server) {
 
         if (
           !body.username ||
-          !body.password ||
+          !body.email ||
           !body.first_name ||
           !body.last_name ||
           !body.password
         )
           return new Response(400, {}, {})
 
-        const user = schema.users.create(body)
+        const username = schema.users.findBy({ username: body.username })
+        const email = schema.users.findBy({ email: body.email })
+
+        if (username || email) return new Response(409, {}, {})
+
+        const user = schema.users.create({
+          username: body.username,
+          email: body.email,
+          firstName: body.first_name,
+          lastName: body.last_name,
+          password: body.password,
+        })
+
+        Cookies.set("mockuserid", user.id)
 
         return new Response(200, {}, UserSerializers.authenticated(user))
       })

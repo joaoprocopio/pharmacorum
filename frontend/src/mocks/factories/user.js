@@ -6,9 +6,6 @@ export const user = Factory.extend({
   password(id) {
     return users[id].password
   },
-  fullName() {
-    return `${this.firstName} ${this.lastName}`
-  },
   username(id) {
     return users[id].username
   },
