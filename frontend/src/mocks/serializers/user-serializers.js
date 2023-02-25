@@ -10,14 +10,6 @@ const authenticated = (user) => {
   }
 }
 
-const notAuthenticated = () => {
-  return {
-    id: null,
-    username: "",
-    is_authenticated: false,
-  }
-}
-
 const findUser = (user) => {
   return {
     id: user.id,
@@ -29,6 +21,5 @@ const findUser = (user) => {
 
 export const UserSerializers = {
   authenticated,
-  notAuthenticated,
   findUser,
 }
