@@ -53,8 +53,9 @@
   )
 
   const logout = async () => {
-    $sessions.currentUser = await SessionsServices.logout()
+    const { data, status } = await SessionsServices.logout()
 
+    if (status === 200) $sessions.currentUser = data
     if (!$sessions.currentUser?.id) return $redirects.login()
   }
 </script>

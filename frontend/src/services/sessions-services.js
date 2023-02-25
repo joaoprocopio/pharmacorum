@@ -2,7 +2,7 @@ import { SessionsApi, Handlers } from "~/api"
 
 const currentUser = async () =>
   SessionsApi.currentUser()
-    .then(({ data }) => data)
+    .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const identify = async (query) =>
@@ -12,17 +12,17 @@ const identify = async (query) =>
 
 const login = async (id, password) =>
   SessionsApi.login({ id, password })
-    .then(({ data }) => data)
+    .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const logout = async () =>
   SessionsApi.logout()
-    .then(({ data }) => data)
+    .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const register = async (user) =>
   SessionsApi.register(user)
-    .then(({ data }) => data)
+    .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 export const SessionsServices = {

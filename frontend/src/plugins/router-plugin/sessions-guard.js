@@ -9,7 +9,9 @@ import {
 
 export const sessionsGuard = async (to, from, next) => {
   const $sessions = useSessionsStore()
-  $sessions.currentUser = await SessionsServices.currentUser()
+  const { data, status } = await SessionsServices.currentUser()
+
+  if (status === 200) $sessions.currentUser = data
 
   if (to.name === ErrorPageName) return next()
 
