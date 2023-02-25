@@ -10,7 +10,7 @@
   <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
     <VTextField
       v-model="password"
-      :rules="[validators.required(), validators.minimumLength(8)]"
+      :rules="[validators.required()]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
       :readonly="$props.loading"
       :type="show ? 'text' : 'password'"
