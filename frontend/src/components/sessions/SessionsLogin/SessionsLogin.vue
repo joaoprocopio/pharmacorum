@@ -47,7 +47,7 @@
   import { AppAlert } from "~/components"
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["authenticate", "to-identify", "hide-alert"])
+  const $emit = defineEmits(["login", "to-identify", "hide-alert"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -72,7 +72,7 @@
   const submit = debounce(() => {
     if (!form.value) return
 
-    $emit("authenticate", password.value)
+    $emit("login", password.value)
   }, timeout.value)
   const hideAlert = debounce(() => {
     if (!$props.showAlert) return

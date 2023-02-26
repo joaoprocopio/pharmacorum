@@ -12,7 +12,7 @@
       :loading="loading"
       :show-alert="$alert.options.show"
       :find-user="$sessions.findUser"
-      @authenticate="authenticate"
+      @login="login"
       @to-identify="$redirects.identify"
       @hide-alert="$alert.$reset" />
     <SessionsRegister
@@ -49,31 +49,39 @@
     },
   })
   const $redirects = {
-    identify: () =>
-      $router.push({
-        name: SessionsPageName,
-        params: {
-          step: SessionsSteps.IDENTIFY,
-        },
-      }),
-    login: () =>
-      $router.push({
+    identify: async () => {
+      return $router
+        .push({
+          name: SessionsPageName,
+          params: {
+            step: SessionsSteps.IDENTIFY,
+          },
+        })
+        .finally(() => {
+          $sessions.findUser = {}
+        })
+    },
+    login: () => {
+      return $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.LOGIN,
         },
-      }),
-    register: () =>
-      $router.push({
+      })
+    },
+    register: () => {
+      return $router.push({
         name: SessionsPageName,
         params: {
           step: SessionsSteps.REGISTER,
         },
-      }),
-    products: () =>
-      $router.push({
+      })
+    },
+    products: () => {
+      return $router.push({
         name: ProductsPageName,
-      }),
+      })
+    },
   }
 
   const loading = ref(false)
@@ -96,7 +104,7 @@
       })
     if ($sessions.findUser?.id) return $redirects.login()
   }
-  const authenticate = async (password) => {
+  const login = async (password) => {
     loading.value = true
 
     const { data, status } = await SessionsServices.login(
