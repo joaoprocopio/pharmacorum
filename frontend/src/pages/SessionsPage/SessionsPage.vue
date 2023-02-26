@@ -115,6 +115,12 @@
     })
 
     if (status === 200) $sessions.currentUser = data
+    if (status === 404)
+      $alert.show({
+        color: "error",
+        icon: "error",
+        text: "This password is incorrect. Please check if you entered the correct password or contact the administration to help.",
+      })
     if ($sessions.currentUser?.id) return $redirects.products()
   }
   const register = async (user) => {
@@ -127,6 +133,12 @@
     )
 
     if (status === 200) $sessions.currentUser = data
+    if (status === 409)
+      $alert.show({
+        color: "error",
+        icon: "error",
+        text: "Sorry, but this username or email is already taken. Please try again with another data.",
+      })
     if ($sessions.currentUser?.id) return $redirects.products()
   }
 </script>
