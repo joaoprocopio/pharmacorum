@@ -69,7 +69,7 @@
     if (!$props.alert.show) return
 
     $emit("hide-alert")
-  })
+  }, timeout.value)
 
   const toRegister = debounce(() => {
     $emit("to-register")
