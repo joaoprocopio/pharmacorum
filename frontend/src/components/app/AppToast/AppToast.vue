@@ -1,14 +1,15 @@
 <template>
   <VSnackbar
-    v-model="$toast.opened"
-    location="top"
-    :color="$toast.color"
-    :timeout="$toast.timeout"
-    :multi-line="$toast.multiLine"
-    :vertical="$toast.vertical">
-    {{ $toast.message }}
+    v-if="$toast.options.show"
+    v-model="$toast.options.show"
+    :color="$toast.options.color"
+    :timeout="$toast.options.timeout"
+    :multi-line="$toast.options.multiLine"
+    :vertical="$toast.options.vertical"
+    location="top">
+    {{ $toast.options.message }}
     <template #actions>
-      <VBtn icon="close" @click="$toast.opened = !$toast.opened" />
+      <VBtn icon="close" @click="$toast.options.show = !$toast.options.show" />
     </template>
   </VSnackbar>
 </template>

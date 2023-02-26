@@ -1,23 +1,38 @@
-import { ref } from "vue"
+import { reactive } from "vue"
 
 import { defineStore } from "pinia"
 
 export const useToastStore = defineStore("toastStore", () => {
-  const opened = ref(false)
-  const vertical = ref(false)
-  const multiLine = ref(false)
-  const timeout = ref(5000)
-  const message = ref("")
-  const color = ref("primary")
+  const options = reactive({
+    show: false,
+    vertical: false,
+    multiLine: false,
+    timeout: 5000,
+    message: "",
+    color: "primary",
+  })
 
-  const $show = (options) => {
-    opened.value = true
-    vertical.value = options?.vertical || vertical.value
-    multiLine.value = options?.multiLine || multiLine.value
-    timeout.value = options?.timeout || timeout.value
-    message.value = options?.message || message.value
-    color.value = options?.color || color.value
+  const show = (given) => {
+    options.show = true
+    options.vertical = given?.vertical || options.vertical
+    options.multiLine = given?.multiLine || options.multiLine
+    options.timeout = given?.timeout || options.timeout
+    options.message = given?.message || options.message
+    options.color = given?.color || options.color
+
+    setTimeout(() => {
+      $reset()
+    }, options.timeout)
   }
 
-  return { opened, vertical, multiLine, timeout, message, color, $show }
+  const $reset = () => {
+    options.show = false
+    options.vertical = false
+    options.multiLine = false
+    options.timeout = 5000
+    options.message = ""
+    options.color = "primary"
+  }
+
+  return { options, show, $reset }
 })
