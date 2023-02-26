@@ -22,7 +22,7 @@ export const routes = [
     },
   },
   {
-    path: "/search/:page?",
+    path: "/products/:page?",
     name: ProductsPageName,
     component: ProductsPage,
     props: (route) => {
