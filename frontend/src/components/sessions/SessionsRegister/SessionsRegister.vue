@@ -1,6 +1,11 @@
 <template>
   <h1 class="font-weight-bold mb-8">Create your account</h1>
-  <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
+  <AppAlert />
+  <VForm
+    v-bind="$attrs"
+    v-model="form"
+    @input="hideAlert"
+    @submit.prevent="submit">
     <VTextField
       v-model="user.username"
       :rules="[validators.required(), validators.username()]"
@@ -68,11 +73,16 @@
   import { ref } from "vue"
   import { debounce } from "lodash"
 
+  import { AppAlert } from "~/components"
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["register", "to-identify"])
+  const $emit = defineEmits(["register", "to-identify", "hide-alert"])
   const $props = defineProps({
     loading: {
+      type: Boolean,
+      required: true,
+    },
+    showAlert: {
       type: Boolean,
       required: true,
     },
@@ -88,7 +98,11 @@
 
     $emit("register", user.value)
   }, timeout.value)
+  const hideAlert = debounce(() => {
+    if (!$props.showAlert) return
 
+    $emit("hide-alert")
+  }, timeout.value)
   const toIdentify = debounce(() => {
     $emit("to-identify")
   }, timeout.value)

@@ -7,7 +7,12 @@
       class="text-center font-weight-bold text-capitalize"
       v-text="findUser?.first_name" />
   </VResponsive>
-  <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
+  <AppAlert />
+  <VForm
+    v-bind="$attrs"
+    v-model="form"
+    @input="hideAlert"
+    @submit.prevent="submit">
     <VTextField
       v-model="password"
       :rules="[validators.required()]"
@@ -39,9 +44,10 @@
   import { ref } from "vue"
   import { debounce, has } from "lodash"
 
+  import { AppAlert } from "~/components"
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["authenticate", "to-identify"])
+  const $emit = defineEmits(["authenticate", "to-identify", "hide-alert"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -52,6 +58,10 @@
       validator: (user) => has(user, "id") && has(user, "first_name"),
       required: true,
     },
+    showAlert: {
+      type: Boolean,
+      required: true,
+    },
   })
 
   const form = ref(false)
@@ -59,12 +69,17 @@
   const timeout = ref(500)
   const password = ref("")
 
-  const toIdentify = debounce(() => {
-    $emit("to-identify")
-  }, timeout.value)
   const submit = debounce(() => {
     if (!form.value) return
 
     $emit("authenticate", password.value)
+  }, timeout.value)
+  const hideAlert = debounce(() => {
+    if (!$props.showAlert) return
+
+    $emit("hide-alert")
+  }, timeout.value)
+  const toIdentify = debounce(() => {
+    $emit("to-identify")
   }, timeout.value)
 </script>

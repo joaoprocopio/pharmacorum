@@ -10,14 +10,18 @@
     <SessionsLogin
       v-if="$props.step === SessionsSteps.LOGIN"
       :loading="loading"
+      :show-alert="$alert.options.show"
       :find-user="$sessions.findUser"
       @authenticate="authenticate"
-      @to-identify="$redirects.identify" />
+      @to-identify="$redirects.identify"
+      @hide-alert="$alert.$reset" />
     <SessionsRegister
       v-if="$props.step === SessionsSteps.REGISTER"
       :loading="loading"
+      :show-alert="$alert.options.show"
       @register="register"
-      @to-identify="$redirects.identify" />
+      @to-identify="$redirects.identify"
+      @hide-alert="$alert.$reset" />
   </VResponsive>
 </template>
 

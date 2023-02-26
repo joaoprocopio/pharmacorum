@@ -59,13 +59,11 @@
 
     $emit("identify", query.value)
   }, timeout.value)
-
   const hideAlert = debounce(() => {
     if (!$props.showAlert) return
 
     $emit("hide-alert")
   }, timeout.value)
-
   const toRegister = debounce(() => {
     $emit("to-register")
   }, timeout.value)

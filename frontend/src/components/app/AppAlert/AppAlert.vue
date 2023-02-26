@@ -1,6 +1,6 @@
 <template>
   <VAlert
-    v-show="$alert.options.show"
+    v-if="$alert.options.show"
     :icon="$alert.options.icon"
     :color="$alert.options.color"
     :text="$alert.options.text"
