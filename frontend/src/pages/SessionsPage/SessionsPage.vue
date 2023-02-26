@@ -1,15 +1,8 @@
 <template>
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
-    <!-- TODO: agora que o status code das requests http chegam no front e podem ser usados, agora bora tratar com um alert -->
-    <!-- <VAlert
-      prominent
-      class="mb-4"
-      variant="tonal"
-      icon="error"
-      color="error"
-      text="We couldn't find a user with the given data. Please check if you entered the correct information or create a new account." /> -->
     <SessionsIdentify
       v-if="$props.step === SessionsSteps.IDENTIFY"
+      :alert="$alert.options"
       :loading="loading"
       @identify="identify"
       @to-register="$redirects.register" />
@@ -38,8 +31,9 @@
   } from "~/components"
   import { SessionsSteps, SessionsPageName, ProductsPageName } from "~/assets"
   import { SessionsServices } from "~/services"
-  import { useSessionsStore } from "~/stores"
+  import { useSessionsStore, useAlertStore } from "~/stores"
 
+  const $alert = useAlertStore()
   const $sessions = useSessionsStore()
   const $router = useRouter()
   const $props = defineProps({

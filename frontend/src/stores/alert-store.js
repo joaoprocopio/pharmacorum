@@ -4,23 +4,23 @@ import { defineStore } from "pinia"
 
 export const useAlertStore = defineStore("alertStore", () => {
   const options = reactive({
-    show: false,
+    show: true,
+    icon: false,
     text: "",
-    icon: "",
     color: "",
   })
 
   const show = (given) => {
     options.show = true
-    options.text = given?.text || options.text
+    options.icon = given?.icon || options.icon
     options.text = given?.text || options.text
     options.color = given?.color || options.color
   }
 
   const $reset = () => {
     options.show = false
+    options.icon = false
     options.text = ""
-    options.icon = ""
     options.color = ""
   }
 
