@@ -8,7 +8,7 @@
       class="mb-4"
       color="primary"
       label="Username or Email"
-      variant="underlined"
+      variant="outlined"
       required />
     <VBtn
       class="mb-2"

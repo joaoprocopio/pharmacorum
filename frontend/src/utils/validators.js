@@ -18,7 +18,7 @@ export const validators = {
   },
   minimumLength: (length) => {
     return (field) =>
-      (field && field.length >= length) ||
+      field.length >= length ||
       `This field should be at least ${length} characters long.`
   },
 }

@@ -8,7 +8,7 @@
       class="mb-2"
       color="primary"
       label="Username"
-      variant="underlined" />
+      variant="outlined" />
     <VTextField
       v-model="user.email"
       :rules="[validators.required(), validators.email()]"
@@ -16,7 +16,7 @@
       class="mb-2"
       color="primary"
       label="Email"
-      variant="underlined" />
+      variant="outlined" />
     <VTextField
       v-model="user.first_name"
       :rules="[validators.required()]"
@@ -24,7 +24,7 @@
       class="mb-2"
       color="primary"
       label="First name"
-      variant="underlined" />
+      variant="outlined" />
     <VTextField
       v-model="user.last_name"
       :rules="[validators.required()]"
@@ -32,13 +32,13 @@
       class="mb-2"
       color="primary"
       label="Last name"
-      variant="underlined" />
+      variant="outlined" />
     <VTextField
       v-model="user.password"
       :rules="[
         validators.required(),
-        validators.minimumLength(8),
         validators.notEntirelyNumeric(),
+        validators.minimumLength(8),
       ]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
       :readonly="$props.loading"
@@ -46,7 +46,7 @@
       class="mb-2"
       color="primary"
       label="Password"
-      variant="underlined"
+      variant="outlined"
       @click:append-inner="show = !show" />
     <VBtn
       :disabled="$props.loading"
