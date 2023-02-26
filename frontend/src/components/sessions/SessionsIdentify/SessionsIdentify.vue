@@ -1,12 +1,6 @@
 <template>
   <h1 class="font-weight-bold mb-8">Welcome to Pharmacorum!</h1>
-  <VAlert
-    v-show="$props.alert.show"
-    class="mb-4"
-    variant="tonal"
-    :icon="$props.alert.icon"
-    :color="$props.alert.color"
-    :text="$props.alert.text" />
+  <AppAlert />
   <VForm
     v-bind="$attrs"
     v-model="form"
@@ -41,6 +35,7 @@
   import { ref } from "vue"
   import { debounce } from "lodash"
 
+  import { AppAlert } from "~/components"
   import { validators } from "~/utils"
 
   const $emit = defineEmits(["identify", "to-register", "hide-alert"])
@@ -49,8 +44,8 @@
       type: Boolean,
       required: true,
     },
-    alert: {
-      type: Object,
+    showAlert: {
+      type: Boolean,
       required: true,
     },
   })
@@ -66,7 +61,7 @@
   }, timeout.value)
 
   const hideAlert = debounce(() => {
-    if (!$props.alert.show) return
+    if (!$props.showAlert) return
 
     $emit("hide-alert")
   }, timeout.value)

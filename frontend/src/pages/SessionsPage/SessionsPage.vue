@@ -2,8 +2,8 @@
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentify
       v-if="$props.step === SessionsSteps.IDENTIFY"
-      :alert="$alert.options"
       :loading="loading"
+      :show-alert="$alert.options.show"
       @identify="identify"
       @to-register="$redirects.register"
       @hide-alert="$alert.$reset" />
