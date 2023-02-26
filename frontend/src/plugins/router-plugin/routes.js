@@ -11,7 +11,7 @@ export const routes = [
     name: SessionsPageName,
     component: SessionsPage,
     props: (route) => {
-      if (!route.params.step) return
+      if (Object.values(route.params).every((param) => !param)) return
 
       return route.params
     },
@@ -22,9 +22,14 @@ export const routes = [
     },
   },
   {
-    path: "/products",
+    path: "/search/:page?",
     name: ProductsPageName,
     component: ProductsPage,
+    props: (route) => {
+      if (Object.values(route.params).every((param) => !param)) return
+
+      return route.params
+    },
   },
   {
     path: "/:pathMatch(.*)*",
