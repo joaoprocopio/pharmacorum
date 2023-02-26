@@ -5,6 +5,15 @@
 </template>
 
 <script setup>
+  import { onMounted } from "vue"
+  import { ProductsServices } from "~/services"
+
+  onMounted(async () => {
+    const { data } = await ProductsServices.getProducts()
+
+    console.log(data)
+  })
+
   const $props = defineProps({
     page: {
       type: String,
