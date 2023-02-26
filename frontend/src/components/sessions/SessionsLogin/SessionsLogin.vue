@@ -22,7 +22,7 @@
       class="mb-2"
       color="primary"
       label="Password"
-      variant="outlined"
+      variant="underlined"
       @click:append-inner="show = !show" />
     <VBtn
       :disabled="$props.loading"
