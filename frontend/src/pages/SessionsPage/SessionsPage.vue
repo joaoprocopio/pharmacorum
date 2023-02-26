@@ -5,7 +5,8 @@
       :alert="$alert.options"
       :loading="loading"
       @identify="identify"
-      @to-register="$redirects.register" />
+      @to-register="$redirects.register"
+      @hide-alert="$alert.$reset" />
     <SessionsLogin
       v-if="$props.step === SessionsSteps.LOGIN"
       :loading="loading"
@@ -83,6 +84,12 @@
     )
 
     if (status === 200) $sessions.findUser = data
+    if (status === 404)
+      $alert.show({
+        color: "error",
+        icon: "error",
+        text: "Sorry, we couldn't find a user with the given data. Please check if you entered the correct information or create a new account.",
+      })
     if ($sessions.findUser?.id) return $redirects.login()
   }
   const authenticate = async (password) => {

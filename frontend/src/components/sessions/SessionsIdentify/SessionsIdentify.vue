@@ -1,13 +1,17 @@
 <template>
   <h1 class="font-weight-bold mb-8">Welcome to Pharmacorum!</h1>
   <VAlert
-    v-if="$props.alert.show"
+    v-show="$props.alert.show"
     class="mb-4"
     variant="tonal"
     :icon="$props.alert.icon"
     :color="$props.alert.color"
     :text="$props.alert.text" />
-  <VForm v-bind="$attrs" v-model="form" @submit.prevent="submit">
+  <VForm
+    v-bind="$attrs"
+    v-model="form"
+    @input="hideAlert"
+    @submit.prevent="submit">
     <VTextField
       v-model="query"
       :readonly="$props.loading"
@@ -39,7 +43,7 @@
 
   import { validators } from "~/utils"
 
-  const $emit = defineEmits(["identify", "to-register"])
+  const $emit = defineEmits(["identify", "to-register", "hide-alert"])
   const $props = defineProps({
     loading: {
       type: Boolean,
@@ -60,6 +64,12 @@
 
     $emit("identify", query.value)
   }, timeout.value)
+
+  const hideAlert = debounce(() => {
+    if (!$props.alert.show) return
+
+    $emit("hide-alert")
+  })
 
   const toRegister = debounce(() => {
     $emit("to-register")

@@ -4,7 +4,7 @@ import { defineStore } from "pinia"
 
 export const useAlertStore = defineStore("alertStore", () => {
   const options = reactive({
-    show: true,
+    show: false,
     icon: false,
     text: "",
     color: "",
