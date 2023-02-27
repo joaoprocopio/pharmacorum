@@ -1,5 +1,5 @@
 <template>
-  <VCard border class="mb-8 px-6 py-4" elevation="0" @click="show">
+  <VCard border class="mb-8 px-6 py-4" elevation="0" :to="{}">
     <div class="d-flex justify-space-between mb-4">
       <div class="d-flex flex-column">
         <div class="text-h6" v-text="$props.product.title" />
@@ -31,10 +31,9 @@
       type: Object,
       required: true,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   })
-  const $emit = defineEmits(["show"])
-
-  const show = () => {
-    $emit("show", $props.product.id)
-  }
 </script>

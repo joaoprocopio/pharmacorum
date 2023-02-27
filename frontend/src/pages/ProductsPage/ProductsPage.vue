@@ -3,8 +3,7 @@
     <ProductsCard
       v-for="product in products"
       :key="product.id"
-      :product="product"
-      @show="show" />
+      :product="product" />
   </VResponsive>
 </template>
 
@@ -15,11 +14,6 @@
   import { ProductsServices } from "~/services"
 
   const products = ref([])
-
-  const show = (id) => {
-    // TODO: isso aqui tem que jogar pra uma tela de edição e visualização
-    return id
-  }
 
   onMounted(async () => {
     const { data } = await ProductsServices.getProducts()
