@@ -1,5 +1,11 @@
 <template>
-  <VCard border class="mb-8 px-6 py-4" elevation="0" :to="{}">
+  <VCard
+    border
+    class="mb-8 px-6 py-4"
+    elevation="0"
+    :to="{
+      /* TODO */
+    }">
     <div class="d-flex justify-space-between mb-4">
       <div class="d-flex flex-column">
         <div class="text-h6" v-text="$props.product.title" />
