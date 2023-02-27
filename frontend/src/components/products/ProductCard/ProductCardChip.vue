@@ -1,6 +1,6 @@
 <template>
   <VChip
-    v-if="ProductTypes.DRUG === $props.type"
+    v-if="ProductsEnum.DRUG === $props.type"
     border
     label
     :text="$props.type"
@@ -8,7 +8,7 @@
     prepend-icon="medication"
     color="green" />
   <VChip
-    v-if="ProductTypes.SUPPLEMENT === $props.type"
+    v-if="ProductsEnum.SUPPLEMENT === $props.type"
     border
     label
     :text="$props.type"
@@ -16,7 +16,7 @@
     prepend-icon="healing"
     color="orange" />
   <VChip
-    v-if="ProductTypes.COSMETIC === $props.type"
+    v-if="ProductsEnum.COSMETIC === $props.type"
     border
     label
     :text="$props.type"
@@ -24,7 +24,7 @@
     color="purple"
     prepend-icon="spa" />
   <VChip
-    v-if="ProductTypes.HYGIENE === $props.type"
+    v-if="ProductsEnum.HYGIENE === $props.type"
     border
     label
     :text="$props.type"
@@ -32,7 +32,7 @@
     prepend-icon="soap"
     color="blue" />
   <VChip
-    v-if="ProductTypes.BABY_AND_KIDS === $props.type"
+    v-if="ProductsEnum.BABY_AND_KIDS === $props.type"
     border
     label
     :text="$props.type"
@@ -42,13 +42,13 @@
 </template>
 
 <script setup>
-  import { ProductTypes } from "~/assets"
+  import { ProductsEnum } from "~/assets"
 
   const $props = defineProps({
     type: {
       type: String,
       required: true,
-      validator: (type) => Object.values(ProductTypes).includes(type),
+      validator: (type) => Object.values(ProductsEnum).includes(type),
     },
   })
 </script>

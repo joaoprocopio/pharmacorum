@@ -1,4 +1,4 @@
-export const ProductTypes = {
+export const ProductsEnum = {
   DRUG: "Drug",
   SUPPLEMENT: "Supplement",
   COSMETIC: "Cosmetic",
