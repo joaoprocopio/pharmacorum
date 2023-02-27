@@ -2,7 +2,7 @@
   <VAppBar :border="true" class="px-4" elevation="0">
     <template #prepend>
       <VBtn
-        icon="local_hospital"
+        icon="local_pharmacy"
         color="primary"
         :disabled="$props.simple"
         :to="{ name: ProductsPageName }" />
