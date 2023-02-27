@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: uma solução mais elegante pra isso daqui -->
   <VChip
     v-if="ProductTypesEnum.DRUG === $props.type"
     border

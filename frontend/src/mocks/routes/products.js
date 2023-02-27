@@ -38,6 +38,10 @@ export const products = function (server) {
           { count: schema.products.all().length, products: products }
         )
       })
+
+      this.get("/:id", function (schema, request) {
+        return new Response(200, {}, {})
+      })
     },
   })
 }
