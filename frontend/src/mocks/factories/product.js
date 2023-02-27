@@ -9,7 +9,7 @@ export const product = Factory.extend({
   title() {
     return faker.commerce.product()
   },
-  type() {
+  types() {
     return shuffle(Object.values(ProductTypes)).slice(0, random(1, 3))
   },
   brandId() {

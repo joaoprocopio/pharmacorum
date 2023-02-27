@@ -22,14 +22,9 @@ export const routes = [
     },
   },
   {
-    path: "/products/:page?",
+    path: "/products",
     name: ProductsPageName,
     component: ProductsPage,
-    props: (route) => {
-      if (Object.values(route.params).every((param) => !param)) return
-
-      return route.params
-    },
   },
   {
     path: "/:pathMatch(.*)*",
