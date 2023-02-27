@@ -42,7 +42,7 @@
 
 <script setup>
   import { ref } from "vue"
-  import { debounce, has } from "lodash"
+  import { debounce } from "lodash"
 
   import { AppAlert } from "~/components"
   import { validators } from "~/utils"
@@ -55,7 +55,6 @@
     },
     findUser: {
       type: Object,
-      validator: (user) => has(user, "id") && has(user, "first_name"),
       required: true,
     },
     showAlert: {
