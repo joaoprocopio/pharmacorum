@@ -1,14 +1,14 @@
 <template>
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <SessionsIdentify
-      v-if="$props.step === SessionsSteps.IDENTIFY"
+      v-if="$props.step === SessionsStepsEnum.IDENTIFY"
       :loading="loading"
       :show-alert="$alert.options.show"
       @identify="identify"
       @to-register="$redirects.register"
       @hide-alert="$alert.$reset" />
     <SessionsLogin
-      v-if="$props.step === SessionsSteps.LOGIN"
+      v-if="$props.step === SessionsStepsEnum.LOGIN"
       :loading="loading"
       :show-alert="$alert.options.show"
       :find-user="$sessions.findUser"
@@ -16,7 +16,7 @@
       @to-identify="$redirects.identify"
       @hide-alert="$alert.$reset" />
     <SessionsRegister
-      v-if="$props.step === SessionsSteps.REGISTER"
+      v-if="$props.step === SessionsStepsEnum.REGISTER"
       :loading="loading"
       :show-alert="$alert.options.show"
       @register="register"
@@ -34,7 +34,11 @@
     SessionsLogin,
     SessionsRegister,
   } from "~/components"
-  import { SessionsSteps, SessionsPageName, ProductsPageName } from "~/assets"
+  import {
+    SessionsStepsEnum,
+    SessionsPageName,
+    ProductsPageName,
+  } from "~/assets"
   import { SessionsServices } from "~/services"
   import { useSessionsStore, useAlertStore } from "~/stores"
 
@@ -44,8 +48,8 @@
   const $props = defineProps({
     step: {
       type: String,
-      default: () => SessionsSteps.IDENTIFY,
-      validator: (step) => Object.values(SessionsSteps).includes(step),
+      default: () => SessionsStepsEnum.IDENTIFY,
+      validator: (step) => Object.values(SessionsStepsEnum).includes(step),
     },
   })
   const $redirects = {
@@ -54,7 +58,7 @@
         .push({
           name: SessionsPageName,
           params: {
-            step: SessionsSteps.IDENTIFY,
+            step: SessionsStepsEnum.IDENTIFY,
           },
         })
         .finally(() => {
@@ -65,7 +69,7 @@
       return $router.push({
         name: SessionsPageName,
         params: {
-          step: SessionsSteps.LOGIN,
+          step: SessionsStepsEnum.LOGIN,
         },
       })
     },
@@ -73,7 +77,7 @@
       return $router.push({
         name: SessionsPageName,
         params: {
-          step: SessionsSteps.REGISTER,
+          step: SessionsStepsEnum.REGISTER,
         },
       })
     },

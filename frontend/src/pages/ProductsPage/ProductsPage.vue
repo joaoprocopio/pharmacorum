@@ -1,6 +1,6 @@
 <template>
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
-    <ProductCard
+    <ProductsCard
       v-for="product in products"
       :key="product.id"
       :product="product"
@@ -11,7 +11,7 @@
 <script setup>
   import { ref, onMounted } from "vue"
 
-  import { ProductCard } from "~/components"
+  import { ProductsCard } from "~/components"
   import { ProductsServices } from "~/services"
 
   const products = ref([])

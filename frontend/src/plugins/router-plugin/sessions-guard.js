@@ -4,7 +4,7 @@ import {
   SessionsPageName,
   ErrorPageName,
   ProductsPageName,
-  SessionsSteps,
+  SessionsStepsEnum,
 } from "~/assets"
 
 export const sessionsGuard = async (to, from, next) => {
@@ -23,7 +23,7 @@ export const sessionsGuard = async (to, from, next) => {
 
   if (
     to.name === SessionsPageName &&
-    to.params.step === SessionsSteps.LOGIN &&
+    to.params.step === SessionsStepsEnum.LOGIN &&
     !$sessions.findUser?.id
   )
     return next({ name: SessionsPageName })

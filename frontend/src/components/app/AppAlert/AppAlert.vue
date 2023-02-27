@@ -4,7 +4,7 @@
     :icon="$alert.options.icon"
     :color="$alert.options.color"
     :text="$alert.options.text"
-    class="mb-4"
+    class="mb-6"
     variant="tonal" />
 </template>
 

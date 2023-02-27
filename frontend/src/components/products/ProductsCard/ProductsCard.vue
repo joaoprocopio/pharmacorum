@@ -14,7 +14,7 @@
     <div class="d-flex justify-space-between align-center">
       <div>
         <template v-for="(type, id) in $props.product.types" :key="id">
-          <ProductCardChip :type="type" />
+          <ProductsCardChip :type="type" />
         </template>
       </div>
       <div class="ml-2" v-text="currency.format($props.product.price, 0)" />
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-  import { ProductCardChip } from "."
+  import { ProductsCardChip } from "."
   import { currency } from "~/utils"
 
   const $props = defineProps({
