@@ -4,13 +4,16 @@
       v-for="product in products"
       :key="product.id"
       :product="product" />
-    <AppInitializer v-show="initializing" :initializing="initializing" />
-    <div
-      v-if="products.length && products.length === count"
-      class="text-grey text-center">
-      There is no more products to show.
-    </div>
-    <div v-if="products.length" v-intersect="onIntersect" />
+    <VResponsive
+      height="64"
+      content-class="d-flex flex-column align-center justify-center">
+      <AppInitializer v-if="initializing" />
+      <div
+        v-if="products.length && products.length === count"
+        class="text-grey text-center"
+        v-text="'There is no more products to show.'" />
+      <div v-if="products.length" v-intersect="onIntersect" />
+    </VResponsive>
   </VResponsive>
 </template>
 

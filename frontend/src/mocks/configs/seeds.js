@@ -4,4 +4,4 @@ export const userSeeds = users.length
 
 export const brandSeeds = 16
 
-export const productsSeeds = 45
+export const productsSeeds = 512
