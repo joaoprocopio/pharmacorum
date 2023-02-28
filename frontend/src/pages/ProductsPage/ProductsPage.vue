@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <ProductsCard
-        v-for="product in products"
+        v-for="product in pagination.products"
         :key="product.id"
         :product="product" />
       <VPagination
@@ -23,22 +23,25 @@
   import { ProductsServices } from "~/services"
 
   const initializing = ref(true)
-  const products = ref([])
   const pagination = reactive({
+    products: [],
+    count: 0,
     page: 1,
     perPage: 15,
-    productsCount: 0,
-    length: computed(() =>
-      Math.ceil(pagination.productsCount / pagination.perPage)
-    ),
+    length: computed(() => Math.ceil(pagination.count / pagination.perPage)),
   })
 
-  onBeforeMount(async () => {
+  const fetch = async () => {
+    initializing.value = true
+
     const { data, status } = await ProductsServices.getProducts()
 
-    pagination.productsCount = data.count
-    products.value = data.products
+    if (status === 200) {
+      initializing.value = false
+      pagination.count = data.count
+      pagination.products = data.products
+    }
+  }
 
-    if (status === 200) initializing.value = false
-  })
+  onBeforeMount(() => fetch())
 </script>
