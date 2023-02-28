@@ -33,7 +33,7 @@
 
     if (status === 200) {
       count.value = data.count
-      products.value = data.products
+      products.value.push(...data.products)
     }
   }
 
