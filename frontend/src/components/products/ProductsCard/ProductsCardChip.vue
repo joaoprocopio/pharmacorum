@@ -2,7 +2,7 @@
   <VChip
     border
     label
-    class="mr-2 my-1"
+    class="mr-2 my-1 font-weight-bold"
     :text="$props.title"
     :prepend-icon="$props.icon"
     :color="$props.color" />
