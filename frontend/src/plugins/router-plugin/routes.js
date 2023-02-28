@@ -1,5 +1,4 @@
 import { ProductsPageName, SessionsPageName, ErrorPageName } from "~/assets"
-import { ProductsPage, SessionsPage, ErrorPage } from "~/pages"
 
 export const routes = [
   {
@@ -9,7 +8,8 @@ export const routes = [
   {
     path: "/sessions/:step?",
     name: SessionsPageName,
-    component: SessionsPage,
+    component: () =>
+      import("~/pages/SessionsPage").then(({ SessionsPage }) => SessionsPage),
     props: (route) => {
       if (Object.values(route.params).every((param) => !param)) return
 
@@ -24,11 +24,13 @@ export const routes = [
   {
     path: "/products",
     name: ProductsPageName,
-    component: ProductsPage,
+    component: () =>
+      import("~/pages/ProductsPage").then(({ ProductsPage }) => ProductsPage),
   },
   {
     path: "/:pathMatch(.*)*",
     name: ErrorPageName,
-    component: ErrorPage,
+    component: () =>
+      import("~/pages/ErrorPage").then(({ ErrorPage }) => ErrorPage),
   },
 ]
