@@ -41,9 +41,5 @@
       type: Object,
       required: true,
     },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
   })
 </script>
