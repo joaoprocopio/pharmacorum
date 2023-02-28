@@ -5,43 +5,37 @@
     </template>
     <template v-else>
       <ProductsCard
-        v-for="product in pagination.products"
+        v-for="product in products"
         :key="product.id"
         :product="product" />
-      <VPagination
-        v-model="pagination.page"
-        :length="pagination.length"
-        variant="text" />
     </template>
   </VResponsive>
 </template>
 
 <script setup>
-  import { ref, computed, reactive, onBeforeMount } from "vue"
+  import { ref, onMounted } from "vue"
 
   import { AppInitializer, ProductsCard } from "~/components"
   import { ProductsServices } from "~/services"
 
   const initializing = ref(true)
-  const pagination = reactive({
-    products: [],
-    count: 0,
-    page: 1,
-    perPage: 15,
-    length: computed(() => Math.ceil(pagination.count / pagination.perPage)),
-  })
+  const products = ref([])
+  const count = ref(0)
 
   const fetch = async () => {
     initializing.value = true
 
-    const { data, status } = await ProductsServices.getProducts()
+    const { data, status } = await ProductsServices.getProducts().finally(
+      () => {
+        initializing.value = false
+      }
+    )
 
     if (status === 200) {
-      initializing.value = false
-      pagination.count = data.count
-      pagination.products = data.products
+      count.value = data.count
+      products.value = data.products
     }
   }
 
-  onBeforeMount(() => fetch())
+  onMounted(() => fetch())
 </script>
