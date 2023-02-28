@@ -1,3 +1,3 @@
 <template>
-  <VProgressCircular size="64" color="primary" indeterminate />
+  <VProgressCircular size="64" width="8" color="primary" indeterminate />
 </template>
