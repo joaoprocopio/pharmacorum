@@ -37,7 +37,7 @@
   import {
     SessionsStepsEnum,
     SessionsPageName,
-    ProductsPageName,
+    ProductsListPageName,
   } from "~/assets"
   import { SessionsServices } from "~/services"
   import { useSessionsStore, useAlertStore } from "~/stores"
@@ -83,7 +83,7 @@
     },
     products: () => {
       return $router.push({
-        name: ProductsPageName,
+        name: ProductsListPageName,
       })
     },
   }

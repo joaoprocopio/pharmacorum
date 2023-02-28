@@ -1,4 +1,4 @@
-import { ProductsPageName, SessionsPageName, ErrorPageName } from "~/assets"
+import { ProductsListPageName, SessionsPageName, ErrorPageName } from "~/assets"
 
 export const routes = [
   {
@@ -11,9 +11,8 @@ export const routes = [
     component: () =>
       import("~/pages/SessionsPage").then(({ SessionsPage }) => SessionsPage),
     props: (route) => {
-      if (Object.values(route.params).every((param) => !param)) return
-
-      return route.params
+      if (!Object.values(route.params).every((param) => !param))
+        return route.params
     },
     meta: {
       layout: {
@@ -23,9 +22,11 @@ export const routes = [
   },
   {
     path: "/products",
-    name: ProductsPageName,
+    name: ProductsListPageName,
     component: () =>
-      import("~/pages/ProductsPage").then(({ ProductsPage }) => ProductsPage),
+      import("~/pages/ProductsListPage").then(
+        ({ ProductsListPage }) => ProductsListPage
+      ),
   },
   {
     path: "/:pathMatch(.*)*",

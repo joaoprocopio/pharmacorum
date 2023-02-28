@@ -1,3 +1,3 @@
 export * from "./ErrorPage"
 export * from "./SessionsPage"
-export * from "./ProductsPage"
+export * from "./ProductsListPage"

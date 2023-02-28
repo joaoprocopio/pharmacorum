@@ -5,7 +5,7 @@
         icon="local_pharmacy"
         color="primary"
         :disabled="$props.simple"
-        :to="{ name: ProductsPageName }" />
+        :to="{ name: ProductsListPageName }" />
     </template>
     <template v-if="!$props.simple" #append>
       <VMenu>
@@ -14,10 +14,18 @@
         </template>
         <VList class="pa-2">
           <VListItemAction>
-            <VBtn :icon="icon" color="primary" @click="$theme.toggleTheme" />
+            <VBtn
+              :icon="icon"
+              color="primary"
+              variant="text"
+              @click="$theme.toggleTheme" />
           </VListItemAction>
           <VListItemAction>
-            <VBtn icon="logout" color="primary" @click="logout" />
+            <VBtn
+              icon="logout"
+              color="primary"
+              variant="text"
+              @click="logout" />
           </VListItemAction>
         </VList>
       </VMenu>
@@ -29,7 +37,7 @@
   import { computed } from "vue"
   import { useRouter } from "vue-router"
 
-  import { ProductsPageName, SessionsPageName } from "~/assets"
+  import { ProductsListPageName, SessionsPageName } from "~/assets"
   import { useSessionsStore, useThemeStore } from "~/stores"
   import { SessionsServices } from "~/services"
 

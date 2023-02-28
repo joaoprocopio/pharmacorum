@@ -1,4 +1,4 @@
-export const ProductsPageName = "ProductsPage"
+export const ProductsListPageName = "ProductsListPage"
 
 export const SessionsPageName = "SessionsPage"
 

@@ -3,7 +3,7 @@ import { useSessionsStore } from "~/stores"
 import {
   SessionsPageName,
   ErrorPageName,
-  ProductsPageName,
+  ProductsListPageName,
   SessionsStepsEnum,
 } from "~/assets"
 
@@ -19,7 +19,7 @@ export const sessionsGuard = async (to, from, next) => {
     return next({ name: SessionsPageName })
 
   if (to.name === SessionsPageName && $sessions.isAuthenticated)
-    return next({ name: ProductsPageName })
+    return next({ name: ProductsListPageName })
 
   if (
     to.name === SessionsPageName &&
