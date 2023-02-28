@@ -10,7 +10,7 @@ export const product = Factory.extend({
     return faker.commerce.product()
   },
   types() {
-    return shuffle(Object.values(ProductTypesEnum)).slice(0, random(1, 3))
+    return shuffle(Object.keys(ProductTypesEnum)).slice(0, random(1, 3))
   },
   brandId() {
     return random(1, brandSeeds)
