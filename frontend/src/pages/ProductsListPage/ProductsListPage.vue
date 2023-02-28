@@ -7,7 +7,12 @@
     <VResponsive
       height="64"
       content-class="d-flex flex-column align-center justify-center">
-      <AppInitializer v-if="initializing" />
+      <VProgressCircular
+        v-if="initializing"
+        size="64"
+        width="8"
+        color="primary"
+        indeterminate />
       <div
         v-if="products.length && products.length === count"
         class="text-grey text-center"
@@ -21,7 +26,7 @@
   import { ref, computed, onMounted } from "vue"
   import { debounce, inRange } from "lodash"
 
-  import { AppInitializer, ProductsCard } from "~/components"
+  import { ProductsCard } from "~/components"
   import { ProductsServices } from "~/services"
 
   const initializing = ref(true)
