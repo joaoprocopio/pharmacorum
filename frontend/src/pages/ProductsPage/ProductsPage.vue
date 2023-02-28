@@ -11,7 +11,7 @@
       <div
         v-if="products.length && products.length === count"
         class="text-grey text-center"
-        v-text="'There is no more products to show.'" />
+        v-text="'There is no more products to show'" />
       <div v-if="products.length" v-intersect="onIntersect" />
     </VResponsive>
   </VResponsive>
