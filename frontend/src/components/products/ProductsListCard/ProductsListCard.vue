@@ -16,7 +16,7 @@
     <section class="d-flex justify-space-between align-center">
       <article>
         <template v-for="(type, id) in $props.product.types" :key="id">
-          <ProductsCardChip
+          <ProductsListCardChip
             :title="ProductTypesEnum[type].title"
             :icon="ProductTypesEnum[type].icon"
             :color="ProductTypesEnum[type].color" />
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-  import { ProductsCardChip } from "~/components"
+  import { ProductsListCardChip } from "~/components"
   import { ProductTypesEnum } from "~/assets"
   import { currency } from "~/utils"
 

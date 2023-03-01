@@ -1,6 +1,6 @@
 <template>
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
-    <ProductsCard
+    <ProductsListCard
       v-for="product in products"
       :key="product.id"
       :product="product" />
@@ -26,7 +26,7 @@
   import { ref, computed, onMounted } from "vue"
   import { debounce, inRange } from "lodash"
 
-  import { ProductsCard } from "~/components"
+  import { ProductsListCard } from "~/components"
   import { ProductsServices } from "~/services"
 
   const initializing = ref(true)
