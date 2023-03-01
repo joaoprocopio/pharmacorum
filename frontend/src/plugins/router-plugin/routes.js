@@ -1,5 +1,7 @@
 import { ProductsListPageName, SessionsPageName, ErrorPageName } from "~/assets"
 
+import { every } from "lodash"
+
 export const routes = [
   {
     path: "/",
@@ -10,10 +12,8 @@ export const routes = [
     name: SessionsPageName,
     component: () =>
       import("~/pages/SessionsPage").then(({ SessionsPage }) => SessionsPage),
-    props: (route) => {
-      if (!Object.values(route.params).every((param) => !param))
-        return route.params
-    },
+    props: (route) =>
+      every(route.params, (param) => !!param) ? route.params : {},
     meta: {
       layout: {
         simple: true,
