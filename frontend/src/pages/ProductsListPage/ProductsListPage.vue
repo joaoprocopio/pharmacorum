@@ -3,7 +3,8 @@
     <ProductsListCard
       v-for="product in products"
       :key="product.id"
-      :product="product" />
+      :product="product"
+      :to="{ name: ProductsViewPageName, params: { id: product.id } }" />
     <VResponsive
       height="64"
       content-class="d-flex flex-column align-center justify-center">
@@ -26,6 +27,7 @@
   import { ref, computed, onMounted } from "vue"
   import { debounce, inRange } from "lodash"
 
+  import { ProductsViewPageName } from "~/assets"
   import { ProductsListCard } from "~/components"
   import { ProductsServices } from "~/services"
 

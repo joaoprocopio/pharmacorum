@@ -15,18 +15,13 @@ export const products = function (server) {
       this.namespace = "/api/products/"
 
       this.get("/", function (schema, request) {
-        const params = {
-          page: parseInt(request.queryParams.page) || 1,
-          per_page: parseInt(request.queryParams.per_page) || 30,
-        }
+        const page = parseInt(request.queryParams.page) || 1
+        const perPage = parseInt(request.queryParams.per_page) || 30
 
         const products = this.serialize(
           schema.products
             .all()
-            .slice(
-              params.page * params.per_page - params.per_page,
-              params.page * params.per_page
-            )
+            .slice(page * perPage - perPage, page * perPage)
             .sort((a, b) => {
               return new Date(b.updatedAt) - new Date(a.updatedAt)
             })
@@ -40,7 +35,15 @@ export const products = function (server) {
       })
 
       this.get("/:id", function (schema, request) {
-        return new Response(200, {}, {})
+        const id = request.params.id
+
+        if (!id) return new Response(400, {}, {})
+
+        const product = schema.products.findBy({ id })
+
+        if (!product) return new Response(404, {}, {})
+
+        return new Response(200, {}, product)
       })
     },
   })
