@@ -1,5 +1,7 @@
+export const ErrorPageName = "ErrorPage"
+
 export const ProductsListPageName = "ProductsListPage"
 
-export const SessionsPageName = "SessionsPage"
+export const ProductsViewPageName = "ProductsViewPage"
 
-export const ErrorPageName = "ErrorPage"
+export const SessionsPageName = "SessionsPage"
