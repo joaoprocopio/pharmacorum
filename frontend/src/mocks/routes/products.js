@@ -1,12 +1,3 @@
-/*
-  /api/products/
-  |-  /
-  |-  /:id
-  |-  /create
-  |-  /update
-  |_  /delete
-*/
-
 import { Response } from "miragejs"
 
 export const products = function (server) {

@@ -5,6 +5,7 @@
     <VForm
       v-bind="$attrs"
       v-model="form"
+      :readonly="loading"
       @input="hideAlert"
       @submit.prevent="submit">
       <VTextField
@@ -23,14 +24,14 @@
         variant="underlined"
         multiple
         :items="Object.values(ProductTypesEnum)" />
-      <VSelect
+      <VAutocomplete
         v-model="product.brand_id"
         :rules="[validators.required()]"
         class="mb-2"
         color="primary"
         label="Brand"
         variant="underlined"
-        :items="brands"
+        :items="brands.brands"
         item-value="id" />
       <VTextarea
         v-model="product.description"
@@ -77,6 +78,7 @@
 
   const $alert = useAlertStore()
 
+  const loading = ref(false)
   const form = ref(false)
   const brands = ref([])
   const product = ref({})
@@ -85,7 +87,13 @@
   const submit = debounce(async () => {
     if (!form.value) return
 
-    const { status } = await ProductsServices.createProduct(product.value)
+    loading.value = true
+
+    const { status } = await ProductsServices.createProduct(
+      product.value
+    ).finally(() => {
+      loading.value = false
+    })
 
     if (status === 200) {
       $alert.show({

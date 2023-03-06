@@ -1,12 +1,3 @@
-/*
-  /api/products/
-  |-  /
-  |-  /:id
-  |-  /create
-  |-  /update
-  |_  /delete
-*/
-
 import { Response } from "miragejs"
 
 export const brands = function (server) {
@@ -14,9 +5,19 @@ export const brands = function (server) {
     routes() {
       this.namespace = "/api/brands/"
 
-      // TODO: tem q ter paginação
       this.get("/", function (schema, request) {
-        return new Response(200, {}, schema.brands.all())
+        const page = parseInt(request.queryParams.page) || 1
+        const perPage = parseInt(request.queryParams.per_page) || 30
+
+        const brands = this.serialize(
+          schema.brands.all().slice(page * perPage - perPage, page * perPage)
+        )
+
+        return new Response(
+          200,
+          {},
+          { count: schema.products.all().length, brands: brands }
+        )
       })
     },
   })
