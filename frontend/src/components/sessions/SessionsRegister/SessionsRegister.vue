@@ -1,5 +1,5 @@
 <template>
-  <h1 class="font-weight-bold mb-8">Create your account</h1>
+  <h1 class="mb-8">Create your account</h1>
   <AppAlert />
   <VForm
     v-bind="$attrs"

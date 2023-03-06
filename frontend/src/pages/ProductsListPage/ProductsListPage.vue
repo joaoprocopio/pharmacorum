@@ -1,5 +1,14 @@
 <template>
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
+    <VBtn
+      v-if="!initializing"
+      class="mb-8"
+      variant="flat"
+      prepend-icon="add"
+      block
+      :to="{ name: ProductsCreatePageName }">
+      Create</VBtn
+    >
     <ProductsListCard
       v-for="product in products"
       :key="product.id"
@@ -27,7 +36,7 @@
   import { ref, computed, onMounted } from "vue"
   import { debounce, inRange } from "lodash"
 
-  import { ProductsViewPageName } from "~/assets"
+  import { ProductsViewPageName, ProductsCreatePageName } from "~/assets"
   import { ProductsListCard } from "~/components"
   import { ProductsServices } from "~/services"
 

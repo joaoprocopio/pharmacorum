@@ -3,7 +3,7 @@
     <section class="d-flex justify-space-between mb-4">
       <article class="d-flex flex-column">
         <h1 v-text="$props.product.title" />
-        <p class="text-grey" v-text="$props.product.brand.name" />
+        <p class="text-grey" v-text="$props.product.brand.title" />
       </article>
       <article class="d-flex flex-column align-end">
         <h1 v-text="$props.product.quantity" />

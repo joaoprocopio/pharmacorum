@@ -2,7 +2,7 @@
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
     <VCard border class="mb-8 px-6 py-4" elevation="0">
       <section class="d-flex justify-space-between mb-4">
-        <article class="d-flex">
+        <article class="d-flex align-center">
           <VBtn
             icon="arrow_back"
             variant="text"

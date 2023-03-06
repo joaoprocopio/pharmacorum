@@ -6,6 +6,10 @@ export const serializers = {
     root: false,
     include: ["brand"],
   }),
+  brand: ActiveModelSerializer.extend({
+    embed: true,
+    root: false,
+  }),
   user: ActiveModelSerializer.extend({
     embed: true,
     root: false,

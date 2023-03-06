@@ -1,4 +1,5 @@
 export * from "./axios"
 export * from "./handlers"
+export * from "./brands-api"
 export * from "./products-api"
 export * from "./sessions-api"

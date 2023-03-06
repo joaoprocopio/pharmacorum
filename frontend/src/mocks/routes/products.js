@@ -45,6 +45,36 @@ export const products = function (server) {
 
         return new Response(200, {}, product)
       })
+
+      this.post("/create/", function (schema, request) {
+        const body = JSON.parse(request.requestBody)
+
+        if (
+          !body.title ||
+          !body.description ||
+          !body.types ||
+          !body.quantity ||
+          !body.price ||
+          !body.brand_id
+        )
+          return new Response(400, {}, {})
+
+        const product = schema.products.create({
+          title: body.title,
+          types: body.types,
+          brandId: body.brand_id,
+          description: body.description,
+          quantity: body.quantity,
+          price: body.price,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        })
+
+        return new Response(200, {}, product)
+      })
+
+      // TODO: fazer a função de edição por ID
+      // this.post("/edit/:id/", function (schema, request) {})
     },
   })
 }

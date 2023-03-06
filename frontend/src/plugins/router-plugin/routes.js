@@ -1,4 +1,5 @@
 import {
+  ProductsCreatePageName,
   ProductsViewPageName,
   ProductsListPageName,
   SessionsPageName,
@@ -41,6 +42,14 @@ export const routes = [
     component: () =>
       import("~/pages/ProductsViewPage").then(
         ({ ProductsViewPage }) => ProductsViewPage
+      ),
+  },
+  {
+    path: "/products/create",
+    name: ProductsCreatePageName,
+    component: () =>
+      import("~/pages/ProductsCreatePage").then(
+        ({ ProductsCreatePage }) => ProductsCreatePage
       ),
   },
   {
