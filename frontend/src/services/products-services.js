@@ -15,8 +15,14 @@ const createProduct = async (product) =>
     .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
+const editProduct = async (product) =>
+  ProductsApi.editProduct(product)
+    .then((response) => response)
+    .catch((error) => Handlers.reject(error))
+
 export const ProductsServices = {
   getProducts,
   getProductById,
   createProduct,
+  editProduct,
 }

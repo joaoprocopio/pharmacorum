@@ -1,9 +1,10 @@
 import {
-  ProductsCreatePageName,
-  ProductsViewPageName,
-  ProductsListPageName,
-  SessionsPageName,
   ErrorPageName,
+  ProductsCreatePageName,
+  ProductsEditPageName,
+  ProductsListPageName,
+  ProductsViewPageName,
+  SessionsPageName,
 } from "~/assets"
 
 import { every } from "lodash"
@@ -50,6 +51,16 @@ export const routes = [
     component: () =>
       import("~/pages/ProductsCreatePage").then(
         ({ ProductsCreatePage }) => ProductsCreatePage
+      ),
+  },
+  {
+    path: "/products/edit/:id",
+    name: ProductsEditPageName,
+    props: (route) =>
+      every(route.params, (param) => !!param) ? route.params : {},
+    component: () =>
+      import("~/pages/ProductsEditPage").then(
+        ({ ProductsEditPage }) => ProductsEditPage
       ),
   },
   {

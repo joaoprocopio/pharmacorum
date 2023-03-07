@@ -1,7 +1,7 @@
 <template>
   <VResponsive class="mx-auto py-8 px-8" max-width="600">
-    <VCard border class="mb-8 px-6 py-4" elevation="0">
-      <h1 class="mb-8">Create your product</h1>
+    <VCard v-if="!initializing" border class="mb-8 px-6 py-4" elevation="0">
+      <h1 class="mb-8">Edit this product</h1>
       <AppAlert />
       <VForm
         v-bind="$attrs"
@@ -25,6 +25,7 @@
           variant="underlined"
           multiple
           :items="Object.values(ProductTypesEnum)" />
+        <!-- TODO: o produto edita bonitinho, mas ta faltando corrigir a exibição da marca que tá confusa -->
         <VAutocomplete
           v-model="product.brand_id"
           v-model:search="query"
@@ -68,7 +69,7 @@
           type="submit"
           color="primary"
           variant="flat">
-          Create
+          Edit
         </VBtn>
         <VBtn
           block
@@ -86,16 +87,23 @@
   import { ref, onMounted } from "vue"
   import { debounce } from "lodash"
 
-  import { AppAlert } from "~/components"
-  import { useAlertStore } from "~/stores"
-  import { BrandsServices, ProductsServices } from "~/services"
   import { validators } from "~/utils"
+  import { useAlertStore } from "~/stores"
+  import { ProductsServices, BrandsServices } from "~/services"
+  import { AppAlert } from "~/components"
   import { ProductTypesEnum, ProductsListPageName } from "~/assets"
 
   const $alert = useAlertStore()
+  const $props = defineProps({
+    id: {
+      type: String,
+      required: true,
+    },
+  })
 
-  const loading = ref(false)
   const form = ref(false)
+  const loading = ref(false)
+  const initializing = ref(true)
   const brands = ref([])
   const product = ref({})
   const query = ref("")
@@ -106,7 +114,7 @@
 
     loading.value = true
 
-    const { status } = await ProductsServices.createProduct(
+    const { status } = await ProductsServices.editProduct(
       product.value
     ).finally(() => {
       loading.value = false
@@ -116,10 +124,22 @@
       $alert.show({
         color: "success",
         icon: "done",
-        text: "Your product was successfully created.",
+        text: "Your product was successfully edited.",
       })
     }
   }, timeout.value)
+
+  const fetch = async () => {
+    initializing.value = true
+
+    const { data, status } = await ProductsServices.getProductById(
+      $props.id
+    ).finally(() => {
+      initializing.value = false
+    })
+
+    if (status === 200) product.value = data
+  }
 
   const fetchBrands = debounce(async () => {
     const { data, status } = await BrandsServices.getBrands(query.value)
@@ -131,5 +151,8 @@
     $alert.$reset()
   }, timeout.value)
 
-  onMounted(() => fetchBrands())
+  onMounted(() => {
+    fetchBrands()
+    fetch()
+  })
 </script>

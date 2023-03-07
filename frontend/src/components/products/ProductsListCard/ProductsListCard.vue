@@ -2,20 +2,20 @@
   <VCard border class="mb-8 px-6 py-4" elevation="0">
     <section class="d-flex justify-space-between mb-4">
       <article class="d-flex flex-column">
-        <h1 v-text="$props.product.title" />
-        <p class="text-grey" v-text="$props.product.brand.title" />
+        <h1 v-text="$props.product?.title" />
+        <p class="text-grey" v-text="$props.product?.brand?.title" />
       </article>
       <article class="d-flex flex-column align-end">
-        <h1 v-text="$props.product.quantity" />
+        <h1 v-text="$props.product?.quantity" />
         <p class="text-grey" v-text="'Available'" />
       </article>
     </section>
     <section>
-      <article class="mb-4" v-text="$props.product.description" />
+      <article class="mb-4" v-text="$props.product?.description" />
     </section>
     <section class="d-flex justify-space-between align-center">
       <article>
-        <template v-for="(type, id) in $props.product.types" :key="id">
+        <template v-for="(type, id) in $props.product?.types" :key="id">
           <ProductsListCardChip
             :title="ProductTypesEnum[type].title"
             :icon="ProductTypesEnum[type].icon"
@@ -23,7 +23,7 @@
         </template>
       </article>
       <article class="ml-2">
-        <h1 v-text="currency.format($props.product.price, 0)" />
+        <h1 v-text="currency.format($props.product?.price, 0)" />
       </article>
     </section>
   </VCard>

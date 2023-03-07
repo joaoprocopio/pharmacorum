@@ -1,4 +1,6 @@
 export * from "./ErrorPage"
-export * from "./SessionsPage"
+export * from "./ProductsCreatePage"
+export * from "./ProductsEditPage"
 export * from "./ProductsListPage"
 export * from "./ProductsViewPage"
+export * from "./SessionsPage"
