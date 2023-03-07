@@ -4,11 +4,10 @@
       v-if="!initializing"
       class="mb-8"
       variant="flat"
-      prepend-icon="add"
       block
       :to="{ name: ProductsCreatePageName }">
-      Create</VBtn
-    >
+      Create
+    </VBtn>
     <ProductsListCard
       v-for="product in products"
       :key="product.id"
