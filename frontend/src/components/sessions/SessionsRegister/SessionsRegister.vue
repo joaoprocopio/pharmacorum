@@ -4,12 +4,12 @@
   <VForm
     v-bind="$attrs"
     v-model="form"
+    :readonly="$props.loading"
     @input="hideAlert"
     @submit.prevent="submit">
     <VTextField
       v-model="user.username"
       :rules="[validators.required(), validators.username()]"
-      :readonly="$props.loading"
       class="mb-2"
       color="primary"
       label="Username"
@@ -17,7 +17,6 @@
     <VTextField
       v-model="user.email"
       :rules="[validators.required(), validators.email()]"
-      :readonly="$props.loading"
       class="mb-2"
       color="primary"
       label="Email"
@@ -25,7 +24,6 @@
     <VTextField
       v-model="user.first_name"
       :rules="[validators.required()]"
-      :readonly="$props.loading"
       class="mb-2"
       color="primary"
       label="First name"
@@ -33,7 +31,6 @@
     <VTextField
       v-model="user.last_name"
       :rules="[validators.required()]"
-      :readonly="$props.loading"
       class="mb-2"
       color="primary"
       label="Last name"
@@ -46,7 +43,6 @@
         validators.minimumLength(8),
       ]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
-      :readonly="$props.loading"
       :type="show ? 'text' : 'password'"
       class="mb-2"
       color="primary"

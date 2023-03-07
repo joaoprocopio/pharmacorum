@@ -12,10 +12,10 @@ export const products = function (server) {
         const products = this.serialize(
           schema.products
             .all()
-            .slice(page * perPage - perPage, page * perPage)
             .sort((a, b) => {
               return new Date(b.updatedAt) - new Date(a.updatedAt)
             })
+            .slice(page * perPage - perPage, page * perPage)
         )
 
         return new Response(

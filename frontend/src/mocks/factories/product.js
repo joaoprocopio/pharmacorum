@@ -25,9 +25,9 @@ export const product = Factory.extend({
     return faker.commerce.productDescription()
   },
   createdAt() {
-    return faker.date.past()
+    return faker.date.recent(360, new Date())
   },
   updatedAt() {
-    return faker.date.recent()
+    return faker.date.recent(180, new Date())
   },
 })

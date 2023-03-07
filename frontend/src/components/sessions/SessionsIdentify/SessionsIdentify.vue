@@ -4,11 +4,11 @@
   <VForm
     v-bind="$attrs"
     v-model="form"
+    :readonly="$props.loading"
     @input="hideAlert"
     @submit.prevent="submit">
     <VTextField
       v-model="query"
-      :readonly="$props.loading"
       :rules="[validators.required()]"
       class="mb-4"
       color="primary"

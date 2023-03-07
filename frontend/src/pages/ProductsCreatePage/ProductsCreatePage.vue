@@ -26,13 +26,16 @@
         :items="Object.values(ProductTypesEnum)" />
       <VAutocomplete
         v-model="product.brand_id"
+        v-model:search="query"
         :rules="[validators.required()]"
+        :items="brands"
+        item-value="id"
         class="mb-2"
         color="primary"
         label="Brand"
         variant="underlined"
-        :items="brands.brands"
-        item-value="id" />
+        hide-no-data
+        @update:search="fetchBrands" />
       <VTextarea
         v-model="product.description"
         :rules="[validators.required()]"
@@ -56,7 +59,14 @@
         label="Price"
         type="number"
         variant="underlined" />
-      <VBtn class="mb-2" block type="submit" color="primary" variant="flat">
+      <VBtn
+        :disabled="loading"
+        :loading="loading"
+        class="mb-2"
+        block
+        type="submit"
+        color="primary"
+        variant="flat">
         Create
       </VBtn>
       <VBtn block variant="text" color="primary" @click="$router.back">
@@ -82,6 +92,7 @@
   const form = ref(false)
   const brands = ref([])
   const product = ref({})
+  const query = ref("")
   const timeout = ref(500)
 
   const submit = debounce(async () => {
@@ -104,13 +115,15 @@
     }
   }, timeout.value)
 
+  const fetchBrands = debounce(async () => {
+    const { data, status } = await BrandsServices.getBrands(query.value)
+
+    if (status === 200) brands.value = data.brands
+  }, timeout.value)
+
   const hideAlert = debounce(() => {
     $alert.$reset()
   }, timeout.value)
 
-  onMounted(async () => {
-    const { data, status } = await BrandsServices.getBrands()
-
-    if (status === 200) brands.value = data
-  })
+  onMounted(() => fetchBrands())
 </script>

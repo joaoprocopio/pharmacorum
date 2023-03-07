@@ -11,13 +11,13 @@
   <VForm
     v-bind="$attrs"
     v-model="form"
+    :readonly="$props.loading"
     @input="hideAlert"
     @submit.prevent="submit">
     <VTextField
       v-model="password"
       :rules="[validators.required()]"
       :append-inner-icon="show ? 'visibility' : 'visibility_off'"
-      :readonly="$props.loading"
       :type="show ? 'text' : 'password'"
       class="mb-2"
       color="primary"
