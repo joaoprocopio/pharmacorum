@@ -4,7 +4,7 @@ from json import dumps, loads
 from backend.users.views import view_current_user, view_identify_user
 
 
-def test_view_current_user_with_anonymous_user(rf, db, anonymous_user):
+def test_view_current_user_with_anonymous_user(rf, anonymous_user):
     request = rf.get("/api/user/current")
     request.user = anonymous_user
 
