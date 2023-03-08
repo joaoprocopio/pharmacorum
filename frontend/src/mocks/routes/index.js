@@ -1,9 +1,9 @@
 import { brands } from "./brands"
 import { products } from "./products"
-import { sessions } from "./sessions"
+import { users } from "./users"
 
 export function routes() {
   brands(this)
   products(this)
-  sessions(this)
+  users(this)
 }

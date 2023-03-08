@@ -1,21 +1,12 @@
-/*
-  /api/sessions/
-  |-  /current_user
-  |-  /identify
-  |-  /login
-  |-  /logout
-  |_  /register
-*/
-
 import Cookies from "js-cookie"
 import { Response } from "miragejs"
 
 import { UserSerializers } from "~/mocks/serializers"
 
-export const sessions = function (server) {
+export const users = function (server) {
   server.config({
     routes() {
-      this.namespace = "/api/sessions/"
+      this.namespace = "/api/users/"
 
       this.get("/current_user/", function (schema) {
         const cookie = Cookies.get("mockuserid")

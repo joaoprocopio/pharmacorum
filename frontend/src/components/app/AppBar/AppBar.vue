@@ -37,12 +37,12 @@
   import { computed } from "vue"
   import { useRouter } from "vue-router"
 
-  import { ProductsListPageName, SessionsPageName } from "~/assets"
-  import { useSessionsStore, useThemeStore } from "~/stores"
-  import { SessionsServices } from "~/services"
+  import { ProductsListPageName, UsersPageName } from "~/assets"
+  import { useUsersStore, useThemeStore } from "~/stores"
+  import { UsersServices } from "~/services"
 
   const $theme = useThemeStore()
-  const $sessions = useSessionsStore()
+  const $users = useUsersStore()
 
   const $router = useRouter()
   const $props = defineProps({
@@ -53,7 +53,7 @@
   })
 
   const $redirects = {
-    login: () => $router.push({ name: SessionsPageName }),
+    login: () => $router.push({ name: UsersPageName }),
   }
 
   const icon = computed(() =>
@@ -61,9 +61,9 @@
   )
 
   const logout = async () => {
-    const { data, status } = await SessionsServices.logout()
+    const { data, status } = await UsersServices.logout()
 
-    if (status === 200) $sessions.currentUser = data
-    if (!$sessions.currentUser?.id) return $redirects.login()
+    if (status === 200) $users.currentUser = data
+    if (!$users.currentUser?.id) return $redirects.login()
   }
 </script>

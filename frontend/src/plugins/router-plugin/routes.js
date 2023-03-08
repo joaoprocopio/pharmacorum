@@ -4,7 +4,7 @@ import {
   ProductsEditPageName,
   ProductsListPageName,
   ProductsViewPageName,
-  SessionsPageName,
+  UsersPageName,
 } from "~/assets"
 
 import { every } from "lodash"
@@ -15,10 +15,10 @@ export const routes = [
     redirect: "/products",
   },
   {
-    path: "/sessions/:step?",
-    name: SessionsPageName,
+    path: "/users/:step?",
+    name: UsersPageName,
     component: () =>
-      import("~/pages/SessionsPage").then(({ SessionsPage }) => SessionsPage),
+      import("~/pages/UsersPage").then(({ UsersPage }) => UsersPage),
     props: (route) =>
       every(route.params, (param) => !!param) ? route.params : {},
     meta: {

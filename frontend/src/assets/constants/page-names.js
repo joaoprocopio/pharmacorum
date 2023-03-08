@@ -8,4 +8,4 @@ export const ProductsListPageName = "ProductsListPage"
 
 export const ProductsViewPageName = "ProductsViewPage"
 
-export const SessionsPageName = "SessionsPage"
+export const UsersPageName = "UsersPage"

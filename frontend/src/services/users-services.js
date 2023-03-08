@@ -1,31 +1,31 @@
-import { SessionsApi, Handlers } from "~/api"
+import { UsersApi, Handlers } from "~/api"
 
 const currentUser = async () =>
-  SessionsApi.currentUser()
+  UsersApi.currentUser()
     .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const identify = async (query) =>
-  SessionsApi.identify({ query })
+  UsersApi.identify({ query })
     .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const login = async (id, password) =>
-  SessionsApi.login({ id, password })
+  UsersApi.login({ id, password })
     .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const logout = async () =>
-  SessionsApi.logout()
+  UsersApi.logout()
     .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
 const register = async (user) =>
-  SessionsApi.register(user)
+  UsersApi.register(user)
     .then((response) => response)
     .catch((error) => Handlers.reject(error))
 
-export const SessionsServices = {
+export const UsersServices = {
   currentUser,
   identify,
   login,
