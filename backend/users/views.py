@@ -33,3 +33,8 @@ def view_identify_user(request):
 
     except ObjectDoesNotExist:
         return JsonResponse({}, status=HTTPStatus.NOT_FOUND)
+
+
+# TODO: login
+# TODO: logout
+# TODO: register
