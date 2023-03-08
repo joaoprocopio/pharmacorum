@@ -1,7 +1,29 @@
 from http import HTTPStatus
 from json import dumps, loads
 
-from backend.users.views import view_identify_user
+from backend.users.views import view_current_user, view_identify_user
+
+
+def test_view_current_user_with_anonymous_user(rf, db, anonymous_user):
+    request = rf.get("/api/user/current_user")
+    request.user = anonymous_user
+
+    response = view_current_user(request)
+    response_content = loads(response.content)
+
+    assert response.status_code == HTTPStatus.OK
+    assert response_content.get("is_authenticated") is False
+
+
+def test_view_current_user_with_authenticated_user(rf, user):
+    request = rf.get("/api/user/current_user")
+    request.user = user
+
+    response = view_current_user(request)
+    response_content = loads(response.content)
+
+    assert response.status_code == HTTPStatus.OK
+    assert response_content.get("is_authenticated") is True
 
 
 def test_view_identify_user_with_valid_username_query(rf, user):
