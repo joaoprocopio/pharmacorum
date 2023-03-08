@@ -8,7 +8,7 @@ export const users = function (server) {
     routes() {
       this.namespace = "/api/users/"
 
-      this.get("/current_user/", function (schema) {
+      this.get("/current/", function (schema) {
         const cookie = Cookies.get("mockuserid")
 
         if (!cookie) return new Response(200, {}, {})

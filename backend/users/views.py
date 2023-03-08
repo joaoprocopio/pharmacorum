@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST
 
-from .serializers import serialize_identified_user, serialize_user
+from .serializers import serialize_identify_user, serialize_user
 from .service import identify_user
 
 # Create your views here.
@@ -27,7 +27,7 @@ def view_identify_user(request):
 
     try:
         user = identify_user(query)
-        user = serialize_identified_user(user)
+        user = serialize_identify_user(user)
 
         return JsonResponse(user)
 

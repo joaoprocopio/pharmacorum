@@ -1,6 +1,6 @@
 import { $axios } from "./axios"
 
-const currentUser = () => $axios.get("/users/current_user")
+const currentUser = () => $axios.get("/users/current")
 
 const identify = (data) => $axios.post("/users/identify", data)
 

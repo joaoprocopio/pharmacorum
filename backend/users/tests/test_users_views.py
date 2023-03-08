@@ -5,7 +5,7 @@ from backend.users.views import view_current_user, view_identify_user
 
 
 def test_view_current_user_with_anonymous_user(rf, db, anonymous_user):
-    request = rf.get("/api/user/current_user")
+    request = rf.get("/api/user/current")
     request.user = anonymous_user
 
     response = view_current_user(request)
@@ -16,7 +16,7 @@ def test_view_current_user_with_anonymous_user(rf, db, anonymous_user):
 
 
 def test_view_current_user_with_authenticated_user(rf, user):
-    request = rf.get("/api/user/current_user")
+    request = rf.get("/api/user/current")
     request.user = user
 
     response = view_current_user(request)
@@ -34,7 +34,7 @@ def test_view_identify_user_with_valid_username_query(rf, user):
     )
 
     request = rf.post(
-        "/api/user/identify_user",
+        "/api/user/identify",
         request_body,
         "application/json",
     )
@@ -54,7 +54,7 @@ def test_view_identify_user_with_valid_email_query(rf, user):
     )
 
     request = rf.post(
-        "/api/user/identify_user",
+        "/api/user/identify",
         request_body,
         "application/json",
     )
@@ -66,25 +66,6 @@ def test_view_identify_user_with_valid_email_query(rf, user):
     assert response_content.get("email") == user.email
 
 
-def test_view_identify_user_with_invalid_query(rf, user):
-    request_body = dumps(
-        {
-            "query": None,
-        }
-    )
-
-    request = rf.post(
-        "/api/user/identify_user",
-        request_body,
-        "application/json",
-    )
-    response = view_identify_user(request)
-    response_content = loads(response.content)
-
-    assert response.status_code == HTTPStatus.BAD_REQUEST
-    assert response_content == {}
-
-
 def test_view_identify_user_with_invalid_username(rf, db):
     request_body = dumps(
         {
@@ -93,7 +74,7 @@ def test_view_identify_user_with_invalid_username(rf, db):
     )
 
     request = rf.post(
-        "/api/user/identify_user",
+        "/api/user/identify",
         request_body,
         "application/json",
     )
@@ -112,7 +93,7 @@ def test_view_identify_user_with_invalid_email(rf, db):
     )
 
     request = rf.post(
-        "/api/user/identify_user",
+        "/api/user/identify",
         request_body,
         "application/json",
     )
@@ -120,4 +101,23 @@ def test_view_identify_user_with_invalid_email(rf, db):
     response_content = loads(response.content)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
+    assert response_content == {}
+
+
+def test_view_identify_user_with_invalid_query(rf, user):
+    request_body = dumps(
+        {
+            "query": None,
+        }
+    )
+
+    request = rf.post(
+        "/api/user/identify",
+        request_body,
+        "application/json",
+    )
+    response = view_identify_user(request)
+    response_content = loads(response.content)
+
+    assert response.status_code == HTTPStatus.BAD_REQUEST
     assert response_content == {}
