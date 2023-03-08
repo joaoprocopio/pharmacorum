@@ -1,0 +1,11 @@
+.vscode/
+.idea/
+node_modules/
+**/__tests__/
+dockerfile
+.gitignore
+.eslintrc.cjs
+.nvmrc
+jsconfig.json
+prettier.config.js
+vitest.config.js

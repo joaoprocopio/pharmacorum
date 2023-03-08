@@ -48,6 +48,7 @@ services:
         condition: service_started
     volumes:
       - ./frontend:/frontend
+      - node_modules:/frontend/node_modules
     restart: on-failure
 
   nginx:
@@ -56,3 +57,6 @@ services:
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     restart: on-failure
+
+volumes:
+  node_modules:
