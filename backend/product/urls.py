@@ -1,8 +1,0 @@
-from django.urls import path
-
-from backend.product.views import find_product, home_page
-
-urlpatterns = [
-    path("<int:product_id>", find_product),
-    path("home_page/", home_page),
-]
