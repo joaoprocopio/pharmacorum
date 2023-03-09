@@ -1,12 +1,12 @@
 from http import HTTPStatus
 from json import loads
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST
 
-from .serializers import serialize_identify_user, serialize_user
+from .serializers import serialize_anonymous_user, serialize_authenticated_user, serialize_identify_user
 from .service import identify_user
 
 # Create your views here.
@@ -14,7 +14,10 @@ from .service import identify_user
 
 @require_GET
 def view_current_user(request):
-    return JsonResponse(serialize_user(request.user))
+    if request.user.is_authenticated:
+        return JsonResponse(serialize_authenticated_user(request.user))
+
+    return JsonResponse(serialize_anonymous_user(request.user))
 
 
 @require_POST
