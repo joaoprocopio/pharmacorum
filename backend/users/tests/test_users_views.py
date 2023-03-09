@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from json import dumps, loads
+from unittest.mock import MagicMock
 
 from backend.users.views import view_current_user, view_identify_user, view_login_user, view_logout_user
 
@@ -144,7 +145,7 @@ def test_view_logout_user_with_anonymous_user(rf, anonymous_user, session_middle
 def test_view_login_user_with_valid_id_and_valid_password(rf, user, session_middleware):
     request_body = dumps(
         {
-            "id": 1,
+            "id": user.id,
             "password": "password",
         }
     )
@@ -188,7 +189,7 @@ def test_view_login_user_with_invalid_data(rf, user, session_middleware):
 def test_view_login_user_with_valid_id_and_invalid_password(rf, user, session_middleware):
     request_body = dumps(
         {
-            "id": 1,
+            "id": user.id,
             "password": "admin",
         }
     )
@@ -209,7 +210,7 @@ def test_view_login_user_with_valid_id_and_invalid_password(rf, user, session_mi
 def test_view_login_user_with_invalid_id_and_invalid_password(rf, user, session_middleware):
     request_body = dumps(
         {
-            "id": 5,
+            "id": user.id ^ 8192,
             "password": "admin",
         }
     )
