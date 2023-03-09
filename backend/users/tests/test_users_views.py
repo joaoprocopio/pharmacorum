@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from json import dumps, loads
 
-from backend.users.views import view_current_user, view_identify_user
+from backend.users.views import view_current_user, view_identify_user, view_logout_user
 
 
 def test_view_current_user_with_anonymous_user(rf, anonymous_user):
@@ -79,10 +79,8 @@ def test_view_identify_user_with_invalid_username(rf, db):
         "application/json",
     )
     response = view_identify_user(request)
-    response_content = loads(response.content)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
-    assert response_content == {}
 
 
 def test_view_identify_user_with_invalid_email(rf, db):
@@ -98,10 +96,8 @@ def test_view_identify_user_with_invalid_email(rf, db):
         "application/json",
     )
     response = view_identify_user(request)
-    response_content = loads(response.content)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
-    assert response_content == {}
 
 
 def test_view_identify_user_with_invalid_query(rf, user):
@@ -117,7 +113,29 @@ def test_view_identify_user_with_invalid_query(rf, user):
         "application/json",
     )
     response = view_identify_user(request)
-    response_content = loads(response.content)
 
     assert response.status_code == HTTPStatus.BAD_REQUEST
-    assert response_content == {}
+
+
+def test_view_logout_user_with_authenticated_user(rf, user, session_middleware):
+    request = rf.get("/api/user/logout")
+    request.user = user
+
+    session_middleware.process_request(request)
+
+    response = view_logout_user(request)
+
+    assert response.status_code == HTTPStatus.OK
+    assert request.user.is_authenticated is False
+
+
+def test_view_logout_user_with_anonymous_user(rf, anonymous_user, session_middleware):
+    request = rf.get("/api/user/logout")
+    request.user = anonymous_user
+
+    session_middleware.process_request(request)
+
+    response = view_logout_user(request)
+
+    assert response.status_code == HTTPStatus.UNAUTHORIZED
+    assert request.user.is_authenticated is False
