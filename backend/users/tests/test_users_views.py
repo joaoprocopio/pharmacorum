@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from json import dumps, loads
 
-from backend.users.views import view_current_user, view_identify_user, view_logout_user
+from backend.users.views import view_current_user, view_identify_user, view_login_user, view_logout_user
 
 
 def test_view_current_user_with_anonymous_user(rf, anonymous_user):
@@ -139,3 +139,89 @@ def test_view_logout_user_with_anonymous_user(rf, anonymous_user, session_middle
 
     assert response.status_code == HTTPStatus.UNAUTHORIZED
     assert request.user.is_authenticated is False
+
+
+def test_view_login_user_with_valid_id_and_valid_password(rf, user, session_middleware):
+    request_body = dumps(
+        {
+            "id": 1,
+            "password": "password",
+        }
+    )
+
+    request = rf.post(
+        "/api/user/login",
+        request_body,
+        "application/json",
+    )
+
+    session_middleware.process_request(request)
+
+    response = view_login_user(request)
+    response_content = loads(response.content)
+
+    assert response.status_code == HTTPStatus.OK
+    assert response_content.get("is_authenticated") is True
+
+
+def test_view_login_user_with_invalid_data(rf, user, session_middleware):
+    request_body = dumps(
+        {
+            "id": None,
+            "password": None,
+        }
+    )
+
+    request = rf.post(
+        "/api/user/login",
+        request_body,
+        "application/json",
+    )
+
+    session_middleware.process_request(request)
+
+    response = view_login_user(request)
+
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+
+
+def test_view_login_user_with_valid_id_and_invalid_password(rf, user, session_middleware):
+    request_body = dumps(
+        {
+            "id": 1,
+            "password": "admin",
+        }
+    )
+
+    request = rf.post(
+        "/api/user/login",
+        request_body,
+        "application/json",
+    )
+
+    session_middleware.process_request(request)
+
+    response = view_login_user(request)
+
+    assert response.status_code == HTTPStatus.UNAUTHORIZED
+
+
+def test_view_login_user_with_invalid_id_and_invalid_password(rf, user, session_middleware):
+    request_body = dumps(
+        {
+            "id": 5,
+            "password": "admin",
+        }
+    )
+
+    request = rf.post(
+        "/api/user/login",
+        request_body,
+        "application/json",
+    )
+
+    session_middleware.process_request(request)
+
+    response = view_login_user(request)
+
+    assert response.status_code == HTTPStatus.NOT_FOUND

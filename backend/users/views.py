@@ -1,13 +1,13 @@
 from http import HTTPStatus
 from json import loads
 
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST
 
 from .serializers import serialize_anonymous_user, serialize_authenticated_user, serialize_identify_user
-from .service import identify_user
+from .service import get_user, identify_user
 
 # Create your views here.
 
@@ -49,5 +49,30 @@ def view_logout_user(request):
     return JsonResponse({}, status=HTTPStatus.UNAUTHORIZED)
 
 
-# TODO: login
+@require_POST
+def view_login_user(request):
+    body = loads(request.body)
+
+    id = body.get("id")
+    password = body.get("password")
+
+    if not id or not password:
+        return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)
+
+    try:
+        user = get_user(id)
+
+        if not user.check_password(password):
+            return JsonResponse({}, status=HTTPStatus.UNAUTHORIZED)
+
+        login(request, user)
+
+        user = serialize_authenticated_user(user)
+
+        return JsonResponse(user, status=HTTPStatus.OK)
+
+    except ObjectDoesNotExist:
+        return JsonResponse({}, status=HTTPStatus.NOT_FOUND)
+
+
 # TODO: register
