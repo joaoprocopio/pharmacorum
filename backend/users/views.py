@@ -4,6 +4,7 @@ from json import loads
 from django.contrib.auth import login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
 from .serializers import serialize_anonymous_user, serialize_authenticated_user, serialize_identify_user
@@ -21,6 +22,7 @@ def view_current_user(request):
 
 
 @require_POST
+@csrf_exempt
 def view_identify_user(request):
     body = loads(request.body)
 
@@ -50,6 +52,7 @@ def view_logout_user(request):
 
 
 @require_POST
+@csrf_exempt
 def view_login_user(request):
     body = loads(request.body)
 

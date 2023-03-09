@@ -3,9 +3,7 @@
     class="mb-8"
     content-class="d-flex flex-column align-center justify-space-between">
     <VIcon size="128" color="primary" icon="person" />
-    <h1
-      class="text-center font-weight-bold text-capitalize"
-      v-text="findUser.first_name" />
+    <h1 class="text-center font-weight-bold" v-text="findUser.username" />
   </VResponsive>
   <AppAlert />
   <VForm
