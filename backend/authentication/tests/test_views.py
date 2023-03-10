@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from json import dumps, loads
 
-from backend.users.views import (
+from backend.authentication.views import (
     view_current_user,
     view_identify_user,
     view_login_user,

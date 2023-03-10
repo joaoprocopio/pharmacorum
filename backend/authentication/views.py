@@ -7,10 +7,13 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
-from backend.users.forms import UserForm
-
-from .serializers import serialize_anonymous_user, serialize_authenticated_user, serialize_identify_user
-from .service import create_user, get_user, identify_user
+from backend.authentication.forms import UserForm
+from backend.authentication.serializers import (
+    serialize_anonymous_user,
+    serialize_authenticated_user,
+    serialize_identify_user,
+)
+from backend.authentication.service import create_user, get_user, identify_user
 
 
 @require_GET
@@ -101,6 +104,5 @@ def view_register_user(request):
 
         return JsonResponse(user)
 
-    # TODO: treat every error in a different exception
     except BaseException:
         return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)

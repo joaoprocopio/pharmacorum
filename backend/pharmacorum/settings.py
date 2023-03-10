@@ -24,7 +24,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    "backend.users",
+    "backend.authentication",
     "backend.brands",
     "backend.products",
 ]

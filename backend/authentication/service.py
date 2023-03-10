@@ -5,20 +5,8 @@ def get_user(id):
     return _get_user(id=id)
 
 
-def create_user(
-    username,
-    email,
-    password,
-    first_name,
-    last_name,
-):
-    return _create_user(
-        username=username,
-        email=email,
-        password=password,
-        first_name=first_name,
-        last_name=last_name,
-    )
+def create_user(username, email, password, first_name, last_name):
+    return _create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
 
 
 def identify_user(query):
