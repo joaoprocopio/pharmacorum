@@ -12,8 +12,6 @@ from backend.users.forms import UserForm
 from .serializers import serialize_anonymous_user, serialize_authenticated_user, serialize_identify_user
 from .service import create_user, get_user, identify_user
 
-# Create your views here.
-
 
 @require_GET
 def view_current_user(request):
