@@ -7,8 +7,10 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
+from backend.users.forms import UserForm
+
 from .serializers import serialize_anonymous_user, serialize_authenticated_user, serialize_identify_user
-from .service import get_user, identify_user
+from .service import create_user, get_user, identify_user
 
 # Create your views here.
 
@@ -78,4 +80,29 @@ def view_login_user(request):
         return JsonResponse({}, status=HTTPStatus.NOT_FOUND)
 
 
-# TODO: register
+@require_POST
+@csrf_exempt
+def view_register_user(request):
+    if request.user.is_authenticated:
+        return JsonResponse({}, status=HTTPStatus.FORBIDDEN)
+
+    try:
+        user = UserForm.parse_raw(request.body)
+        user = user.dict()
+        user = create_user(
+            username=user.get("username"),
+            password=user.get("password"),
+            email=user.get("email"),
+            first_name=user.get("first_name"),
+            last_name=user.get("last_name"),
+        )
+
+        login(request, user)
+
+        user = serialize_authenticated_user(user)
+
+        return JsonResponse(user)
+
+    # TODO: treat every error in a different exception
+    except BaseException:
+        return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)

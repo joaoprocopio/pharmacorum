@@ -28,7 +28,7 @@ def user(db):
 
 
 @fixture
-def anonymous_user():
+def anonymous_user(db):
     """
     A instance of AnonymousUser.
     """

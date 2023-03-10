@@ -1,8 +1,13 @@
 from http import HTTPStatus
 from json import dumps, loads
-from unittest.mock import MagicMock
 
-from backend.users.views import view_current_user, view_identify_user, view_login_user, view_logout_user
+from backend.users.views import (
+    view_current_user,
+    view_identify_user,
+    view_login_user,
+    view_logout_user,
+    view_register_user,
+)
 
 
 def test_view_current_user_with_anonymous_user(rf, anonymous_user):
@@ -226,3 +231,55 @@ def test_view_login_user_with_invalid_id_and_invalid_password(rf, user, session_
     response = view_login_user(request)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
+
+
+def test_view_register_user_with_invalid_data(rf, anonymous_user, session_middleware):
+    request_body = dumps(
+        {
+            "username": "admin",
+            "email": "admin",
+            "password": "admin",
+            "first_name": "admin",
+            "last_name": "admin",
+        }
+    )
+
+    request = rf.post(
+        "/api/user/register",
+        request_body,
+        "application/json",
+    )
+    request.user = anonymous_user
+
+    session_middleware.process_request(request)
+
+    response = view_register_user(request)
+
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+
+
+def test_view_register_user_with_valid_data(rf, anonymous_user, session_middleware):
+    request_body = dumps(
+        {
+            "username": "admin",
+            "email": "admin@admin.com",
+            "password": "admin_admin",
+            "first_name": "admin",
+            "last_name": "admin",
+        }
+    )
+
+    request = rf.post(
+        "/api/user/register",
+        request_body,
+        "application/json",
+    )
+    request.user = anonymous_user
+
+    session_middleware.process_request(request)
+
+    response = view_register_user(request)
+    response_content = loads(response.content)
+
+    assert response.status_code == HTTPStatus.OK
+    assert response_content.get("is_authenticated") is True
