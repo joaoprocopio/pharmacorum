@@ -13,7 +13,7 @@ from backend.authentication.serializers import (
     serialize_authenticated_user,
     serialize_identify_user,
 )
-from backend.authentication.service import create_user, get_user, query_user
+from backend.authentication.services import create_user, get_user, query_user
 
 
 @require_GET
