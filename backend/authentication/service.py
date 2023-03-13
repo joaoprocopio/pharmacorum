@@ -9,7 +9,7 @@ def create_user(username, email, password, first_name, last_name):
     return _create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
 
 
-def identify_user(query):
+def query_user(query):
     if "@" in query:
         return _get_user(email=query)
 

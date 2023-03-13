@@ -13,11 +13,11 @@ from backend.authentication.serializers import (
     serialize_authenticated_user,
     serialize_identify_user,
 )
-from backend.authentication.service import create_user, get_user, identify_user
+from backend.authentication.service import create_user, get_user, query_user
 
 
 @require_GET
-def view_current_user(request):
+def current_user(request):
     if request.user.is_authenticated:
         return JsonResponse(serialize_authenticated_user(request.user))
 
@@ -26,7 +26,7 @@ def view_current_user(request):
 
 @require_POST
 @csrf_exempt
-def view_identify_user(request):
+def identify_user(request):
     body = loads(request.body)
 
     query = body.get("query")
@@ -35,7 +35,7 @@ def view_identify_user(request):
         return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)
 
     try:
-        user = identify_user(query)
+        user = query_user(query)
         user = serialize_identify_user(user)
 
         return JsonResponse(user)
@@ -45,7 +45,7 @@ def view_identify_user(request):
 
 
 @require_GET
-def view_logout_user(request):
+def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
 
@@ -56,7 +56,7 @@ def view_logout_user(request):
 
 @require_POST
 @csrf_exempt
-def view_login_user(request):
+def login_user(request):
     body = loads(request.body)
 
     id = body.get("id")
@@ -83,7 +83,7 @@ def view_login_user(request):
 
 @require_POST
 @csrf_exempt
-def view_register_user(request):
+def register_user(request):
     if request.user.is_authenticated:
         return JsonResponse({}, status=HTTPStatus.FORBIDDEN)
 
