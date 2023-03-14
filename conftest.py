@@ -5,6 +5,8 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from model_bakery import baker
 from pytest import fixture
 
+from backend.brands.models import Brand
+
 
 @fixture
 def user(db):
@@ -25,6 +27,14 @@ def user(db):
     user.save()
 
     return user
+
+
+@fixture
+def brands(db):
+    """
+    Return a list with a lot of brands.
+    """
+    return baker.make(Brand, _quantity=300, _bulk_create=True)
 
 
 @fixture
