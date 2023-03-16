@@ -6,6 +6,7 @@ from model_bakery import baker
 from pytest import fixture
 
 from backend.brands.models import Brand
+from backend.products.models import Product
 
 
 @fixture
@@ -35,6 +36,14 @@ def brands(db):
     Return a list with a lot of brands.
     """
     return baker.make(Brand, _quantity=300, _bulk_create=True)
+
+
+@fixture
+def products(db):
+    """
+    Return a list with a lot of products.
+    """
+    return baker.make(Product, _quantity=600, _bulk_create=True)
 
 
 @fixture
