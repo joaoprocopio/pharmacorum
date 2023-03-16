@@ -14,7 +14,7 @@ class Product(models.Model):
         BABY_AND_KIDS = ("BABY_AND_KIDS", "Baby and Kids")
 
     title = models.CharField(max_length=128)
-    types = ArrayField(models.CharField(max_length=32, blank=True, choices=Types.choices), blank=True, default=list)
+    types = ArrayField(models.CharField(max_length=32, blank=True, null=True, choices=Types.choices), default=list)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=32, decimal_places=2)
     quantity = models.PositiveIntegerField()
