@@ -4,8 +4,8 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
-from .serializers import serialize_brand
-from .services import get_brands
+from backend.brands.serializers import serialize_brand
+from backend.brands.services import get_brands
 
 
 @require_GET

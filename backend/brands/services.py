@@ -1,4 +1,4 @@
-from .models import Brand
+from backend.brands.models import Brand
 
 
 def get_brands(query):

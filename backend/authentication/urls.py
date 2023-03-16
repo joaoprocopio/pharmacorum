@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import current_user, identify_user, login_user, logout_user, register_user
+from backend.authentication.views import current_user, identify_user, login_user, logout_user, register_user
 
 urlpatterns = [
     path("current", current_user),
