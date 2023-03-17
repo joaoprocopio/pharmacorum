@@ -5,6 +5,6 @@ class ProductForm(BaseModel):
     title: str
     description: str
     types: list[str]
-    quantity: float
-    price: int
+    quantity: int
+    price: int | float
     brand_id: int

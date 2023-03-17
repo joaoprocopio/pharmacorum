@@ -1,4 +1,4 @@
-from random import randint, shuffle
+from random import randint
 from unittest.mock import ANY
 
 from django.contrib.auth.models import AnonymousUser, User
@@ -36,7 +36,7 @@ def brands(db):
     """
     Return a list with a lot of brands.
     """
-    return baker.make(Brand, _quantity=300, _bulk_create=True)
+    return baker.make(Brand, _quantity=64)
 
 
 @fixture
@@ -44,9 +44,7 @@ def products(db, brands):
     """
     Return a list with a lot of products.
     """
-    return baker.make(
-        Product, types=Product.Types.values, brand_id=randint(0, len(brands)), _quantity=600, _bulk_create=True
-    )
+    return baker.make(Product, types=Product.Types.values, brand=brands[randint(1, len(brands))], _quantity=512)
 
 
 @fixture

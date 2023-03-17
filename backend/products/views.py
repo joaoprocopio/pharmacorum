@@ -2,10 +2,11 @@ from http import HTTPStatus
 
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 
+from backend.products.forms import ProductForm
 from backend.products.serializers import serialize_product
-from backend.products.services import get_product, get_products
+from backend.products.services import create_product, get_product, get_products
 
 
 @require_GET
@@ -35,3 +36,22 @@ def identify_product(request, id):
         return JsonResponse(serialize_product(product))
     except BaseException:
         return JsonResponse({}, status=HTTPStatus.NOT_FOUND)
+
+
+@require_POST
+def new_product(request):
+    try:
+        product = ProductForm.parse_raw(request.body)
+        product = product.dict()
+        product = create_product(
+            title=product.get("title"),
+            description=product.get("description"),
+            types=product.get("types"),
+            quantity=product.get("quantity"),
+            price=product.get("price"),
+            brand_id=product.get("brand_id"),
+        )
+
+        return JsonResponse(serialize_product(product))
+    except BaseException:
+        return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)
