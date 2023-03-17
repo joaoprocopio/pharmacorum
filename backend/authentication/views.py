@@ -100,9 +100,7 @@ def register_user(request):
 
         login(request, user)
 
-        user = serialize_authenticated_user(user)
-
-        return JsonResponse(user)
+        return JsonResponse(serialize_authenticated_user(user))
 
     except BaseException:
         return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)
