@@ -1,8 +1,11 @@
+from datetime import datetime
 from http import HTTPStatus
 from json import dumps, loads
 from random import choice, randint, uniform
 
-from backend.products.views import identify_product, list_products, register_product
+from django.utils import timezone
+
+from backend.products.views import edit_product, identify_product, list_products, register_product
 
 
 def test_list_products_pagination(rf, products):
@@ -54,3 +57,41 @@ def test_create_product_with_valid_data(rf, brands):
 
     assert response.status_code == HTTPStatus.OK
     assert product.get("title") == response_content.get("title")
+
+
+def test_create_product_with_invalid_data(rf, brands):
+    request = rf.post(
+        "/api/products/create",
+        dumps({}),
+        "application/json",
+    )
+
+    response = register_product(request)
+
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+
+
+def test_edit_product(rf, products):
+    product = products[0]
+
+    request = rf.post(
+        "/api/products/edit",
+        dumps(
+            {
+                "id": product.id,
+                "title": "Edited Title",
+                "description": "Edited Description",
+                "types": ["COSMETIC", "HYGIENE", "SUPPLEMENT"],
+                "quantity": randint(50, 1500),
+                "price": uniform(200.5, 950.75),
+                "brand_id": product.brand.id,
+            }
+        ),
+        "application/json",
+    )
+
+    response = edit_product(request)
+    response_content = loads(response.content)
+
+    assert response_content.get("id") == product.id
+    assert (timezone.now() - datetime.fromisoformat(response_content.get("updated_at"))).seconds == 0

@@ -8,3 +8,7 @@ class ProductForm(BaseModel):
     quantity: int
     price: int | float
     brand_id: int
+
+
+class PersistedProductForm(ProductForm):
+    id: int
