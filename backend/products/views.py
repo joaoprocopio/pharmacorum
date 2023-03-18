@@ -39,7 +39,7 @@ def identify_product(request, id):
 
 
 @require_POST
-def new_product(request):
+def register_product(request):
     try:
         product = ProductForm.parse_raw(request.body)
         product = product.dict()
@@ -55,3 +55,8 @@ def new_product(request):
         return JsonResponse(serialize_product(product))
     except BaseException:
         return JsonResponse({}, status=HTTPStatus.BAD_REQUEST)
+
+
+@require_POST
+def edit_product(request):
+    return JsonResponse({})

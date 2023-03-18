@@ -2,7 +2,7 @@ from http import HTTPStatus
 from json import dumps, loads
 from random import choice, randint, uniform
 
-from backend.products.views import identify_product, list_products, new_product
+from backend.products.views import identify_product, list_products, register_product
 
 
 def test_list_products_pagination(rf, products):
@@ -49,7 +49,7 @@ def test_create_product_with_valid_data(rf, brands):
         "application/json",
     )
 
-    response = new_product(request)
+    response = register_product(request)
     response_content = loads(response.content)
 
     assert response.status_code == HTTPStatus.OK
