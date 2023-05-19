@@ -6,7 +6,7 @@ import { UserSerializers } from "~/mocks/serializers"
 export const users = function (server) {
   server.config({
     routes() {
-      this.namespace = "/api/users/"
+      this.namespace = "/api/auth/"
 
       this.get("/current/", function (schema) {
         const cookie = Cookies.get("mockuserid")
